@@ -10,12 +10,14 @@ import InfoBox from './componentes/infoBox.jsx';
 import NewsBox from './componentes/newsBox.jsx';
 import VerticalMenu from './componentes/verticalMenu.jsx';
 import Footer from './componentes/footerMain.jsx';
+import SocialMedia from './componentes/socialMedia.jsx';
 
 import tutorIcon from './iconos/tutor-icon.svg'
 import resultIcon from './iconos/result-pass-icon.svg'
 import bookIcon from './iconos/read-book-icon.svg'
 
 function App() {
+
   return (
     <div>
       <PrincipalHeader />
@@ -44,10 +46,11 @@ function App() {
         </div>
       </div>
       <div className="row mt-3 mx-2">
-        <div className="col-md-4">
+        <div className="col-md-3">
           <VerticalMenu />
+          <SocialMedia />
         </div>
-        <div className="col-md-8">
+        <div className="col-md-9">
           <NewsBox />
         </div>
       </div>

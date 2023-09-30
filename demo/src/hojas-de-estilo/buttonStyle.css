@@ -1,0 +1,46 @@
+:root{
+  --dark: #000000;
+  --light-gray:#CCCCCC;
+  --gray: #999999;
+  --white: #ffffff;
+  --red-s:linear-gradient(180deg, #CC0000, #7D0000);
+  --blue-s: #0D4185
+}
+
+.button {
+  color: var(--white);
+  margin-bottom: 15px;
+  display: flex;
+  width: 270px;
+  height: 100%;
+  font-size: 1.2rem;
+  height: 50px;
+  align-items: center;
+  border: none;
+  padding-left: 0;
+}
+
+.button img {
+  background-color: var(--white); /* Color del cuadrado blanco */
+  padding: 5px; /* Espaciado dentro del cuadrado blanco */
+}
+
+.btn-text{
+  color: var(--white);
+}
+
+.icon {
+  height: 50px;
+  width: 50px;
+  background-color: var(--white);
+  margin-right: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-top-right-radius: 15%;
+  border-bottom-right-radius: 15%;
+}
+
+
+
+  
