@@ -101,7 +101,7 @@ body {
 
 .social-media-box {
   display: flex;
-  border-radius: 3%;
+  border-radius: 5%;
   flex-direction: column;
   background-color: var(--white);
   padding: 15px; /* Espaciado del rectángulo */
@@ -186,7 +186,7 @@ body {
   margin-top: 10px;
   margin-bottom: 0;
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
 }
 
 .pagination .page-item .page-link {

@@ -1,9 +1,14 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import '../hojas-de-estilo/stylesHome.css'
 import '../hojas-de-estilo/buttonStyle.css'
 
-export function BotonIniciarSesion({ onClick }) {
+export function BotonIniciarSesionHome({ onClick }) {
+  return (
+    <button className='btn border-custom text-light btn-sm' onClick={onClick}>Iniciar Sesión</button>
+  );
+}
+
+export function BotonIniciarSesionLogin({ onClick }) {
   return (
     <button className='btn btn-light border-custom text-secondary' onClick={onClick}>Iniciar Sesión</button>
   );

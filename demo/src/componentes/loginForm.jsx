@@ -2,7 +2,8 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../hojas-de-estilo/stylesLogin.css';
 
-import { BotonIniciarSesion, Checkbox } from './button';
+import { BotonIniciarSesionLogin, Checkbox } from './button';
+import TextInput from './textInput.jsx';
 
 // Componente del formulario de inicio de sesión
 function LoginForm() {
@@ -16,13 +17,10 @@ function LoginForm() {
             </div>
             <div className="card-body custom-pd">
               <form autoComplete="off">
-                <div className="form-group mb-3 d-flex justify-content-center align-items-center">
-                  <i className="fa-light fa-user"></i>
-                  <input type="text" placeholder="Usuario" className="form-control border-custom" id="username" required />
-                </div>
-                <div className="form-group mb-3 d-flex justify-content-center align-items-center">
-                  <input type="password" placeholder="Contraseña" className="form-control border-custom" id="password" required />
-                </div>
+                {/* Usa el nuevo componente TextInput */}
+                <TextInput placeholder="Usuario" id="username" required />
+                <TextInput placeholder="Contraseña" id="password" required />
+                {/* Resto de tu formulario */}
                 <div className="form-group mb-3">
                   <div className="d-flex justify-content-between align-items-center">
                     <div className="form-check">
@@ -32,7 +30,7 @@ function LoginForm() {
                   </div>
                 </div>
                 <div className="form-group text-center">
-                  <BotonIniciarSesion />
+                  <BotonIniciarSesionLogin />
                 </div>
               </form>
             </div>
@@ -44,3 +42,4 @@ function LoginForm() {
 }
 
 export default LoginForm;
+

@@ -1,6 +1,10 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../hojas-de-estilo/stylesHome.css';
+
+import { BotonIniciarSesionHome } from './button';
 
 function principalHeader() {
   return(
@@ -13,7 +17,9 @@ function principalHeader() {
             </a>
           </div>
           <div className="col-md-10 text-end">
-            <button className="btn btn-outline-light btn-sm rounded-2 border-custom" type="button">Iniciar sesión</button>
+            <Link to="/login">
+              <BotonIniciarSesionHome />
+            </Link>
             <img className="user-image" src={require("../imagenes/user.png")} alt="Usuario" />
           </div>
         </div>
