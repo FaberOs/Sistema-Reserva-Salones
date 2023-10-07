@@ -32,6 +32,10 @@
   padding: 10px;
 }
 
+.card-header h3:hover{
+  text-decoration: none;
+}
+
 .login-footer {
   background-color: var(--blue-s);
   color: var(--white);

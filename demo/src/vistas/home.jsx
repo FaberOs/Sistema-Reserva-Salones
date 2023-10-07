@@ -10,6 +10,8 @@ import VerticalMenu from '../componentes/verticalMenu.jsx';
 import MainFooter from '../componentes/footerMain.jsx';
 import SocialMedia from '../componentes/socialMedia.jsx';
 
+import GlobalStyles from '../componentes/GlobalStyles';
+
 import tutorIcon from '../iconos/tutor-icon.svg';
 import resultIcon from '../iconos/result-pass-icon.svg';
 import bookIcon from '../iconos/read-book-icon.svg';
@@ -17,6 +19,10 @@ import bookIcon from '../iconos/read-book-icon.svg';
 function Home (){
   return(
     <div>
+      <GlobalStyles
+        backgroundColor="#ffffff" 
+        textColor="#ffffff"
+      />
       <header>
         <PrincipalHeader />
       </header>

@@ -29,6 +29,18 @@
   color: var(--white);
 }
 
+.custom-boton {
+  background-color: var(--light-gray);
+  color: var(--white);
+  border: 2px solid var(--gray); /* Borde gris de 2 píxeles */
+  cursor: pointer;
+}
+
+.custom-boton:hover {
+  background-color: var(--gray); /* Color de fondo gris al pasar el mouse */
+  color: var(--white); /* Color de texto blanco al pasar el mouse */
+}
+
 .icon {
   height: 50px;
   width: 50px;

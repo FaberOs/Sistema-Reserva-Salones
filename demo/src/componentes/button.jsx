@@ -10,7 +10,7 @@ export function BotonIniciarSesionHome({ onClick }) {
 
 export function BotonIniciarSesionLogin({ onClick }) {
   return (
-    <button className='btn btn-light border-custom text-secondary' onClick={onClick}>Iniciar Sesión</button>
+    <button className='btn custom-boton' onClick={onClick}>Iniciar Sesión</button>
   );
 }
 

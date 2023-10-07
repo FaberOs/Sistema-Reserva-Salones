@@ -6,9 +6,15 @@ import LoginForm from '../componentes/loginForm.jsx';
 import SimpleHeader from '../componentes/loginHeader.jsx';
 import LoginFooter from '../componentes/footerLogin.jsx'
 
+import GlobalStyles from '../componentes/GlobalStyles';
+
 function Login(){
   return(
     <div>
+      <GlobalStyles
+        backgroundColor="#0D4185"
+        textColor="#ffffff"
+      />
       <SimpleHeader />
       <LoginForm />
       <LoginFooter />
