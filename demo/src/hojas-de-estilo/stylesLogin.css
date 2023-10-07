@@ -1,40 +1,40 @@
-@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
-
 :root{
   --dark: #000000;
   --light-gray:#CCCCCC;
   --gray: #999999;
   --white: #ffffff;
   --red-s:linear-gradient(180deg, #CC0000, #7D0000);
-  --blue-s: #0D4185
+  --blue-s: #0D4185;
 }
 
-*{
-    font-family: 'Nunito', sans-serif;
-    box-sizing: border-box;
-    text-transform: capitalize;
-    text-decoration: none;
-}
-
-body {
+.login-body {
   background-color: var(--blue-s);
-  color: #fff;
+  color: var(--white);
 }
 
-.header {
+.login-header {
   background: var(--red-s);
   text-align: center;
   padding: 10px;
 }
 
-.header img {
+.login-header img {
   width: 150px;
   height: auto; 
 }
 
-.footer {
+.custom-pd {
+  padding: 40px;
+}
+
+.card-header {
+  background-color: var(--light-gray);
+  padding: 10px;
+}
+
+.login-footer {
   background-color: var(--blue-s);
-  color: #fff;
+  color: var(--white);
   text-align: center;
   padding: 20px;
   position: fixed;
@@ -43,42 +43,3 @@ body {
   width: 100%;
 }
 
-.card-header{
-  background-color: var(--light-gray);
-  padding: 10px;
-}
-
-.border-custom{
-  border-color: var(--gray);
-  border-width: 2px;
-}
-
-a{
-  color: var(--gray);
-  text-decoration: none;
-}
-
-a:hover{
-  color: var(--dark);
-  text-decoration: underline;
-}
-
-label{
-  color: var(--gray);
-}
-
-.custom-pd{
-  padding: 40px;
-}
-
-@media (min-width: 576px) {
-  .header img {
-    max-width: 200px;
-  }
-}
-
-@media (min-width: 768px) {
-  .header img {
-    max-width: 250px;
-  }
-}

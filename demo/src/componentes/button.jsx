@@ -33,12 +33,22 @@ export function BotonCancelar({ onClick }) {
 }
 
 export function Checkbox({ label, checked, onChange }) {
-    return (
-      <label>
-        <input type="checkbox" className='form-check-input border-custom' id='RememberMe' checked={checked} onChange={onChange} />
-        <label className='form-check-label'>{label}</label>
-      </label>
-    );
+  return (
+    <div className="form-group mb-3">
+      <div className="form-check">
+        <input
+          type="checkbox"
+          className="form-check-input"
+          id="rememberMe"
+          checked={checked}
+          onChange={onChange}
+        />
+        <label className="form-check-label" htmlFor="rememberMe">
+          {label}
+        </label>
+      </div>
+    </div>
+  );
 }
 
 export function BotonSolicitarReserva({ onClick, color, icon }) {
@@ -51,7 +61,7 @@ export function BotonSolicitarReserva({ onClick, color, icon }) {
       <div className='icon'>
         <img src={icon} alt="Icono" style={{ width: '80%', height: '80%' }} />
       </div>
-      <span className='btn-text'>Solicitar Reserva</span>
+      <span className='button-text'>Solicitar Reserva</span>
     </button>
   );
 }
@@ -66,7 +76,7 @@ export function BotonConsultarReserva({ onClick, color, icon }) {
       <div className='icon'>
         <img src={icon} alt="Icono" style={{ width: '80%', height: '80%' }} />
       </div>
-      <span className='btn-text'>Consultar Reserva</span>
+      <span className='button-text'>Consultar Reserva</span>
     </button>
   );
 }
@@ -81,7 +91,7 @@ export function BotonSolicitarAuditorio({ onClick, color, icon }) {
       <div className='icon'>
         <img src={icon} alt="Icono" style={{ width: '80%', height: '80%' }} />
       </div>
-      <span className='btn-text'>Solicitar Auditorio</span>
+      <span className='button-text'>Solicitar Auditorio</span>
     </button>
   );
 }

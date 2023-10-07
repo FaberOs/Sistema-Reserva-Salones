@@ -8,7 +8,7 @@ import { BotonIniciarSesionHome } from './button';
 
 function principalHeader() {
   return(
-    <div className="header shadow-lg">
+    <div className="home-header shadow-lg">
       <div className="container">
         <div className="row align-items-center">
           <div className="col-md-2 text-center">

@@ -5,7 +5,7 @@ import '../hojas-de-estilo/stylesHome.css';
 // Componente del pie de página
 function Footer() {
     return (
-      <footer class="footer shadow-lg">
+      <footer class="home-footer shadow-lg">
         Universidad del Cauca | 2023 &copy;
       </footer>
     );

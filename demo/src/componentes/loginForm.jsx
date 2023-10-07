@@ -1,14 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../hojas-de-estilo/stylesLogin.css';
 
-import { BotonIniciarSesionLogin, Checkbox } from './button';
+import { BotonIniciarSesionLogin, Checkbox } from './button.jsx';
 import TextInput from './textInput.jsx';
 
-// Componente del formulario de inicio de sesión
 function LoginForm() {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [rememberMe, setRememberMe] = useState(false);
+
+  const handleUsernameChange = (e) => {
+    setUsername(e.target.value);
+  };
+
+  const handlePasswordChange = (e) => {
+    setPassword(e.target.value);
+  };
+
+  const handleRememberMeChange = () => {
+    setRememberMe(!rememberMe);
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Aquí puedes agregar la lógica para procesar el inicio de sesión
+    console.log('Nombre de usuario:', username);
+    console.log('Contraseña:', password);
+    console.log('Recordar datos:', rememberMe);
+  };
+
   return (
-    <div className="container mt-5">
+    <div className="container mt-4">
       <div className="row justify-content-center">
         <div className="col-md-6">
           <div className="card shadow-lg">
@@ -16,23 +39,35 @@ function LoginForm() {
               <h3 className="mb-0 text-dark text-center">Iniciar sesión</h3>
             </div>
             <div className="card-body custom-pd">
-              <form autoComplete="off">
-                {/* Usa el nuevo componente TextInput */}
-                <TextInput placeholder="Usuario" id="username" required />
-                <TextInput placeholder="Contraseña" id="password" required />
-                {/* Resto de tu formulario */}
-                <div className="form-group mb-3">
-                  <div className="d-flex justify-content-between align-items-center">
-                    <div className="form-check">
-                      <Checkbox label="Recordar datos" />
-                    </div>
-                    <a href="#page">¿Olvidaste tu contraseña?</a>
-                  </div>
-                </div>
-                <div className="form-group text-center">
+              <form autoComplete="off" onSubmit={handleSubmit}>
+                <TextInput
+                  id="username"
+                  type="text"
+                  placeholder="Usuario"
+                  value={username}
+                  onChange={handleUsernameChange}
+                  required
+                />
+                <TextInput
+                  id="password"
+                  type="password"
+                  placeholder="Contraseña"
+                  value={password}
+                  onChange={handlePasswordChange}
+                  required
+                />
+                <Checkbox
+                  label="Recordar datos"
+                  checked={rememberMe}
+                  onChange={handleRememberMeChange}
+                />
+                <div className="form-group text-center mt-3">
                   <BotonIniciarSesionLogin />
                 </div>
               </form>
+              <div className="text-center mt-2">
+                <a href="#forgot-password">¿Olvidaste tu contraseña?</a>
+              </div>
             </div>
           </div>
         </div>
@@ -42,4 +77,5 @@ function LoginForm() {
 }
 
 export default LoginForm;
+
 

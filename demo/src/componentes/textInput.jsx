@@ -1,10 +1,18 @@
 import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-function TextInput({ placeholder, id, required }) {
+function TextInput({ id, type, placeholder, value, onChange, required }) {
   return (
-    <div className="form-group mb-3 d-flex justify-content-center align-items-center">
-      <input type="text" placeholder={placeholder} className="form-control border-custom" id={id} required={required} />
+    <div className="form-group mb-3">
+      <input
+        type={type}
+        className="form-control"
+        id={id}
+        placeholder={placeholder}
+        value={value}
+        onChange={onChange}
+        required={required}
+      />
     </div>
   );
 }
