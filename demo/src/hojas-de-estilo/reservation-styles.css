@@ -1,0 +1,26 @@
+.reservation-container {
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  margin: 20px;
+}
+
+.reservation-box {
+  width: 900px; /* Ancho del rectángulo */
+  height: 500px; /* Alto del rectángulo */
+  background-color: white;
+  border-radius: 10px; /* Borde redondeado */
+  border: 1px solid #ccc; /* Borde con color gris */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3); /* Sombra */
+}
+
+.separator {
+  width: 80%; /* Ancho del separador horizontal */
+  height: 1px; /* Altura del separador horizontal */
+  background-color: #ccc; /* Color del separador */
+  margin: 10px 0;
+}
+  

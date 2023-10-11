@@ -9,9 +9,7 @@
 
 .button {
   color: var(--white);
-  margin-bottom: 15px;
   display: flex;
-  width: 270px;
   height: 100%;
   font-size: 1.2rem;
   height: 50px;
@@ -23,6 +21,11 @@
 .button img {
   background-color: var(--white); /* Color del cuadrado blanco */
   padding: 5px; /* Espaciado dentro del cuadrado blanco */
+}
+
+.link-text {
+  text-decoration: none; /* Quitar subrayado */
+  color: inherit; /* Heredar el color del enlace */
 }
 
 .btn-text{

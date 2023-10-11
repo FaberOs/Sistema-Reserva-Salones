@@ -8,6 +8,8 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 
 import Login from './vistas/login';
 import Home from './vistas/home';
+import Reserva from './vistas/reserva';
+
 
 function App() {
   return (
@@ -23,6 +25,11 @@ function App() {
             <Home />
           </div>
         } />
+        <Route path="/solicitar-reserva" element={
+          <div>
+            <Reserva />
+          </div>
+        }/>
       </Routes>
     </Router>
   );

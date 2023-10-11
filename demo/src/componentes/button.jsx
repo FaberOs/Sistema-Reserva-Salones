@@ -32,6 +32,12 @@ export function BotonCancelar({ onClick }) {
   );
 }
 
+export function BotonRegresar({ onClick }) {
+  return (
+    <button className='btn btn-light border-custom' onClick={onClick}>Regresar</button>
+  );
+}
+
 export function Checkbox({ label, checked, onChange }) {
   return (
     <div className="form-group mb-3">
@@ -57,7 +63,7 @@ export function BotonSolicitarReserva({ onClick, color, icon }) {
   };
   
   return (
-    <button className='button' style={buttonStyle} onClick={onClick}>
+    <button className='button w-100 mb-2' style={buttonStyle} onClick={onClick}>
       <div className='icon'>
         <img src={icon} alt="Icono" style={{ width: '80%', height: '80%' }} />
       </div>
@@ -72,7 +78,7 @@ export function BotonConsultarReserva({ onClick, color, icon }) {
   };
 
   return (
-    <button className='button' style={buttonStyle} onClick={onClick}>
+    <button className='button w-100 mb-2' style={buttonStyle} onClick={onClick}>
       <div className='icon'>
         <img src={icon} alt="Icono" style={{ width: '80%', height: '80%' }} />
       </div>
@@ -87,7 +93,7 @@ export function BotonSolicitarAuditorio({ onClick, color, icon }) {
   };
 
   return (
-    <button className='button' style={buttonStyle} onClick={onClick}>
+    <button className='button w-100 mb-2' style={buttonStyle} onClick={onClick}>
       <div className='icon'>
         <img src={icon} alt="Icono" style={{ width: '80%', height: '80%' }} />
       </div>

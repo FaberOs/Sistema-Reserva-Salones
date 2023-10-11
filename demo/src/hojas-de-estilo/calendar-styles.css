@@ -1,0 +1,92 @@
+:root{
+  --dark: #000000;
+  --light-gray:#CCCCCC;
+  --gray: #999999;
+  --white: #ffffff;
+  --red-s:linear-gradient(180deg, #CC0000, #7D0000);
+  --blue-s: #0D4185;
+  --red: #C6171E;
+}
+
+.calendario-container {
+  background-color: var(--white);
+  width: 350px;
+  height: auto;
+  border-radius: 10px;
+  margin: 20px auto;
+  padding: 15px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.calendario-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.calendario-header h3{
+  font-size: 25px;
+  text-decoration: none;
+  margin-top: 10px;  
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.calendario-header h3:hover{
+  color: var(--dark);
+}
+
+.calendario-header .btn{
+  text-decoration: none;
+  color: var(--dark);
+  margin-bottom: 0;
+  font-weight: bold;
+}
+
+.calendario-day {
+  background-color: var(--white);
+  border: 1px solid var(--gray);
+  text-align: center;
+  padding: 5px;
+  padding-bottom: 0;
+}
+
+.calendar-separator {
+  border: 1px solid var(--dark);
+  margin-bottom: 10px;
+  margin-top: 15px;
+}
+
+.calendario-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-auto-rows: 35px;
+}
+
+.day-name {
+  text-align: center;
+  font-weight: bold;
+  font-style: italic;
+}
+
+.domingo {
+  background-color: var(--white);
+}
+
+.dom {
+  color: var(--red);
+}
+
+.day-number {
+  font-size: 14px;
+  font-weight: bold;
+  display: flex;
+  justify-content: flex-end;
+  align-items: flex-end;
+  height: 100%;
+}
+
+
+  

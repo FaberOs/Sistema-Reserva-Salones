@@ -12,7 +12,7 @@ function InfoBox({ color, icon, text, boxColor }) {
   }
 
   return (
-    <div className="col-md-4">
+    <div className="col-md-4 col-sm-6 col-12">
       <div className="infoBox text-center" style={boxStyle}>
         <img src={icon} alt="Icono" width="40" height="40" style={imgStyle} />
         <p>{text}</p>

@@ -7,20 +7,19 @@ import '../hojas-de-estilo/stylesHome.css';
 import { BotonIniciarSesionHome } from './button';
 
 function principalHeader() {
-  return(
+  return (
     <div className="home-header shadow-lg">
       <div className="container">
         <div className="row align-items-center">
-          <div className="col-md-2 text-center">
-            <a className="navbar-brand" href="#default">
-              <img className="logoU" src={require("../imagenes/logoUnicauca.png")} alt="logoUnicauca" />
+          <div className="col-md-2 col-6 text-center">
+            <a className="navbar-brand" href="/home">
+              <img className="logoU img-fluid" src={require("../imagenes/logoUnicauca.png")} alt="logoUnicauca" />
             </a>
           </div>
-          <div className="col-md-10 text-end">
+          <div className="col-md-10 col-6 text-end">
             <Link to="/login">
               <BotonIniciarSesionHome />
             </Link>
-            <img className="user-image" src={require("../imagenes/user.png")} alt="Usuario" />
           </div>
         </div>
       </div>

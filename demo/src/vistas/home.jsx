@@ -27,7 +27,9 @@ function Home (){
         <PrincipalHeader />
       </header>
       <body className='home-body'>
-        <ImageCarousel />
+        <div>
+          <ImageCarousel />
+        </div>
 
         <div className="mt-3 mx-3">
           <div className="row">
@@ -52,11 +54,11 @@ function Home (){
           </div>
         </div>
         <div className="row mt-3 mx-2">
-          <div className="col-md-3">
+          <div className="col-xl-3 col-md-5 col-sm-6">
             <VerticalMenu />
             <SocialMedia />
           </div>
-          <div className="col-md-9">
+          <div className="col-xl-9 col-md-7 col-sm-6">
             <NewsBox />
           </div>
         </div>
