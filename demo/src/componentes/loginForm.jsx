@@ -4,11 +4,16 @@ import '../hojas-de-estilo/stylesLogin.css';
 
 import { BotonIniciarSesionLogin, Checkbox } from './button.jsx';
 import TextInput from './textInput.jsx';
+//import { useEffect } from 'react';
+
+import ClienteAutenticacion from '../services/ClienteAutenticacion';
+//import { error } from 'jquery';
 
 function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
+  const [confirmacion, setConfirmacion] = useState('esperando a confirmar');
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -22,13 +27,43 @@ function LoginForm() {
     setRememberMe(!rememberMe);
   };
 
+  const handleConfirmacionChange = (e) => {
+    setConfirmacion(e.target.value);
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     // Aquí puedes agregar la lógica para procesar el inicio de sesión
+    ClienteAutenticacion.Autenticar({
+      "username": username,
+      "contrasenia": password
+    }).then(response => {
+      setUsername(response.data.username);
+      setPassword(response.data.contrasenia);
+      console.log(response.data.username);
+      setConfirmacion('exitoso, bienvenido usuario,'+response.data.nombres+' rol: ' +response.data.rol);
+    }).catch(error => {
+        setConfirmacion('verifique las credenciales');
+        console.log(error);
+    })
+
     console.log('Nombre de usuario:', username);
     console.log('Contraseña:', password);
     console.log('Recordar datos:', rememberMe);
   };
+/*
+  useEffect(() => {
+    ClienteAutenticacion.Autenticar({
+      "username": "juanperez",
+      "contrasenia": "contraseña1"
+  }).then(response => {
+      setUsername(response.data.username);
+      setPassword(response.data.contrasenia);
+      console.log(response.data.username);
+    }).catch(error => {
+        console.log(error);
+    })
+  },[])*/
 
   return (
     <div className="container mt-4">
@@ -67,6 +102,16 @@ function LoginForm() {
               </form>
               <div className="text-center mt-2">
                 <a href="#forgot-password">¿Olvidaste tu contraseña?</a>
+              </div>
+              <div className="text-center mt-2">
+                <TextInput
+                  id="confirmacion"
+                  type="text"
+                  placeholder="confirmacion"
+                  value={confirmacion}
+                  onChange={handleConfirmacionChange}
+                  required
+                />
               </div>
             </div>
           </div>
