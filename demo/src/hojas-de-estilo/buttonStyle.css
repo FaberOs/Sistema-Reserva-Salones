@@ -4,7 +4,11 @@
   --gray: #999999;
   --white: #ffffff;
   --red-s:linear-gradient(180deg, #CC0000, #7D0000);
-  --blue-s: #0D4185
+  --blue-s: #0D4185;
+}
+
+.btn {
+  margin: 5px;
 }
 
 .button {

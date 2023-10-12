@@ -56,10 +56,15 @@ function Home (){
         <div className="row mt-3 mx-2">
           <div className="col-xl-3 col-md-5 col-sm-6">
             <VerticalMenu />
-            <SocialMedia />
+            <div className='d-none d-sm-block d-md-block d-lg-block'>
+              <SocialMedia />
+            </div>
           </div>
           <div className="col-xl-9 col-md-7 col-sm-6">
             <NewsBox />
+          </div>
+          <div className="d-block d-sm-none d-md-none d-lg-none">
+            <SocialMedia />
           </div>
         </div>
       </body>

@@ -20,21 +20,45 @@ export function BotonEliminar({ onClick }) {
   );
 }
 
-export function BotonSiguiente({ onClick }) {
+export function BotonSiguiente({ onClick, color }) {
+  const buttonStyle = {
+    backgroundColor: color, 
+    border: `2px solid ${color}`,
+    color: '#fff',
+  };
+
   return (
-    <button className='btn btn-light border-custom' onClick={onClick}>Siguiente</button>
+    <button className='btn' style={buttonStyle} onClick={onClick}>
+      Siguiente
+    </button>
   );
 }
 
-export function BotonCancelar({ onClick }) {
+export function BotonCancelar({ onClick, color }) {
+  const buttonStyle = {
+    backgroundColor: color, 
+    border: `2px solid ${color}`, 
+    color: '#fff',
+  };
+
   return (
-    <button className='btn btn-light border-custom' onClick={onClick}>Cancelar</button>
+    <button className='btn' style={buttonStyle} onClick={onClick}>
+      Cancelar
+    </button>
   );
 }
 
-export function BotonRegresar({ onClick }) {
+export function BotonRegresar({ onClick, color }) {
+  const buttonStyle = {
+    backgroundColor: color, 
+    border: `2px solid ${color}`,
+    color: '#fff',
+  };
+
   return (
-    <button className='btn btn-light border-custom' onClick={onClick}>Regresar</button>
+    <button className='btn' style={buttonStyle} onClick={onClick}>
+      Regresar
+    </button>
   );
 }
 

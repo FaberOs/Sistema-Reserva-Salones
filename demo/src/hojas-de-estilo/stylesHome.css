@@ -46,7 +46,7 @@
 
 .vertical-menu {
   display: flex;
-  border-radius: 5%;
+  border-radius: 10px;
   flex-direction: column;
   background-color: var(--light-gray);
   padding: 15px;
@@ -58,14 +58,14 @@
 .box {
   background-color: var(--light-gray);
   padding: 20px;
-  border-radius: 5px;
+  border-radius: 10px;
   width: auto;
   margin-bottom: 20px;
 }
 
 .social-media-box {
   display: flex;
-  border-radius: 5%;
+  border-radius: 10px;
   flex-direction: column;
   background-color: var(--white);
   padding: 15px; /* Espaciado del rectángulo */
@@ -107,7 +107,7 @@
   background-color: var(--light-gray);
   padding: 20px;
   margin-top: auto;
-  border-radius: 15px;
+  border-radius: 10px;
   margin-bottom: 20px;
   height: auto;
   width: auto;

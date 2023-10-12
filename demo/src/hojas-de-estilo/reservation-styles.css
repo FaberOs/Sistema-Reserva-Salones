@@ -1,26 +1,94 @@
+:root{
+  --dark: #000000;
+  --light-gray:#CCCCCC;
+  --gray: #999999;
+  --white: #ffffff;
+  --red-s:linear-gradient(180deg, #CC0000, #7D0000);
+  --blue-s: #0D4185;
+  --red: #C6171E;
+}
+
 .reservation-container {
   display: flex;
   justify-content: center;
-  height: 100vh;
   margin: 20px;
 }
 
 .reservation-box {
-  width: 900px; /* Ancho del rectángulo */
-  height: 500px; /* Alto del rectángulo */
-  background-color: white;
-  border-radius: 10px; /* Borde redondeado */
-  border: 1px solid #ccc; /* Borde con color gris */
+  width: auto;
+  height: auto;
+  padding: 20px;
+  background-color: var(--white);
+  border-radius: 10px; 
+  border: 1px solid var(--light-gray); 
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3); 
+}
+
+.reservation-section {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3); /* Sombra */
+  flex-direction: column;
+  padding: 10px;
 }
 
 .separator {
-  width: 80%; /* Ancho del separador horizontal */
-  height: 1px; /* Altura del separador horizontal */
-  background-color: #ccc; /* Color del separador */
-  margin: 10px 0;
+  width: 80%;
+  height: 1px; 
+  background-color: var(--light-gray);
+  margin: 10px auto;
 }
-  
+
+.reservation-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 10px;
+  padding: 0 10px;
+}
+
+.reservation-header h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.reservation-header p {
+  margin: 0;
+  font-size: 14px;
+}
+
+.reservation-options {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.reservation-option {
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  border: 1px solid var(--light-gray);
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: var(--white);
+}
+
+.reservation-option.selected {
+  background-color: var(--blue-s);
+  color: var(--white);
+}
+
+.circle {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  background-color: var(--white);
+  border: 2px solid var(--light-gray);
+  margin-right: 10px;
+}
+
+button {
+  border: none;
+  background: none;
+  font-size: 14px;
+  cursor: pointer;
+}
+
