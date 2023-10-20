@@ -15,9 +15,15 @@ function Login(){
         backgroundColor="#0D4185"
         textColor="#ffffff"
       />
-      <SimpleHeader />
-      <LoginForm />
-      <LoginFooter />
+      <header>
+        <SimpleHeader />
+      </header>
+      <body>
+        <LoginForm />
+      </body>
+      <footer>
+        <LoginFooter />
+      </footer>
     </div>
   );
 }

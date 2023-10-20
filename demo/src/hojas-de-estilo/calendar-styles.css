@@ -10,11 +10,11 @@
 
 .calendario-container {
   background-color: var(--white);
-  width: 350px;
+  width: auto;
   height: auto;
   border-radius: 10px;
-  margin: 20px auto;
-  padding: 15px;
+  margin-top: 20px;
+  padding: 20px;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.3);
 }
 
@@ -47,10 +47,20 @@
 
 .calendario-day {
   background-color: var(--white);
-  border: 1px solid var(--gray);
+  border: 1px solid var(--light-gray);
   text-align: center;
   padding: 5px;
   padding-bottom: 0;
+  position: relative;
+  cursor: pointer;
+  border-width: 2px;
+  margin: -1px;
+}
+
+.calendario-day.selected .day-number {
+  background-color: var(--blue-s);
+  color: var(--white);
+  border-radius: 50%;
 }
 
 .calendar-separator {
@@ -62,7 +72,7 @@
 .calendario-grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  grid-auto-rows: 35px;
+  grid-auto-rows: 45px;
 }
 
 .day-name {
@@ -71,22 +81,88 @@
   font-style: italic;
 }
 
-.domingo {
-  background-color: var(--white);
-}
-
 .dom {
   color: var(--red);
 }
 
 .day-number {
   font-size: 14px;
-  font-weight: bold;
   display: flex;
-  justify-content: flex-end;
-  align-items: flex-end;
-  height: 100%;
+  justify-content: center;
+  align-items: center;
+  height: 80%;
+  width: 80%;
+  border-radius: 50%;
+}
+
+.day-number.selected {
+  background-color: var(--blue-s);
+  color: var(--white);
+}
+
+.red-number {
+  color: var(--red);
+}
+
+.fecha-seleccionada {
+  background-color: var(--blue-s);
+  color: var(--white);
+  font-weight: bold;
+  font-size: 18px;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  text-align: center;
 }
 
 
-  
+
+
+/* Estilos para pantallas medianas (768px - 1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .calendario-container {
+    padding: 20px;
+  }
+
+  .calendario-header h3 {
+    font-size: 22px;
+  }
+
+  .calendario-day {
+    padding: 10px;
+  }
+
+  .day-number {
+    font-size: 15px;
+  }
+
+  .fecha-seleccionada {
+    font-size: 17px;
+    padding: 12px;
+  }
+}
+
+/* Estilos para pantallas pequeñas */
+@media (max-width: 768px) {
+  .calendario-container {
+    padding: 20px;
+  }
+
+  .calendario-header h3 {
+    font-size: 20px;
+  }
+
+  .calendario-day {
+    padding: 8px;
+  }
+
+  .day-number {
+    font-size: 14px;
+  }
+
+  .fecha-seleccionada {
+    font-size: 16px;
+  }
+}
+
+

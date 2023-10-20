@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../hojas-de-estilo/calendar-styles.css'
+import '../hojas-de-estilo/calendar-styles.css';
 
 function Calendario() {
   const meses = [
@@ -9,6 +9,8 @@ function Calendario() {
 
   const [mesActual, setMesActual] = useState(new Date().getMonth());
   const [anioActual, setAnioActual] = useState(new Date().getFullYear());
+  const [fechaSeleccionada, setFechaSeleccionada] = useState(null);
+  const [diaSeleccionado, setDiaSeleccionado] = useState(null);
 
   const cambiarMes = (incremento) => {
     let nuevoMes = mesActual + incremento;
@@ -24,6 +26,8 @@ function Calendario() {
 
     setMesActual(nuevoMes);
     setAnioActual(nuevoAnio);
+    // También deselecciona al cambiar de mes.
+    setFechaSeleccionada(null);
   };
 
   const obtenerDiasDelMes = (mes, anio) => {
@@ -37,6 +41,28 @@ function Calendario() {
   };
 
   const diasDelMes = obtenerDiasDelMes(mesActual, anioActual);
+
+  const handleNumberClick = (number) => {
+    if (fechaSeleccionada !== null) {
+      if (number === diaSeleccionado) {
+        // Deseleccionar al hacer clic en el mismo día.
+        setFechaSeleccionada(null);
+        setDiaSeleccionado(null);
+      } else {
+        // Cambiar la selección al hacer clic en otro día.
+        setFechaSeleccionada(
+          new Date(anioActual, mesActual, number)
+        );
+        setDiaSeleccionado(number);
+      }
+    } else {
+      // Establecer la selección si no hay ninguna.
+      setFechaSeleccionada(
+        new Date(anioActual, mesActual, number)
+      );
+      setDiaSeleccionado(number);
+    }
+  };
 
   return (
     <div className="calendario-container">
@@ -55,14 +81,54 @@ function Calendario() {
         <div className="day-name">Vie</div>
         <div className="day-name">Sab</div>
         {diasDelMes.map((dia, index) => (
-          <div key={index} className={`calendario-day ${dia.getDay() === 0 ? 'domingo' : ''}`}>
-            <div className="day-number">{dia.getDate()}</div>
+          <div
+            key={index}
+            className={`calendario-day ${dia.getDay() === 0 ? 'domingo' : ''} ${
+              fechaSeleccionada &&
+              dia.getDate() === diaSeleccionado &&
+              dia.getMonth() === mesActual
+                ? 'selected'
+                : ''
+            }`}
+            onClick={() => handleNumberClick(dia.getDate())}
+          >
+            <div
+              className={`day-number ${index % 7 === 0 ? 'red-number' : ''} ${
+                fechaSeleccionada &&
+                dia.getDate() === diaSeleccionado &&
+                dia.getMonth() === mesActual
+                  ? 'selected-number'
+                  : ''
+              }`}
+            >
+              {dia.getDate()}
+            </div>
           </div>
         ))}
       </div>
+      {fechaSeleccionada ? (
+        <div className="fecha-seleccionada">
+          Fecha seleccionada: {`${diaSeleccionado}/${mesActual + 1}/${anioActual}`}
+        </div>
+      ) : null}
     </div>
   );
 }
 
 export default Calendario;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

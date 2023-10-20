@@ -8,7 +8,7 @@ import Reservation from "../componentes/reservation-form.jsx";
 
 function Reserva(){
   return(
-    <div>
+    <div className="container-reserva">
       <GlobalStyles
         backgroundColor="#CCCCCC"
       />
@@ -17,11 +17,11 @@ function Reserva(){
       </header>
       <body>
         <div className="container">
-          <div className="row">
-            <div className="col-md-4">
+          <div className="row m-2">
+            <div className="col-xl-4 col-sm-6">
               <Calendario />
             </div>
-            <div className="col-md-8">
+            <div className="col-xl-8 col-sm-12">
               <Reservation />
             </div>
           </div>

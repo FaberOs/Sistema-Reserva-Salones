@@ -1,20 +1,18 @@
-import React, { useState } from 'react';
-import '../hojas-de-estilo/reservation-styles.css'
+import React from 'react';
+import '../hojas-de-estilo/reservation-styles.css';
 
-function ReservationOption({ time }) {
-  const [selected, setSelected] = useState(false);
-
-  const handleToggleSelection = () => {
-    setSelected(!selected);
-  };
-
+function ReservationOption({ time, selected, onClick }) {
   return (
-    <button className={`reservation-option ${selected ? 'selected' : ''}`} onClick={handleToggleSelection}>
-      <div className="circle"></div>
+    <button
+      className={`reservation-option ${selected ? 'selected' : ''}`}
+      onClick={onClick}
+    >
+      <div className={`circle ${selected ? 'selected' : ''}`}></div>
       <span>{time}</span>
     </button>
   );
 }
 
 export default ReservationOption;
+
 
