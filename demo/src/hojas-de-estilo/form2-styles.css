@@ -1,0 +1,66 @@
+:root{
+  --dark: #000000;
+  --light-gray:#CCCCCC;
+  --gray: #999999;
+  --white: #ffffff;
+  --red-s: linear-gradient(180deg, #CC0000, #7D0000);
+  --blue-s: #0D4185;
+  --red: #C6171E;
+}
+
+.form2-container {
+  padding: 15px;
+}
+
+.form2-separator {
+  width: 90%;
+  height: 1px; 
+  background-color: var(--light-gray);
+  margin: 15px auto;
+}
+
+select, textarea {
+  margin-bottom: 15px;
+}
+
+#mensaje {
+  height: 93px;
+  resize: none;
+}
+
+.form2-section h3 {
+  font-size: 20px;
+  color: var(--gray);
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.form2-section h3:hover {
+  text-decoration: none;
+}
+
+.salon-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px; 
+}
+
+.salon-grid .reservation-option{
+  font-size: 15px;
+  box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.3); 
+}
+
+
+
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .salon-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .salon-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
