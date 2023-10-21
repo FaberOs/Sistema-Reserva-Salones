@@ -12,12 +12,15 @@
   display: flex;
   justify-content: center;
   margin-top: 20px;
+  width: auto;
+  height: 100%;
 }
 
 .reservation-box {
   width: 700px;
   height: auto;
   padding: 20px;
+  padding-bottom: 0;
   background-color: var(--white);
   border-radius: 10px; 
   border: 1px solid var(--light-gray); 
@@ -64,6 +67,7 @@
 }
 
 .reservation-options {
+  margin-top: 5px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
@@ -105,6 +109,20 @@ button {
   cursor: pointer;
 }
 
+.buttons {
+  margin-top: 10px;
+  margin-left: 10px;
+}
+
+/* Estilos para los ReservationOption */
+.reservation-option.selected {
+  border-color: var(--blue-s);
+}
+
+.reservation-option:hover {
+  border-color: var(--blue-s);
+}
+
 
 
 
@@ -115,6 +133,7 @@ button {
   .reservation-box {
     width: 100%;
     padding: 10px;
+    padding-bottom: 0;
   }
 
   .separator {
@@ -154,6 +173,7 @@ button {
   .reservation-box {
     width: 90%;
     padding: 15px;
+    padding-bottom: 0;
   }
 
   .separator {

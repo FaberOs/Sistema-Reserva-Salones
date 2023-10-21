@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import '../hojas-de-estilo/buttonStyle.css'
+
+import ConfirmModal from './confirm-modal.jsx';
 
 export function BotonIniciarSesionHome({ onClick }) {
   return (
@@ -17,6 +20,38 @@ export function BotonIniciarSesionLogin({ onClick }) {
 export function BotonEliminar({ onClick }) {
   return (
     <button className='btn btn-light border-custom' onClick={onClick}>Eliminar</button>
+  );
+}
+
+export function BotonAceptar({ color }) {
+  const [showModal, setShowModal] = useState(false);
+
+  const buttonStyle = {
+    backgroundColor: color,
+    border: `2px solid ${color}`,
+    color: '#fff',
+  };
+
+  const handleAcceptClick = () => {
+    setShowModal(true);
+  };
+
+  const handleConfirm = () => {
+    // Realiza la acción de confirmación aquí
+    setShowModal(false);
+  };
+
+  const handleCancel = () => {
+    setShowModal(false);
+  };
+
+  return (
+    <div>
+      <button className="btn" style={buttonStyle} onClick={handleAcceptClick}>
+        Aceptar
+      </button>
+      <ConfirmModal isOpen={showModal} onConfirm={handleConfirm} onCancel={handleCancel} />
+    </div>
   );
 }
 

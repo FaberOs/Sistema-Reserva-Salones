@@ -1,0 +1,56 @@
+/* confirm-modal-styles.css */
+:root{
+  --dark: #000000;
+  --light-gray:#CCCCCC;
+  --gray: #999999;
+  --white: #ffffff;
+  --red-s:linear-gradient(180deg, #CC0000, #7D0000);
+  --blue-s: #0D4185;
+  --red: #C6171E;
+}
+
+.confirm-modal-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.modal-dialog {
+  max-width: 400px;
+  width: 100%;
+}
+
+.modal-content {
+  padding: 20px;
+}
+
+.modal-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-body img {
+  width: 80px;
+  height: 80px;
+  margin-bottom: 10px;
+}
+
+.modal-body p {
+  font-size: 18px;
+  margin: 0;
+  text-transform: none;
+}
+
+.modal-footer {
+  justify-content: center;
+}
+
+.modal-footer button {
+  margin: 5px;
+}
+
+.buttonAceptar {
+  background-color: var(--blue-s);
+}
