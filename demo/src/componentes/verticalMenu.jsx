@@ -19,7 +19,7 @@ function VerticalMenu() {
         <Link to='' className='custom-link'>
           <BotonConsultarReserva color="#0D4185" icon={DocumentIcon} />
         </Link>
-        <Link to='' className='custom-link'>
+        <Link to='/solicitar-auditorio' className='custom-link'>
           <BotonSolicitarAuditorio color="#0D4185" icon={ConferenceIcon} />
         </Link>        
       </div>

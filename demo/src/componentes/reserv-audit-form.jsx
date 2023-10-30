@@ -5,11 +5,11 @@ import '../hojas-de-estilo/reservation-styles.css';
 
 import { BotonCancelar, BotonRegresar, BotonSiguiente, BotonAceptar } from './button';
 import Form1 from '../componentes/form1-reservation.jsx';
-import Form2 from '../componentes/form2-reservation.jsx';
+import Form2Auditorio from '../componentes/form2-auditorio.jsx';
 
-function Reservation() {
+function ReservAuditorio() {
   const [selectedOptions, setSelectedOptions] = useState([]);
-  const maxSelections = 11; // Número máximo de selecciones
+  const maxSelections = 2; // Número máximo de selecciones
   const [step, setStep] = useState(1); // Controlamos el paso del formulario
 
   const handleOptionClick = (time) => {
@@ -34,7 +34,7 @@ function Reservation() {
           />
         )}
         {step === 2 && (
-          <Form2 />
+          <Form2Auditorio />
         )}
 
         <div className="d-flex justify-content-between">
@@ -67,8 +67,4 @@ function Reservation() {
   );
 }
 
-export default Reservation;
-
-
-
-
+export default ReservAuditorio;
