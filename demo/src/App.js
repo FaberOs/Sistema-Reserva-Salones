@@ -12,7 +12,11 @@ import Reserva from './vistas/reserva';
 
 
 function App() {
+  //localStorage.setItem("nomUser","false")
+
   return (
+    
+
     <Router>
       <Routes>
         <Route path='/' element={<Home />} />
