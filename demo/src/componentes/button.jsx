@@ -17,6 +17,12 @@ export function BotonIniciarSesionLogin({ onClick }) {
   );
 }
 
+export function BotonCierraSesion({ onClick }) {
+  return (
+    <button className='btn custom-boton text-light btn-sm' onClick={onClick}>Cierra Sesión</button>
+  );
+}
+
 export function BotonEliminar({ onClick }) {
   return (
     <button className='btn btn-light border-custom' onClick={onClick}>Eliminar</button>

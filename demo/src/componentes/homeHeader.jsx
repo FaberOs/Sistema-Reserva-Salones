@@ -5,8 +5,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../hojas-de-estilo/stylesHome.css';
 
 import { BotonIniciarSesionHome } from './button';
+import { BotonCierraSesion } from './button';
 
 function principalHeader() {
+  
+  const handleSubmit = (e) => {
+    localStorage.clear();    
+  };
+
   return (
     <div className="home-header shadow-lg">
       <div className="container">
@@ -17,9 +23,18 @@ function principalHeader() {
             </a>
           </div>
           <div className="col-md-10 col-6 text-end">
-            <Link to="/login">
-              <BotonIniciarSesionHome />
-            </Link>
+            {
+              localStorage.length === 0
+                ? <Link to="/login">
+                    <BotonIniciarSesionHome />
+                  </Link>
+                : <div className="col-md-10 col-6 text-end" >
+                    <h4 > Bienvenido</h4>
+                    <Link to="/" onClick={handleSubmit}>
+                      <BotonCierraSesion  /> 
+                    </Link>                            
+                  </div> 
+              }
           </div>
         </div>
       </div>
