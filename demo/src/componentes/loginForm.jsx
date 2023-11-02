@@ -5,8 +5,10 @@ import { useNavigate } from 'react-router-dom';
 
 import { BotonIniciarSesionLogin, Checkbox } from './button.jsx';
 import TextInput from './textInput.jsx';
+//import { useEffect } from 'react';
 
 import ClienteAutenticacion from '../services/ClienteAutenticacion';
+//import { error } from 'jquery';
 
 function LoginForm() {
   const [username, setUsername] = useState('');
@@ -39,6 +41,7 @@ function LoginForm() {
       alert("Bienvenido"); 
       navigate('/home');
     }).catch(error => {
+        setConfirmacion('verifique las credenciales');
         console.log(error);
     })
 
@@ -46,6 +49,19 @@ function LoginForm() {
     console.log('Contraseña:', password);
     console.log('Recordar datos:', rememberMe);
   };
+/*
+  useEffect(() => {
+    ClienteAutenticacion.Autenticar({
+      "username": "juanperez",
+      "contrasenia": "contraseña1"
+  }).then(response => {
+      setUsername(response.data.username);
+      setPassword(response.data.contrasenia);
+      console.log(response.data.username);
+    }).catch(error => {
+        console.log(error);
+    })
+  },[])*/
 
   return (
     <div className="container mt-4">

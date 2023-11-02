@@ -1,0 +1,102 @@
+:root{
+  --dark: #000000;
+  --light-gray:#CCCCCC;
+  --gray-dark: #4D4D4D;
+  --gray: #999999;
+  --white: #ffffff;
+  --red-s:linear-gradient(180deg, #CC0000, #7D0000);
+  --blue-s: #0D4185
+}
+
+/* Sidebar.css */
+
+.sidebar {
+  width: 80px;
+  background-color: var(--light-gray);
+  border-radius: 30px 30px 30px 30px; /* Agrega bordes redondos al final derecho al pasar el cursor */
+  position: fixed;
+  margin-top: 30px;
+  transition: width 0.3s;
+  overflow: hidden; /* Para los bordes redondos al expandirse */
+}
+
+.expanded {
+  width: 250px;
+}
+
+.header-sidebar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 60px;
+}
+
+.burger-icon {
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  position: absolute;
+}
+
+.options-container {
+  margin-left: 80px; /* Igual al ancho del sidebar cerrado */
+  transition: margin-left 0.3s; /* Transición para el desplazamiento */
+}
+
+.options {
+  display: flex;
+  flex-direction: column; /* Alinea las opciones verticalmente */
+  align-items: flex-start; /* Alinea las opciones a la izquierda */
+}
+
+.option {
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: all 0.3s; /* Transiciones para cambios al pasar el cursor */
+  padding: 10px 20px;
+}
+
+.option:hover {
+  background-color: var(--gray); /* Cambia el fondo al pasar el cursor */
+  border-radius: 30px 30px 30px 30px; /* Agrega bordes redondos al final derecho al pasar el cursor */
+  padding: 10px 20px;
+}
+
+.option img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
+.option span {
+  display: block;
+  margin-left: 10px;
+  color: var(--gray-dark);
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.option:hover img {
+  width: 38px; /* Aumenta el tamaño de la imagen al pasar el cursor */
+  height: 38px;
+  margin-left: 5px; /* Aumenta el espacio a la derecha de la imagen al pasar el cursor */
+}
+
+.option:hover span {
+  font-size: 23px; /* Aumenta el tamaño de la fuente al pasar el cursor */
+  margin-left: 5px; /* Aumenta el espacio a la izquierda del texto al pasar el cursor */
+}
+
+
+
+
+
+
+
+
+
+
+
+  

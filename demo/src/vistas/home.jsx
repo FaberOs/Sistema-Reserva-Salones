@@ -17,9 +17,6 @@ import resultIcon from '../iconos/result-pass-icon.svg';
 import bookIcon from '../iconos/read-book-icon.svg';
 
 function Home (){
-
-  
-
   return(
     <div>
       <GlobalStyles

@@ -1,0 +1,43 @@
+:root{
+  --dark: #000000;
+  --light-gray:#CCCCCC;
+  --gray: #999999;
+  --white: #ffffff;
+  --red-s:linear-gradient(180deg, #CC0000, #7D0000);
+  --blue-s: #0D4185
+}
+
+/* En tu archivo CSS, por ejemplo, styles.css */
+.form-group {
+  position: relative;
+}
+
+.form-control {
+  padding: 10px;
+  border: 2px solid var(--light-gray); /* Agregamos un borde alrededor de todo el campo de entrada */
+  background: transparent; /* Fondo transparente */
+}
+
+.form-control::placeholder {
+  color: var(--gray);
+}
+
+.form-control:focus + label,
+.form-control:valid + label {
+  transform: translateY(-20px);
+  font-size: 12px;
+  background: var(--white); /* Fondo blanco cuando enfocado o con contenido */
+  padding: 0 5px; /* Ajusta el relleno según tus preferencias */
+  color: var(--gray); /* Color del texto del placeholder */
+  top: 10px;
+}
+
+label {
+  position: absolute;
+  top: 7px;
+  left: 10px;
+  pointer-events: none;
+  transition: transform 0.2s, font-size 0.2s, background 0.2s, padding 0.2s, color 0.2s, top 0.2s;
+  color: var(--gray);
+}
+

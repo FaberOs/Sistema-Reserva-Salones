@@ -9,14 +9,12 @@ import 'bootstrap/dist/js/bootstrap.min.js';
 import Login from './vistas/login';
 import Home from './vistas/home';
 import Reserva from './vistas/reserva';
+import Auditorio from './vistas/auditorio';
+import Admin from './vistas/admin';
 
 
 function App() {
-  //localStorage.setItem("nomUser","false")
-
   return (
-    
-
     <Router>
       <Routes>
         <Route path='/' element={<Home />} />
@@ -33,6 +31,16 @@ function App() {
         <Route path="/solicitar-reserva" element={
           <div>
             <Reserva />
+          </div>
+        }/>
+        <Route path="/solicitar-auditorio" element={
+          <div>
+            <Auditorio />
+          </div>
+        }/>
+        <Route path="/admin" element={
+          <div>
+            <Admin />
           </div>
         }/>
       </Routes>

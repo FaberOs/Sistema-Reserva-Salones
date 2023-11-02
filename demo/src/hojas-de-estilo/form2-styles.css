@@ -23,6 +23,11 @@ select, textarea {
   margin-bottom: 15px;
 }
 
+.form-select {
+  border: 2px solid var(--light-gray);
+  color: var(--gray);
+}
+
 #mensaje {
   height: 93px;
   resize: none;
