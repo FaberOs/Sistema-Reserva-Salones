@@ -62,17 +62,7 @@ function VerticalMenu() {
               </div>              
               : <BotonConsultarReserva color="#0D4185" icon={DocumentIcon} onClick={handleConsultaReserva}/>
         }         
-           
-      <div className="menu-rectangle">
-        <Link to='/solicitar-reserva' className='custom-link'>
-          <BotonSolicitarReserva color="#0D4185" icon={CalendarIcon} />
-        </Link> 
-        <Link to='' className='custom-link'>
-          <BotonConsultarReserva color="#0D4185" icon={DocumentIcon} />
-        </Link>
-        <Link to='/solicitar-auditorio' className='custom-link'>
-          <BotonSolicitarAuditorio color="#0D4185" icon={ConferenceIcon} />
-        </Link>      
+                     
       </div>
     </div>
   );
