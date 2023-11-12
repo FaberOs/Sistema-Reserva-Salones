@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import ReservationOption from '../componentes/reservation-option.jsx';
 import TextInput from '../componentes/textInput.jsx';
 import '../hojas-de-estilo/form2-styles.css';
+import { BotonAceptar } from './button';
 
 function Form2() {
   const [nombreProfesor, setNombreProfesor] = useState('');
@@ -10,6 +11,20 @@ function Form2() {
   const [programaPregrado, setProgramaPregrado] = useState('');
   const [mensaje, setMensaje] = useState('');
   const [selectedSalon, setSelectedSalon] = useState(null);
+
+  /*const handleSumit = () => {
+    alert("{ 'idSalon':"+selectedSalon+
+    ",'cedulaCiudadania':"+JSON.parse(localStorage.getItem('User')).numeroIdentificacion+
+    ",'horasSolicitadas':"+horasSolicitadas+
+    ",'numeroDeEstudiantes':"+numEstudiantes+
+    ",'estadoReserva':pendiente"+
+    ",'programaPosgrado':"+programaPregrado+
+    ",'edificio': ingenierias"+
+    "'ubicacionDocente':"+233+
+    ",'mensaje':"+mensaje+
+    ",'fechaReserva': 2023-11-02T10:00:00 }"); 
+    alert(selectedSalon);
+  }*/
 
   const handleSalonClick = (salon) => {
     setSelectedSalon(salon);
@@ -77,8 +92,9 @@ function Form2() {
               onClick={() => handleSalonClick(salon)}
             />
           ))}
-        </div>
-      </div>
+        </div>        
+      </div>      
+      <BotonAceptar sSalon={selectedSalon} hS={horasSolicitadas} pP={programaPregrado} nE={numEstudiantes} m={mensaje}/>
     </div>
   );
 }

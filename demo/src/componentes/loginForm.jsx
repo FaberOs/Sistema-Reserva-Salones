@@ -37,11 +37,11 @@ function LoginForm() {
     }).then(response => {
       setUsername(response.data.username);
       setPassword(response.data.contrasenia);
-
       localStorage.setItem('User',JSON.stringify(response.data));
       alert("Bienvenido"); 
       navigate('/home');
     }).catch(error => {
+        alert("Revise Credenciales"); 
         console.log(error);
     })
 

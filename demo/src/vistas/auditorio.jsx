@@ -7,6 +7,14 @@ import GlobalStyles from '../componentes/GlobalStyles';
 import ReservAuditorio from "../componentes/reserv-audit-form.jsx";
 
 function Auditorio(){
+
+  var roll;
+  try {
+    roll =JSON.parse(localStorage.getItem('User')).rol
+  } catch (error) {
+    roll = 'INVITADO';
+  }
+
   return(
     <div className="container-reserva">
       <GlobalStyles
@@ -16,19 +24,27 @@ function Auditorio(){
         <HomeHeader />
       </header>
       <body>
-        <div className="container">
-          <div className="row m-2">
-            <div className="col-xl-1 col-sm-1">
+        {
+          roll === 'COORDINADOR'
+            ?<div className="container">
+                <div className="row m-2">
+                  <div className="col-xl-1 col-sm-1">
+      
+                  </div>
+                  <div className="col-xl-4 col-sm-5">
+                    <Calendario />
+                  </div>
+                  <div className="col-xl-6 col-sm-12">
+                    <ReservAuditorio />
+                  </div>
+                </div>
+              </div>
 
+            :<div className="container">
+              colocar imagen de error de pagina
             </div>
-            <div className="col-xl-4 col-sm-5">
-              <Calendario />
-            </div>
-            <div className="col-xl-6 col-sm-12">
-              <ReservAuditorio />
-            </div>
-          </div>
-        </div>
+        }
+        
       </body>
     </div>
   );

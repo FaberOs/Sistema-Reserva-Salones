@@ -7,7 +7,7 @@ import '../hojas-de-estilo/stylesHome.css';
 import { BotonIniciarSesionHome } from './button';
 import { BotonCierraSesion } from './button';
 
-function principalHeader() {
+function principalHeader(props) {
   
   const handleSubmit = (e) => {
     localStorage.clear();    
@@ -28,11 +28,16 @@ function principalHeader() {
                 ? <Link to="/login">
                     <BotonIniciarSesionHome />
                   </Link>
-                : <div className="col-md-10 col-6 text-end" >
-                    <h4 > Bienvenido</h4>
-                    <Link to="/" onClick={handleSubmit}>
-                      <BotonCierraSesion  /> 
-                    </Link>                            
+                : 
+                  <div className="col-md-10 col-6 text-end" >
+                    <div>
+                      <Link to="/" onClick={handleSubmit}>
+                        <BotonCierraSesion  /> 
+                      </Link> 
+                    </div>  
+                    <div>
+                      <h4 > Bienvenido, {JSON.parse(localStorage.getItem('User')).nombres}</h4>           
+                    </div>      
                   </div> 
               }
           </div>
