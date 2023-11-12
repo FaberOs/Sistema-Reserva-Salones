@@ -19,7 +19,7 @@ function Reservation() {
       setSelectedOptions([...selectedOptions, time]);
     }
   };
-
+ 
   const handleNextStep = () => {
     setStep(step + 1); // Avanzar al siguiente paso del formulario
   };
@@ -56,8 +56,7 @@ function Reservation() {
               <div className="d-flex mr-2">
                 <Link to="/home">
                   <BotonCancelar color="#999999" />
-                </Link>
-                <BotonAceptar color="#0D4185" />
+                </Link>                
               </div>
             </div>
           )}

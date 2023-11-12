@@ -2,8 +2,11 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import '../hojas-de-estilo/buttonStyle.css'
+import { useNavigate } from 'react-router-dom';
 
 import ConfirmModal from './confirm-modal.jsx';
+import ClienteReserva from '../services/ClienteReservas';
+
 
 export function BotonIniciarSesionHome({ onClick }) {
   return (
@@ -29,12 +32,13 @@ export function BotonEliminar({ onClick }) {
   );
 }
 
-export function BotonAceptar({ color }) {
+export function BotonAceptar({sSalon, hS, pP, nE, m}) {
   const [showModal, setShowModal] = useState(false);
+  const navigate = useNavigate();
 
   const buttonStyle = {
-    backgroundColor: color,
-    border: `2px solid ${color}`,
+    backgroundColor: "#0D4185",
+    border: `2px solid #0D4185`,
     color: '#fff',
   };
 
@@ -42,9 +46,27 @@ export function BotonAceptar({ color }) {
     setShowModal(true);
   };
 
-  const handleConfirm = () => {
-    // Realiza la acción de confirmación aquí
-    setShowModal(false);
+  const handleConfirm = (e) => {
+    // Realiza la acción de confirmación aqui.3
+    setShowModal(false);    
+    ClienteReserva.Reservar({
+      "idSalon": parseInt(sSalon),
+      "cedulaCiudadania": JSON.parse(localStorage.getItem('User')).numeroIdentificacion,
+      "horasSolicitadas": parseInt(hS),
+      "numeroDeEstudiantes": parseInt(nE),
+      "estadoReserva": "PENDIENTE",
+      "programaPosgrado":  pP,
+      "edificio": "Edificio A",
+      "ubicacionDocente": "salon 332",
+      "mensaje": m,
+      "fechaReserva": "2023-11-02T10:00:00"
+    }).then(response => {
+      alert("Guardado con exito"); 
+      navigate('/home');
+    }).catch(error => {
+        alert("Fallo guardar la reserva, revise los datos"); 
+        console.log(error);
+    })    
   };
 
   const handleCancel = () => {
@@ -55,6 +77,7 @@ export function BotonAceptar({ color }) {
     <div>
       <button className="btn" style={buttonStyle} onClick={handleAcceptClick}>
         Aceptar
+        {parseInt(sSalon)}
       </button>
       <ConfirmModal isOpen={showModal} onConfirm={handleConfirm} onCancel={handleCancel} />
     </div>

@@ -8,7 +8,7 @@ import linkedinIcon from '../iconos/linkedin-icon.svg'
 function SocialMedia() {
   const socialMediaData = [
     {
-      name: 'Facebook',
+      name: 'Facebook' ,
       icon: facebookIcon,
     },
     {
