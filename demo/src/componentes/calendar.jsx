@@ -10,7 +10,6 @@ function Calendario() {
   const [mesActual, setMesActual] = useState(new Date().getMonth());
   const [anioActual, setAnioActual] = useState(new Date().getFullYear());
   const [fechaSeleccionada, setFechaSeleccionada] = useState(null);
-  const [diaSeleccionado, setDiaSeleccionado] = useState(null);
 
   const cambiarMes = (incremento) => {
     let nuevoMes = mesActual + incremento;
@@ -26,41 +25,42 @@ function Calendario() {
 
     setMesActual(nuevoMes);
     setAnioActual(nuevoAnio);
-    // También deselecciona al cambiar de mes.
+    // Deseleccionar al cambiar de mes.
     setFechaSeleccionada(null);
   };
 
   const obtenerDiasDelMes = (mes, anio) => {
-    const fecha = new Date(anio, mes, 1);
+    const primerDiaDelMes = new Date(anio, mes, 1);
+    const primerDiaDeLaSemana = primerDiaDelMes.getDay();
     const dias = [];
-    while (fecha.getMonth() === mes) {
-      dias.push(new Date(fecha));
-      fecha.setDate(fecha.getDate() + 1);
+
+    for (let i = 0; i < primerDiaDeLaSemana; i++) {
+      dias.push(null); // Días del mes anterior, se representa como null.
     }
+
+    const ultimoDiaDelMes = new Date(anio, mes + 1, 0);
+    for (let i = 1; i <= ultimoDiaDelMes.getDate(); i++) {
+      dias.push(new Date(anio, mes, i));
+    }
+
+    // Rellena la última fila con días del mes siguiente si es necesario
+    while (dias.length % 7 !== 0) {
+      dias.push(null);
+    }
+
     return dias;
   };
 
   const diasDelMes = obtenerDiasDelMes(mesActual, anioActual);
 
   const handleNumberClick = (number) => {
-    if (fechaSeleccionada !== null) {
-      if (number === diaSeleccionado) {
-        // Deseleccionar al hacer clic en el mismo día.
-        setFechaSeleccionada(null);
-        setDiaSeleccionado(null);
-      } else {
-        // Cambiar la selección al hacer clic en otro día.
-        setFechaSeleccionada(
-          new Date(anioActual, mesActual, number)
-        );
-        setDiaSeleccionado(number);
-      }
+    const diaSeleccionado = diasDelMes[number - 1];
+
+    if (diaSeleccionado) {
+      setFechaSeleccionada(diaSeleccionado);
     } else {
-      // Establecer la selección si no hay ninguna.
-      setFechaSeleccionada(
-        new Date(anioActual, mesActual, number)
-      );
-      setDiaSeleccionado(number);
+      // Si el día seleccionado es del mes anterior, no hagas nada.
+      setFechaSeleccionada(null);
     }
   };
 
@@ -83,32 +83,25 @@ function Calendario() {
         {diasDelMes.map((dia, index) => (
           <div
             key={index}
-            className={`calendario-day ${dia.getDay() === 0 ? 'domingo' : ''} ${
-              fechaSeleccionada &&
-              dia.getDate() === diaSeleccionado &&
-              dia.getMonth() === mesActual
+            className={`calendario-day ${dia && dia.getDay() === 0 ? 'domingo' : ''} ${
+              dia && fechaSeleccionada && dia.getDate() === fechaSeleccionada.getDate()
                 ? 'selected'
                 : ''
             }`}
-            onClick={() => handleNumberClick(dia.getDate())}
+            onClick={() => handleNumberClick(index + 1)}
           >
-            <div
-              className={`day-number ${index % 7 === 0 ? 'red-number' : ''} ${
-                fechaSeleccionada &&
-                dia.getDate() === diaSeleccionado &&
-                dia.getMonth() === mesActual
-                  ? 'selected-number'
-                  : ''
-              }`}
-            >
-              {dia.getDate()}
+            <div className={`day-number ${index % 7 === 0 ? 'red-number' : ''}`}>
+              {dia ? dia.getDate() : ''}
             </div>
+            {dia && fechaSeleccionada && dia.getDate() === fechaSeleccionada.getDate() && (
+              <div className="selection-circle"></div>
+            )}
           </div>
         ))}
       </div>
       {fechaSeleccionada ? (
         <div className="fecha-seleccionada">
-          Fecha seleccionada: {`${diaSeleccionado}/${mesActual + 1}/${anioActual}`}
+          Fecha seleccionada: {`${fechaSeleccionada.getDate()}/${mesActual + 1}/${anioActual}`}
         </div>
       ) : null}
     </div>
@@ -116,6 +109,7 @@ function Calendario() {
 }
 
 export default Calendario;
+
 
 
 

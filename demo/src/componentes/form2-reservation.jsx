@@ -6,7 +6,7 @@ import { BotonAceptar } from './button';
 
 function Form2() {
   const [nombreProfesor, setNombreProfesor] = useState('');
-  const [horasSolicitadas, setHorasSolicitadas] = useState('');
+  const [correoInstitucional, setCorreoInstitucional] = useState('');
   const [numEstudiantes, setNumEstudiantes] = useState('');
   const [programaPregrado, setProgramaPregrado] = useState('');
   const [mensaje, setMensaje] = useState('');
@@ -43,11 +43,11 @@ function Form2() {
             required
           />
           <TextInput
-            id="horasSolicitadas"
+            id="correoInstitucional"
             type="text"
-            placeholder="Horas solicitadas"
-            value={horasSolicitadas}
-            onChange={(e) => setHorasSolicitadas(e.target.value)}
+            placeholder="Correo Institucional"
+            value={correoInstitucional}
+            onChange={(e) => setCorreoInstitucional(e.target.value)}
             required
           />
           <TextInput
@@ -94,7 +94,7 @@ function Form2() {
           ))}
         </div>        
       </div>      
-      <BotonAceptar sSalon={selectedSalon} hS={horasSolicitadas} pP={programaPregrado} nE={numEstudiantes} m={mensaje}/>
+      <BotonAceptar sSalon={selectedSalon} cI={correoInstitucional} pP={programaPregrado} nE={numEstudiantes} m={mensaje}/>
     </div>
   );
 }

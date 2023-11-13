@@ -1,13 +1,3 @@
-:root{
-  --dark: #000000;
-  --light-gray:#CCCCCC;
-  --gray: #999999;
-  --white: #ffffff;
-  --red-s:linear-gradient(180deg, #CC0000, #7D0000);
-  --blue-s: #0D4185;
-  --red: #C6171E;
-}
-
 .calendario-container {
   background-color: var(--white);
   width: auto;
@@ -57,6 +47,35 @@
   margin: -1px;
 }
 
+.calendario-day .selected {
+  background-color: var(--blue-s);
+  border-radius: 50%;
+  color: var(--white);
+}
+
+.day-number.selected {
+  background-color: var(--blue-s);
+  color: var(--white);
+  border-radius: 50%;
+  width: 25px;
+  height: 25px;
+  line-height: 25px;
+  display: inline-block;
+}
+
+/* Estilo para el número del día */
+.day-number {
+  font-size: 14px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 25px;
+  width: 25px;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+/* Estilo para el día seleccionado */
 .calendario-day.selected .day-number {
   background-color: var(--blue-s);
   color: var(--white);
@@ -83,21 +102,6 @@
 
 .dom {
   color: var(--red);
-}
-
-.day-number {
-  font-size: 14px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 80%;
-  width: 80%;
-  border-radius: 50%;
-}
-
-.day-number.selected {
-  background-color: var(--blue-s);
-  color: var(--white);
 }
 
 .red-number {
@@ -164,5 +168,3 @@
     font-size: 16px;
   }
 }
-
-

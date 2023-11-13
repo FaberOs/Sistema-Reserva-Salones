@@ -1,13 +1,4 @@
 
-:root{
-  --dark: #000000;
-  --light-gray:#CCCCCC;
-  --gray: #999999;
-  --white: #ffffff;
-  --red-s:linear-gradient(180deg, #CC0000, #7D0000);
-  --blue-s: #0D4185
-}
-
 .home-body {
   background-color: var(--white);
   color: #000000;
@@ -93,6 +84,11 @@
   margin-bottom: 0;
 }
 
+.social-media-box h3:hover{
+  text-decoration: none;
+  color: var(--dark);
+}
+
 .social-media-box ul {
   list-style: none;
   padding: 0;
@@ -172,7 +168,6 @@
   color: inherit;
 }
 
-
 .home-footer {
   background: var(--red-s);
   color: var(--white);
@@ -183,10 +178,22 @@
   width: 100%;
 }
 
+#imageCarousel {
+  max-width: 100%; /* Ajusta el carrusel al ancho completo de la pantalla */
+  margin: 0 auto; /* Centra el carrusel horizontalmente en la pantalla */
+}
 
+.carousel-item {
+  width: 100%;
+  height: auto; /* Permite que la altura se ajuste automáticamente al contenido */
+}
 
-
-
+@media (min-width: 1200px) {
+  .carousel-item {
+    height: 0;
+    padding-bottom: 40%; /* Relación de aspecto 16:9 (9 / 16 * 100%) */
+  }
+}
 
 @media (min-width: 992px) {
   #imageCarousel {
@@ -208,8 +215,7 @@
   }
 
   .carousel-item {
-    width: 100%;
-    height: 400px;
+    height: 400px; /* Ajusta la altura para tablets */
   }
 }
 
@@ -227,9 +233,8 @@
 
 /* Estilos para dispositivos pequeños, como smartphones */
 @media (max-width: 414px) {
-  #imageCarousel {
-    max-width: 100%; /* Ajusta el carrusel al ancho completo de la pantalla */
-    height: auto; /* Permite que la altura se ajuste automáticamente al contenido */
+  .carousel-item {
+    height: 200px; /* Ajusta la altura para smartphones */
   }
 
   .carousel-control-prev,

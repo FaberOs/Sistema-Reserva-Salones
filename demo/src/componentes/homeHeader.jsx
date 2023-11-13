@@ -28,18 +28,10 @@ function principalHeader(props) {
                 ? <Link to="/login">
                     <BotonIniciarSesionHome />
                   </Link>
-                : 
-                  <div className="col-md-10 col-6 text-end" >
-                    <div>
-                      <Link to="/" onClick={handleSubmit}>
-                        <BotonCierraSesion  /> 
-                      </Link> 
-                    </div>  
-                    <div>
-                      <h4 > Bienvenido, {JSON.parse(localStorage.getItem('User')).nombres}</h4>           
-                    </div>      
-                  </div> 
-              }
+                : <Link to="/" onClick={handleSubmit}>
+                    <BotonCierraSesion  /> 
+                  </Link> 
+            } 
           </div>
         </div>
       </div>
@@ -48,3 +40,15 @@ function principalHeader(props) {
 }
 
 export default principalHeader;
+
+                  {/*<div className="col-md-10 col-6 text-end" >
+                    <div>
+                      <Link to="/" onClick={handleSubmit}>
+                        <BotonCierraSesion  /> 
+                      </Link> 
+                    </div> 
+                    
+                    <div>
+                      <h4 > Bienvenido, {JSON.parse(localStorage.getItem('User')).nombres}</h4>           
+                    </div>    
+                  </div> */} 

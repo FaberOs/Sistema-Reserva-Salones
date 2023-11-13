@@ -1,13 +1,4 @@
 /* confirm-modal-styles.css */
-:root{
-  --dark: #000000;
-  --light-gray:#CCCCCC;
-  --gray: #999999;
-  --white: #ffffff;
-  --red-s:linear-gradient(180deg, #CC0000, #7D0000);
-  --blue-s: #0D4185;
-  --red: #C6171E;
-}
 
 .confirm-modal-container {
   display: flex;

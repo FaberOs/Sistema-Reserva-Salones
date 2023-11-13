@@ -1,5 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;600;700&display=swap');
 
+:root{
+  --dark: #000000;
+  --light-gray:#CCCCCC;
+  --gray: #999999;
+  --white: #ffffff;
+  --red-s:linear-gradient(180deg, #CC0000, #7D0000);
+  --blue-s: #0D4185;
+}
+
 *::selection{
   background:var(--blue-s);
   color:#fff;
@@ -21,7 +30,6 @@
 *{
   font-family: 'Nunito', sans-serif;
   box-sizing: border-box;
-  text-transform: capitalize;
   text-decoration: none;
 }
   

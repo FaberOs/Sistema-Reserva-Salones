@@ -17,6 +17,11 @@ import resultIcon from '../iconos/result-pass-icon.svg';
 import bookIcon from '../iconos/read-book-icon.svg';
 
 function Home (){
+  localStorage.setItem('User',JSON.stringify({
+    "username": "juanperez",
+    "contrasenia": "password",
+    "rol": "COORDINADOR"
+  }));
   return(
     <div>
       <GlobalStyles
@@ -36,19 +41,19 @@ function Home (){
             <InfoBox
               icon={resultIcon}
               color="white"
-              text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus omnis itaque minus similique eaque suscipit."
+              text="Estructuramos, comunicamos y apoyamos iniciativas de alta calidad en posgrados para un impacto sostenible."
               boxColor="#0D4185"
             />
             <InfoBox
               icon={bookIcon}
               color="white"
-              text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus omnis itaque minus similique eaque suscipit."
+              text="Fomentamos investigaciones pertinentes, regionales e internacionales, impulsando la excelencia educativa."
               boxColor="#CC0000"
             />
             <InfoBox
               icon={tutorIcon}
               color="white"
-              text="Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloribus omnis itaque minus similique eaque suscipit."
+              text="Cultivamos equidad, transparencia y excelencia en posgrados para un desarrollo armónico e inclusivo."
               boxColor="#0D4185"
             />
           </div>

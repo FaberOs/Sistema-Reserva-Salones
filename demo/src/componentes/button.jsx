@@ -22,7 +22,7 @@ export function BotonIniciarSesionLogin({ onClick }) {
 
 export function BotonCierraSesion({ onClick }) {
   return (
-    <button className='btn custom-boton text-light btn-sm' onClick={onClick}>Cierra Sesión</button>
+    <button className='btn border-custom text-light btn-sm' onClick={onClick}>Cerrar Sesión</button>
   );
 }
 
@@ -32,7 +32,7 @@ export function BotonEliminar({ onClick }) {
   );
 }
 
-export function BotonAceptar({sSalon, hS, pP, nE, m}) {
+export function BotonAceptar({sSalon, cI, pP, nE, m}) {
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
@@ -52,7 +52,7 @@ export function BotonAceptar({sSalon, hS, pP, nE, m}) {
     ClienteReserva.Reservar({
       "idSalon": parseInt(sSalon),
       "cedulaCiudadania": JSON.parse(localStorage.getItem('User')).numeroIdentificacion,
-      "horasSolicitadas": parseInt(hS),
+      "correInstitucional": parseInt(cI),
       "numeroDeEstudiantes": parseInt(nE),
       "estadoReserva": "PENDIENTE",
       "programaPosgrado":  pP,
@@ -128,19 +128,17 @@ export function BotonRegresar({ onClick, color }) {
 
 export function Checkbox({ label, checked, onChange }) {
   return (
-    <div className="form-group mb-3">
-      <div className="form-check">
-        <input
-          type="checkbox"
-          className="form-check-input"
-          id="rememberMe"
-          checked={checked}
-          onChange={onChange}
-        />
-        <label className="form-check-label" htmlFor="rememberMe">
-          {label}
-        </label>
-      </div>
+    <div className="form-check">
+      <input
+        type="checkbox"
+        className="form-check-input mr-1 mt-2"
+        id={label}
+        checked={checked}
+        onChange={onChange}
+      />
+      <label className="form-check-label ml-2 mt-0" htmlFor={label}>
+        {label}
+      </label>
     </div>
   );
 }

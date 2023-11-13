@@ -5,6 +5,8 @@ import HomeHeader from '../componentes/homeHeader.jsx'
 import Calendario from "../componentes/calendar.jsx";
 import GlobalStyles from '../componentes/GlobalStyles';
 import ReservAuditorio from "../componentes/reserv-audit-form.jsx";
+import MainFooter from "../componentes/footerMain.jsx";
+import Error404 from "../componentes/error404.jsx";
 
 function Auditorio(){
 
@@ -23,15 +25,15 @@ function Auditorio(){
       <header>
         <HomeHeader />
       </header>
-      <body>
+      <main>
         {
           roll === 'COORDINADOR'
             ?<div className="container">
                 <div className="row m-2">
-                  <div className="col-xl-1 col-sm-1">
+                  <div className="col-xl-1 col-sm-2">
       
                   </div>
-                  <div className="col-xl-4 col-sm-5">
+                  <div className="col-xl-4 col-sm-8">
                     <Calendario />
                   </div>
                   <div className="col-xl-6 col-sm-12">
@@ -41,11 +43,14 @@ function Auditorio(){
               </div>
 
             :<div className="container">
-              colocar imagen de error de pagina
+              <Error404 />
             </div>
         }
         
-      </body>
+      </main>
+      <footer className="mt-5">
+        <MainFooter />
+      </footer>
     </div>
   );
 }

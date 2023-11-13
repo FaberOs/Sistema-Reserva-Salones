@@ -32,7 +32,7 @@ function VerticalMenu() {
     if (localStorage.length === 0){
         navigate('/login');
     }else{
-        navigate('/admin');
+        navigate('/consultar-reserva');
     }
   };
 
@@ -40,7 +40,7 @@ function VerticalMenu() {
     if (localStorage.length === 0){
         navigate('/login');
     }else{
-        navigate('/auditorio');
+        navigate('/solicitar-auditorio');
     }
   };
   
@@ -48,20 +48,21 @@ function VerticalMenu() {
   return (
     <div className="vertical-menu">
       <div className="menu-rectangle" >
-        {
+      {
            roll === 'INVITADO'
             ?<div>
+              <BotonSolicitarReserva color="#0D4185" icon={CalendarIcon} onClick={handleSolicitaReserva} />
               <BotonConsultarReserva color="#0D4185" icon={DocumentIcon} onClick={handleConsultaReserva}/>
               <BotonSolicitarAuditorio color="#0D4185" icon={ConferenceIcon} onClick={handleSolicitaAuditorio}/>
-              <BotonSolicitarReserva color="#0D4185" icon={CalendarIcon} onClick={handleSolicitaReserva} />
             </div>
             :roll === 'COORDINADOR'
-              ? <div>
-                    <BotonSolicitarReserva color="#0D4185" icon={CalendarIcon} onClick={handleSolicitaReserva} />
-                    <BotonSolicitarAuditorio color="#0D4185" icon={ConferenceIcon} onClick={handleSolicitaAuditorio}/>
-                </div>              
+              ?<div>
+                  <BotonSolicitarReserva color="#0D4185" icon={CalendarIcon} onClick={handleSolicitaReserva} />
+                  <BotonSolicitarAuditorio color="#0D4185" icon={ConferenceIcon} onClick={handleSolicitaAuditorio}/>
+              </div>              
               : <BotonConsultarReserva color="#0D4185" icon={DocumentIcon} onClick={handleConsultaReserva}/>
-        }      
+        }  
+          
     </div>
   </div>
   );

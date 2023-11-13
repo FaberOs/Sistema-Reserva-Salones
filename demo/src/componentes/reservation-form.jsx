@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import '../hojas-de-estilo/reservation-styles.css';
 
-import { BotonCancelar, BotonRegresar, BotonSiguiente, BotonAceptar } from './button';
+import { BotonCancelar, BotonRegresar, BotonSiguiente } from './button';
 import Form1 from '../componentes/form1-reservation.jsx';
 import Form2 from '../componentes/form2-reservation.jsx';
 

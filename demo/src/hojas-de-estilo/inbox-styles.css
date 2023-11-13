@@ -1,0 +1,63 @@
+/* inbox-styles.css */
+
+/* Estilos generales del contenedor */
+.inbox-container {
+  background-color: var(--white);
+  border: 1px solid var(--gray);
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  padding: 0;
+}
+
+/* Estilos para las filas */
+/* Estilos para filas */
+.inbox-row {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--gray);
+  padding: 10px;
+  margin: 0;
+  height: 70px;
+}
+
+.inbox-row:last-child {
+  border: 1px solid var(--gray);
+  padding: 10px;
+  height: 60px;
+  border-radius: 0 0 10px 10px; /* Borde inferior redondeado */
+}
+
+.first-inbox-row {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--gray);
+  padding: 10px;
+  height: 70px;
+  margin: 0;
+  border-radius: 10px 10px 0 0;
+}
+
+/* Estilos para los checkbox */
+.inbox-checkbox {
+  cursor: pointer;
+  margin-top: 3px; /* Ajuste en la posición del checkbox */
+  width: 20px; /* Ancho del checkbox */
+  height: 20px; /* Altura del checkbox */
+}
+
+/* Estilos para los íconos de paginación */
+.pagination-icon {
+  margin-left: 10px; /* Espacio entre los íconos de paginación */
+}
+
+/* Estilos para los iconos */
+.inbox-container-icon {
+  cursor: pointer;
+  width: 20px; /* Tamaño deseado para los iconos */
+  height: 20px; /* Tamaño deseado para los iconos */
+  margin-right: 5px; /* Espaciado entre los iconos de paginación */
+}
+
+
+
+

@@ -8,16 +8,19 @@ import linkedinIcon from '../iconos/linkedin-icon.svg'
 function SocialMedia() {
   const socialMediaData = [
     {
-      name: 'Facebook' ,
+      name: 'Facebook',
       icon: facebookIcon,
+      link: 'https://www.facebook.com/UnicaucaPosgrados',
     },
     {
       name: 'Instagram',
       icon: instagramIcon,
+      link: 'https://www.instagram.com/unicaucaposgrados/',
     },
     {
       name: 'Linkedin',
       icon: linkedinIcon,
+      link: 'https://www.linkedin.com/company/unicauca-posgrados/',
     },
   ];
   
@@ -27,14 +30,14 @@ function SocialMedia() {
         <h3>Redes Sociales</h3>
         <ul>
           {socialMediaData.map((social) => (
-              <li key={social.name}>
-                <hr className="news-separator" />
-                <a href="#link">
-                  <img src={social.icon} alt={social.name} />
-                  <span>{social.name}</span>
-                </a>
-              </li>
-            ))}
+            <li key={social.name}>
+              <hr className="news-separator" />
+              <a href={social.link} target="_blank" rel="noopener noreferrer">
+                <img src={social.icon} alt={social.name} />
+                <span>{social.name}</span>
+              </a>
+            </li>
+          ))}
         </ul>
       </div>
     </div>
