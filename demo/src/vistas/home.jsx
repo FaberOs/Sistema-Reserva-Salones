@@ -17,11 +17,11 @@ import resultIcon from '../iconos/result-pass-icon.svg';
 import bookIcon from '../iconos/read-book-icon.svg';
 
 function Home (){
-  localStorage.setItem('User',JSON.stringify({
+  /*localStorage.setItem('User',JSON.stringify({
     "username": "juanperez",
     "contrasenia": "password",
     "rol": "COORDINADOR"
-  }));
+  })); */
   return(
     <div>
       <GlobalStyles

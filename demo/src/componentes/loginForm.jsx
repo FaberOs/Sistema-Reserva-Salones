@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import '../hojas-de-estilo/stylesLogin.css';
-//import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import { BotonIniciarSesionLogin, Checkbox } from './button.jsx';
 import TextInput from './textInput.jsx';
 //import { useEffect } from 'react';
 
-//import ClienteAutenticacion from '../services/ClienteAutenticacion';
+import ClienteAutenticacion from '../services/ClienteAutenticacion';
 //import { error } from 'jquery';
 
 function LoginForm() {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
-  //const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const handleUsernameChange = (e) => {
     setUsername(e.target.value);
@@ -31,14 +31,15 @@ function LoginForm() {
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    /*
     localStorage.setItem('User',JSON.stringify({
       "username": "juanperez",
       "contrasenia": "password",
       "rol": "INVITADO"
-    }));
+    })); */
 
     // Aquí puedes agregar la lógica para procesar el inicio de sesión
-    /*ClienteAutenticacion.Autenticar({
+    ClienteAutenticacion.Autenticar({
       "username": username,
       "contrasenia": password
     }).then(response => {
@@ -54,7 +55,7 @@ function LoginForm() {
 
     console.log('Nombre de usuario:', username);
     console.log('Contraseña:', password);
-    console.log('Recordar datos:', rememberMe); */
+    console.log('Recordar datos:', rememberMe); 
   };
 /*
   useEffect(() => {
