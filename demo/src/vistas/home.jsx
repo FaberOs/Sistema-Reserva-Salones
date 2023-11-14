@@ -20,7 +20,7 @@ function Home (){
   /*localStorage.setItem('User',JSON.stringify({
     "username": "juanperez",
     "contrasenia": "password",
-    "rol": "COORDINADOR"
+    "rol": "ADMINISTRADOR"
   })); */
   return(
     <div>

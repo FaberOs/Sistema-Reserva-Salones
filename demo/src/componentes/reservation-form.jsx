@@ -9,19 +9,21 @@ import Form2 from '../componentes/form2-reservation.jsx';
 
 function Reservation() {
   const [selectedOptions, setSelectedOptions] = useState([]);
-  const maxSelections = 11; // Número máximo de selecciones
-  const [step, setStep] = useState(1); // Controlamos el paso del formulario
+  const [selectedReservationOption, setSelectedReservationOption] = useState(null); // Nuevo estado para la opción seleccionada
+  const maxSelections = 2;
+  const [step, setStep] = useState(1);
 
   const handleOptionClick = (time) => {
     if (selectedOptions.includes(time)) {
       setSelectedOptions(selectedOptions.filter((option) => option !== time));
     } else if (selectedOptions.length < maxSelections) {
       setSelectedOptions([...selectedOptions, time]);
+      setSelectedReservationOption(time); // Actualiza la opción seleccionada
     }
   };
- 
+
   const handleNextStep = () => {
-    setStep(step + 1); // Avanzar al siguiente paso del formulario
+    setStep(step + 1);
   };
 
   return (
@@ -31,6 +33,7 @@ function Reservation() {
           <Form1
             selectedOptions={selectedOptions}
             handleOptionClick={handleOptionClick}
+            setSelectedReservationOption={setSelectedReservationOption} // Nueva prop
           />
         )}
         {step === 2 && (

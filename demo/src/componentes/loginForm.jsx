@@ -35,10 +35,12 @@ function LoginForm() {
     localStorage.setItem('User',JSON.stringify({
       "username": "juanperez",
       "contrasenia": "password",
-      "rol": "INVITADO"
+      "rol": "ADMINISTRADOR"
     })); */
 
     // Aquí puedes agregar la lógica para procesar el inicio de sesión
+
+    
     ClienteAutenticacion.Autenticar({
       "username": username,
       "contrasenia": password
@@ -55,7 +57,7 @@ function LoginForm() {
 
     console.log('Nombre de usuario:', username);
     console.log('Contraseña:', password);
-    console.log('Recordar datos:', rememberMe); 
+    console.log('Recordar datos:', rememberMe);
   };
 /*
   useEffect(() => {
