@@ -1,16 +1,14 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
 import '../hojas-de-estilo/reservation-styles.css';
-
 import { BotonCancelar, BotonRegresar, BotonSiguiente } from './button';
 import Form1 from '../componentes/form1-reservation.jsx';
 import Form2 from '../componentes/form2-reservation.jsx';
 
 function Reservation() {
   const [selectedOptions, setSelectedOptions] = useState([]);
-  const [selectedReservationOption, setSelectedReservationOption] = useState(null); // Nuevo estado para la opción seleccionada
-  const maxSelections = 2;
+  const [fechaSeleccionada, setFechaSeleccionada] = useState(null);
+  const maxSelections = 2; // Número máximo de selecciones
   const [step, setStep] = useState(1);
 
   const handleOptionClick = (time) => {
@@ -18,12 +16,15 @@ function Reservation() {
       setSelectedOptions(selectedOptions.filter((option) => option !== time));
     } else if (selectedOptions.length < maxSelections) {
       setSelectedOptions([...selectedOptions, time]);
-      setSelectedReservationOption(time); // Actualiza la opción seleccionada
     }
   };
 
   const handleNextStep = () => {
     setStep(step + 1);
+  };
+
+  const handleDateChange = (date) => {
+    setFechaSeleccionada(date);
   };
 
   return (
@@ -32,12 +33,15 @@ function Reservation() {
         {step === 1 && (
           <Form1
             selectedOptions={selectedOptions}
+            maxSelections={maxSelections}
             handleOptionClick={handleOptionClick}
-            setSelectedReservationOption={setSelectedReservationOption} // Nueva prop
           />
         )}
         {step === 2 && (
-          <Form2 />
+          <Form2 
+            selectedOptions={selectedOptions} 
+            fechaSeleccionada={fechaSeleccionada} 
+          />
         )}
 
         <div className="d-flex justify-content-between">
@@ -59,7 +63,7 @@ function Reservation() {
               <div className="d-flex mr-2">
                 <Link to="/home">
                   <BotonCancelar color="#999999" />
-                </Link>                
+                </Link>
               </div>
             </div>
           )}
@@ -70,6 +74,7 @@ function Reservation() {
 }
 
 export default Reservation;
+
 
 
 

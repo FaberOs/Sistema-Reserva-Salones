@@ -47,24 +47,30 @@ function VerticalMenu() {
 
   return (
     <div className="vertical-menu">
-      <div className="menu-rectangle" >
-      {
-           roll === 'INVITADO'
-            ?<div>
-              <BotonSolicitarReserva color="#0D4185" icon={CalendarIcon} onClick={handleSolicitaReserva} />
-              <BotonConsultarReserva color="#0D4185" icon={DocumentIcon} onClick={handleConsultaReserva}/>
-              <BotonSolicitarAuditorio color="#0D4185" icon={ConferenceIcon} onClick={handleSolicitaAuditorio}/>
-            </div>
-            :roll === 'COORDINADOR'
-              ?<div>
-                  <BotonSolicitarReserva color="#0D4185" icon={CalendarIcon} onClick={handleSolicitaReserva} />
-                  <BotonSolicitarAuditorio color="#0D4185" icon={ConferenceIcon} onClick={handleSolicitaAuditorio}/>
-              </div>              
-              : <BotonConsultarReserva color="#0D4185" icon={DocumentIcon} onClick={handleConsultaReserva}/>
-        }  
-          
+      <div className="menu-rectangle">
+        {roll === 'INVITADO' && (
+          <div>
+            <BotonSolicitarReserva color="#0D4185" icon={CalendarIcon} onClick={handleSolicitaReserva} />
+            <BotonConsultarReserva color="#0D4185" icon={DocumentIcon} onClick={handleConsultaReserva}/>
+            <BotonSolicitarAuditorio color="#0D4185" icon={ConferenceIcon} onClick={handleSolicitaAuditorio}/>
+          </div>
+        )}
+        {roll === 'COORDINADOR' && (
+          <div>
+            <BotonSolicitarReserva color="#0D4185" icon={CalendarIcon} onClick={handleSolicitaReserva} />
+            <BotonConsultarReserva color="#0D4185" icon={DocumentIcon} onClick={handleConsultaReserva}/>
+            <BotonSolicitarAuditorio color="#0D4185" icon={ConferenceIcon} onClick={handleSolicitaAuditorio}/>
+          </div>
+        )}
+        {roll === 'ADMINISTRADOR' && (
+          <div>
+            <BotonSolicitarReserva color="#0D4185" icon={CalendarIcon} onClick={handleSolicitaReserva} />
+            <BotonConsultarReserva color="#0D4185" icon={DocumentIcon} onClick={handleConsultaReserva}/>
+            <BotonSolicitarAuditorio color="#0D4185" icon={ConferenceIcon} onClick={handleSolicitaAuditorio}/>
+          </div>
+        )}
+      </div>
     </div>
-  </div>
   );
 }
 

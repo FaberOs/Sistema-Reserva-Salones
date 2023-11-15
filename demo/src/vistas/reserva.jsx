@@ -10,6 +10,11 @@ import Error404 from "../componentes/error404.jsx";
 
 function Reserva(){
 
+  const handleDateChange = (formattedDate) => {
+    // Implementa la lógica que necesitas al cambiar la fecha
+    console.log('Fecha seleccionada:', formattedDate);
+  };
+
   var roll;
   try {
     roll =JSON.parse(localStorage.getItem('User')).rol
@@ -34,7 +39,7 @@ function Reserva(){
                   
                 </div>
                 <div className="col-xl-4 col-sm-8">
-                  <Calendario />
+                  <Calendario onDateChange={handleDateChange} />
                 </div>
                 <div className="col-xl-6 col-sm-12">
                   <Reservation />

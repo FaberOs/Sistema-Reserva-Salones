@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
+import { format } from 'date-fns';
 import '../hojas-de-estilo/calendar-styles.css';
 
-function Calendario() {
+function Calendario({ onDateChange }) {
   const meses = [
     'ENE', 'FEB', 'MAR', 'ABR', 'MAY', 'JUN',
     'JUL', 'AGO', 'SEP', 'OCT', 'NOV', 'DIC'
@@ -58,6 +59,8 @@ function Calendario() {
 
     if (diaSeleccionado) {
       setFechaSeleccionada(diaSeleccionado);
+      const formattedDate = format(diaSeleccionado, 'dd/MM/yyyy');
+      onDateChange(formattedDate);
     } else {
       // Si el día seleccionado es del mes anterior, no hagas nada.
       setFechaSeleccionada(null);

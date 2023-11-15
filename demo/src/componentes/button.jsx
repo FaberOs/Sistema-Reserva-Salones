@@ -32,9 +32,11 @@ export function BotonEliminar({ onClick }) {
   );
 }
 
-export function BotonAceptar({sSalon, cI, pP, nE, m}) {
+export function BotonAceptar({selectedOptions, selectedDate, sSalon, cI, pP, nE, m}) {
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
+
+  const opcionesSeleccionadasString = selectedOptions.join(', ');
 
   const buttonStyle = {
     backgroundColor: "#0D4185",
@@ -46,27 +48,37 @@ export function BotonAceptar({sSalon, cI, pP, nE, m}) {
     setShowModal(true);
   };
 
+  console.log("Fecha Seleccionada:", selectedDate);
+  console.log("Opciones Seleccionadas:", opcionesSeleccionadasString);
+  console.log("ID del Salón:", parseInt(sSalon));
+  console.log("Cédula Ciudadanía:", JSON.parse(localStorage.getItem('User')).numeroIdentificacion);
+  console.log("Correo Institucional:", cI);
+  console.log("Número de Estudiantes:", parseInt(nE));
+  console.log("Programa Posgrado:", pP);
+  console.log("Mensaje:", m);
+
   const handleConfirm = (e) => {
     // Realiza la acción de confirmación aqui.3
     setShowModal(false);    
     ClienteReserva.Reservar({
       "idSalon": parseInt(sSalon),
       "cedulaCiudadania": JSON.parse(localStorage.getItem('User')).numeroIdentificacion,
-      "correInstitucional": parseInt(cI),
+      "correoInstitucional": cI,
       "numeroDeEstudiantes": parseInt(nE),
       "estadoReserva": "PENDIENTE",
-      "programaPosgrado":  pP,
+      "programaPosgrado": pP,
       "edificio": "Edificio A",
       "ubicacionDocente": "salon 332",
       "mensaje": m,
-      "fechaReserva": "2023-11-02T10:00:00"
+      "fechaReserva": selectedDate,
+      "opcionesSeleccionadas": opcionesSeleccionadasString,
     }).then(response => {
-      alert("Guardado con exito"); 
+      alert("Guardado con éxito");
       navigate('/home');
     }).catch(error => {
-        alert("Fallo guardar la reserva, revise los datos"); 
-        console.log(error);
-    })    
+      alert("Fallo al guardar la reserva, revise los datos");
+      console.log(error);
+    }); 
   };
 
   const handleCancel = () => {
