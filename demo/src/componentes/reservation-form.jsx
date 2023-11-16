@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
 import '../hojas-de-estilo/reservation-styles.css';
-import { BotonCancelar, BotonRegresar, BotonSiguiente } from './button';
+
 import Form1 from '../componentes/form1-reservation.jsx';
 import Form2 from '../componentes/form2-reservation.jsx';
 
@@ -18,8 +17,12 @@ function Reservation({ fechaSeleccionada }) {
     }
   };
 
-  const handleNextStep = () => {
-    setStep(step + 1);
+  const handleNextStepForm1 = () => {
+    setStep(2);
+  };
+
+  const handlePrevStep = () => {
+    setStep(step - 1);
   };
 
   return (
@@ -30,15 +33,17 @@ function Reservation({ fechaSeleccionada }) {
             selectedOptions={selectedOptions}
             maxSelections={maxSelections}
             handleOptionClick={handleOptionClick}
+            onNextStep={handleNextStepForm1}
           />
         )}
         {step === 2 && (
           <Form2 
             selectedOptions={selectedOptions} 
-            fechaSeleccionada={fechaSeleccionada} 
+            fechaSeleccionada={fechaSeleccionada}
+            onPrevStep={handlePrevStep}
           />
         )}
-
+        {/*
         <div className="d-flex justify-content-between">
           {step > 1 && (
             <div className="buttons">
@@ -50,7 +55,7 @@ function Reservation({ fechaSeleccionada }) {
               <Link to="/home">
                 <BotonCancelar color="#999999" />
               </Link>
-              <BotonSiguiente color="#0D4185" onClick={handleNextStep} />
+              <BotonSiguiente color="#0D4185" onClick={handleNextStepForm1} />
             </div>
           )}
           {step === 2 && (
@@ -62,13 +67,14 @@ function Reservation({ fechaSeleccionada }) {
               </div>
             </div>
           )}
-        </div>
+        </div> */}
       </div>
     </div>
   );
 }
 
 export default Reservation;
+
 
 
 

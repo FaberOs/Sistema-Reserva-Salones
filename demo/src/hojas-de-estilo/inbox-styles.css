@@ -7,6 +7,7 @@
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 0;
+  height: 490px;
 }
 
 /* Estilos para las filas */
@@ -23,7 +24,7 @@
 .inbox-row:last-child {
   border: 1px solid var(--gray);
   padding: 10px;
-  height: 60px;
+  height: 70px;
   border-radius: 0 0 10px 10px; /* Borde inferior redondeado */
 }
 

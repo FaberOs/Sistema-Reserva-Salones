@@ -1,12 +1,21 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import ReservationOption from '../componentes/reservation-option.jsx';
+import { BotonCancelar, BotonSiguiente } from './button';
 
 import '../hojas-de-estilo/reservation-styles.css';
 
 import sunIcon from '../iconos/sun-icon.svg';
 import sunriseIcon from '../iconos/sunrise-icon.svg';
 
-function Form1({ selectedOptions, handleOptionClick }) {
+function Form1({ selectedOptions, maxSelections, handleOptionClick, onNextStep }) {
+
+  const handleNextStep = () => {
+    // Lógica específica de Form1 si es necesario
+    onNextStep(); // Llama a la función para cambiar de paso
+  };
+
   return (
     <div>
       <div className="reservation-section">
@@ -90,6 +99,12 @@ function Form1({ selectedOptions, handleOptionClick }) {
             onClick={() => handleOptionClick("18:00 PM")}
           />
         </div>
+        <div className="buttons d-flex justify-content-between">
+        <Link to="/home">
+          <BotonCancelar color="#999999" />
+        </Link>
+        <BotonSiguiente color="#0D4185" onClick={handleNextStep} />
+      </div>
       </div>
     </div>
   );

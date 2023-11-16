@@ -3,9 +3,11 @@ import ReservationOption from '../componentes/reservation-option.jsx';
 import TextInput from '../componentes/textInput.jsx';
 import '../hojas-de-estilo/form2-styles.css';
 
-function Form2() {
+import { BotonAceptar } from './button';
+
+function Form2({ selectedOptions, fechaSeleccionada }) {
   const [nombreProfesor, setNombreProfesor] = useState('');
-  const [horasSolicitadas, setHorasSolicitadas] = useState('');
+  const [correoInstitucional, setCorreoInstitucional] = useState('');
   const [numEstudiantes, setNumEstudiantes] = useState('');
   const [programaPregrado, setProgramaPregrado] = useState('');
   const [mensaje, setMensaje] = useState('');
@@ -28,11 +30,11 @@ function Form2() {
             required
           />
           <TextInput
-            id="horasSolicitadas"
+            id="correoInstitucional"
             type="text"
-            placeholder="Horas solicitadas"
-            value={horasSolicitadas}
-            onChange={(e) => setHorasSolicitadas(e.target.value)}
+            placeholder="Correo Institucional"
+            value={correoInstitucional}
+            onChange={(e) => setCorreoInstitucional(e.target.value)}
             required
           />
           <TextInput
@@ -79,6 +81,16 @@ function Form2() {
           ))}
         </div>
       </div>
+      <BotonAceptar
+        selectedOptions={selectedOptions}
+        selectedDate={fechaSeleccionada}
+        sSalon={selectedSalon}
+        cI={correoInstitucional}
+        nProfesor={nombreProfesor}
+        pP={programaPregrado}
+        nE={numEstudiantes}
+        m={mensaje}
+      />
     </div>
   );
 }

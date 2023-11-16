@@ -32,11 +32,13 @@ export function BotonEliminar({ onClick }) {
   );
 }
 
-export function BotonAceptar({selectedOptions, selectedDate, sSalon, cI, pP, nE, m}) {
+export function BotonAceptar({selectedOptions, selectedDate, sSalon, nProfesor,cI, pP, nE, m}) {
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
 
-  const opcionesSeleccionadasString = selectedOptions.join(', ');
+  //const opcionesSeleccionadasString = selectedOptions.join(', ');
+  const hora_inicio = selectedOptions[0];
+  const hora_fin = selectedOptions[1];
 
   const buttonStyle = {
     backgroundColor: "#0D4185",
@@ -49,7 +51,7 @@ export function BotonAceptar({selectedOptions, selectedDate, sSalon, cI, pP, nE,
   };
 
   console.log("Fecha Seleccionada:", selectedDate);
-  console.log("Opciones Seleccionadas:", opcionesSeleccionadasString);
+  //console.log("Opciones Seleccionadas:", opcionesSeleccionadasString);
   console.log("ID del Salón:", parseInt(sSalon));
   console.log("Cédula Ciudadanía:", JSON.parse(localStorage.getItem('User')).numeroIdentificacion);
   console.log("Correo Institucional:", cI);
@@ -62,16 +64,17 @@ export function BotonAceptar({selectedOptions, selectedDate, sSalon, cI, pP, nE,
     setShowModal(false);    
     ClienteReserva.Reservar({
       "idSalon": parseInt(sSalon),
-      "cedulaCiudadania": JSON.parse(localStorage.getItem('User')).numeroIdentificacion,
+      "nombreProfesor": nProfesor,
       "correoInstitucional": cI,
-      "numeroDeEstudiantes": parseInt(nE),
-      "estadoReserva": "PENDIENTE",
-      "programaPosgrado": pP,
-      "edificio": "Edificio A",
-      "ubicacionDocente": "salon 332",
+      "programaProfesor": pP,
+      "horaInicio": hora_inicio,
+      "horaFinal": hora_fin,
       "mensaje": m,
-      "fechaReserva": selectedDate,
-      "opcionesSeleccionadas": opcionesSeleccionadasString,
+      "cantidadDias": 1,
+      "diaInicio": selectedDate, // Se debe acomodar para que sea generico
+      "diaFin": selectedDate,
+      "numeroEstudiantes": nE,
+      "estadoReserva": "PENDIENTE"
     }).then(response => {
       alert("Guardado con éxito");
       navigate('/home');
@@ -89,7 +92,6 @@ export function BotonAceptar({selectedOptions, selectedDate, sSalon, cI, pP, nE,
     <div>
       <button className="btn" style={buttonStyle} onClick={handleAcceptClick}>
         Aceptar
-        {parseInt(sSalon)}
       </button>
       <ConfirmModal isOpen={showModal} onConfirm={handleConfirm} onCancel={handleCancel} />
     </div>

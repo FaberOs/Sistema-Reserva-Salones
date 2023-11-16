@@ -3,13 +3,13 @@ import { Link } from 'react-router-dom';
 
 import '../hojas-de-estilo/reservation-styles.css';
 
-import { BotonCancelar, BotonRegresar, BotonSiguiente, BotonAceptar } from './button';
+import { BotonCancelar, BotonRegresar, BotonSiguiente } from './button';
 import Form1 from '../componentes/form1-reservation.jsx';
 import Form2Auditorio from '../componentes/form2-auditorio.jsx';
 
-function ReservAuditorio() {
+function ReservAuditorio({ fechaSeleccionada }) {
   const [selectedOptions, setSelectedOptions] = useState([]);
-  const maxSelections = 2; // Número máximo de selecciones
+  const maxSelections = 1; // Número máximo de selecciones
   const [step, setStep] = useState(1); // Controlamos el paso del formulario
 
   const handleOptionClick = (time) => {
@@ -30,11 +30,12 @@ function ReservAuditorio() {
         {step === 1 && (
           <Form1
             selectedOptions={selectedOptions}
+            maxSelections={maxSelections}
             handleOptionClick={handleOptionClick}
           />
         )}
         {step === 2 && (
-          <Form2Auditorio />
+          <Form2Auditorio fechaSeleccionada={fechaSeleccionada} />
         )}
 
         <div className="d-flex justify-content-between">
@@ -57,7 +58,6 @@ function ReservAuditorio() {
                 <Link to="/home">
                   <BotonCancelar color="#999999" />
                 </Link>
-                <BotonAceptar color="#0D4185" />
               </div>
             </div>
           )}

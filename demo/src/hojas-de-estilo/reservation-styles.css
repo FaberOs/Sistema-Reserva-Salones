@@ -102,7 +102,7 @@ button {
 
 .buttons {
   margin-top: 10px;
-  margin-left: 10px;
+  margin-left: -5px;
 }
 
 /* Estilos para los ReservationOption */
