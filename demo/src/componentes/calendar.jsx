@@ -59,7 +59,7 @@ function Calendario({ onDateChange }) {
 
     if (diaSeleccionado) {
       setFechaSeleccionada(diaSeleccionado);
-      const formattedDate = format(diaSeleccionado, 'dd/MM/yyyy');
+      const formattedDate = format(diaSeleccionado, 'yyyy-MM-dd');
       onDateChange(formattedDate);
     } else {
       // Si el día seleccionado es del mes anterior, no hagas nada.

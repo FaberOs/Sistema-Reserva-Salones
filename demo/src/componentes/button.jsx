@@ -199,3 +199,18 @@ export function BotonSolicitarAuditorio({ onClick, color, icon }) {
     </button>
   );
 }
+
+export function BotonInbox({ onClick, color, icon }) {
+  const buttonStyle = {
+    backgroundColor: color,
+  };
+
+  return (
+    <button className='button w-100 mb-2' style={buttonStyle} onClick={onClick}>
+      <div className='icon'>
+        <img src={icon} alt="Icono" style={{ width: '80%', height: '80%' }} />
+      </div>
+      <span className='button-text'>Bandeja de Entrada</span>
+    </button>
+  );
+}

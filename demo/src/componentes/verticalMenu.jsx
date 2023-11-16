@@ -3,11 +3,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { useNavigate } from 'react-router-dom';
 
 import '../hojas-de-estilo/stylesHome.css';
-import { BotonConsultarReserva, BotonSolicitarReserva, BotonSolicitarAuditorio } from './button';
+import { BotonConsultarReserva, BotonSolicitarReserva, BotonSolicitarAuditorio, BotonInbox } from './button';
 
 import CalendarIcon from '../iconos/calendar-icon.svg'
 import ConferenceIcon from '../iconos/conference-icon.svg'
 import DocumentIcon from '../iconos/document-icon.svg'
+import Inbox2Icon from '../iconos/inbox2-icon.svg'
 
 function VerticalMenu() {
   
@@ -43,6 +44,14 @@ function VerticalMenu() {
         navigate('/solicitar-auditorio');
     }
   };
+
+  const handleInbox = (e) => {
+    if (localStorage.length === 0){
+        navigate('/login');
+    }else{
+        navigate('/admin');
+    }
+  };
   
 
   return (
@@ -67,6 +76,7 @@ function VerticalMenu() {
             <BotonSolicitarReserva color="#0D4185" icon={CalendarIcon} onClick={handleSolicitaReserva} />
             <BotonConsultarReserva color="#0D4185" icon={DocumentIcon} onClick={handleConsultaReserva}/>
             <BotonSolicitarAuditorio color="#0D4185" icon={ConferenceIcon} onClick={handleSolicitaAuditorio}/>
+            <BotonInbox color="#0D4185" icon={Inbox2Icon} onClick={handleInbox}/>
           </div>
         )}
       </div>

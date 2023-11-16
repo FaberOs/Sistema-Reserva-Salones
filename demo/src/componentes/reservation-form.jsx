@@ -5,9 +5,8 @@ import { BotonCancelar, BotonRegresar, BotonSiguiente } from './button';
 import Form1 from '../componentes/form1-reservation.jsx';
 import Form2 from '../componentes/form2-reservation.jsx';
 
-function Reservation() {
+function Reservation({ fechaSeleccionada }) {
   const [selectedOptions, setSelectedOptions] = useState([]);
-  const [fechaSeleccionada, setFechaSeleccionada] = useState(null);
   const maxSelections = 2; // Número máximo de selecciones
   const [step, setStep] = useState(1);
 
@@ -21,10 +20,6 @@ function Reservation() {
 
   const handleNextStep = () => {
     setStep(step + 1);
-  };
-
-  const handleDateChange = (date) => {
-    setFechaSeleccionada(date);
   };
 
   return (
