@@ -58,9 +58,26 @@ function Form2({ selectedOptions, fechaSeleccionada, onPrevStep }) {
             className="form-select"
           >
             <option value="">Programa de Posgrado</option>
-            <option value="Programa 1">Programa 1</option>
-            <option value="Programa 2">Programa 2</option>
-            <option value="Programa 3">Programa 3</option>
+            <option value="Maestría en Ingeniería de la Construcción">Maestría en Ingeniería de la Construcción</option>
+            <option value="Maestría en Geomática">Maestría en Geomática</option>
+            <option value="Maestría en Ingeniería de Pavimentos">Maestría en Ingeniería de Pavimentos</option>
+            <option value="Maestría en Ingeniería de Tránsito">Maestría en Ingeniería de Tránsito</option>
+            <option value="Maestría en Ingeniería de Vías Terrestres">Maestría en Ingeniería de Vías Terrestres</option>
+            <option value="Especialización en Estructuras">Especialización en Estructuras</option>
+            <option value="Especialización en Ingeniería de la Construcción">Especialización en Ingeniería de la Construcción</option>
+            <option value="Especialización en Ingeniería de Recursos Hídricos">Especialización en Ingeniería de Recursos Hídricos</option>
+            <option value="Especialización en Ingeniería de Vías Terrestres">Especialización en Ingeniería de Vías Terrestres</option>
+            <option value="Doctorado en Ciencias de la Electrónica">Doctorado en Ciencias de la Electrónica</option>
+            <option value="Doctorado en Ingeniería Telemática">Doctorado en Ingeniería Telemática</option>
+            <option value="Maestría en Automática">Maestría en Automática</option>
+            <option value="Maestría en Computación">Maestría en Computación</option>
+            <option value="Maestría en Electrónica y Telecomunicaciones">Maestría en Electrónica y Telecomunicaciones</option>
+            <option value="Maestría en Ingeniería Electrónica - Convenio con la Escuela Naval Almirante Padilla – Cartagena">Maestría en Ingeniería Electrónica - Convenio con la Escuela Naval Almirante Padilla – Cartagena</option> 
+            <option value="Maestría en Ingeniería Telemática">Maestría en Ingeniería Telemática</option>
+            <option value="Maestría en Telecomunicaciones">Maestría en Telecomunicaciones</option>
+            <option value="Especialización en Desarrollo de Soluciones Informáticas">Especialización en Desarrollo de Soluciones Informáticas</option>
+            <option value="Especialización en Redes y Servicios Telemáticos">Especialización en Redes y Servicios Telemáticos</option>
+            <option value="Especialización en Telemática">Especialización en Telemática</option>         
           </select>
           <textarea
             id="mensaje"

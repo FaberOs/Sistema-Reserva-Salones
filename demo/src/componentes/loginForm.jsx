@@ -7,13 +7,18 @@ import { BotonIniciarSesionLogin, Checkbox } from './button.jsx';
 import TextInput from './textInput.jsx';
 //import { useEffect } from 'react';
 
+import ModalBienvenida from './modalBienvenida.jsx';
+import ModalRechazo from './modalRechazo.jsx';
 import ClienteAutenticacion from '../services/ClienteAutenticacion';
 //import { error } from 'jquery';
 
 function LoginForm() {
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [showModalr, setShowModalr] = useState(false);
   const navigate = useNavigate();
 
   const handleUsernameChange = (e) => {
@@ -26,6 +31,15 @@ function LoginForm() {
 
   const handleRememberMeChange = () => {
     setRememberMe(!rememberMe);
+  };
+
+  const handleConfirmModal = () => {
+    setShowModal(false);    
+    navigate('/home');
+  };
+
+  const handleConfirmModalR = () => {
+    setShowModalr(false);   
   };
 
   const handleSubmit = (e) => {
@@ -48,10 +62,11 @@ function LoginForm() {
       setUsername(response.data.username);
       setPassword(response.data.contrasenia);
       localStorage.setItem('User',JSON.stringify(response.data));
-      alert("Bienvenido"); 
-      navigate('/home');
+      setShowModal(true);
+      //alert("Bienvenido"); 
     }).catch(error => {
-        alert("Revise Credenciales"); 
+        //alert("Revise Credenciales"); 
+        setShowModalr(true);
         console.log(error);
     })
 
@@ -106,6 +121,8 @@ function LoginForm() {
                 />
                 <div className="form-group text-center mt-3">
                   <BotonIniciarSesionLogin />
+                  <ModalBienvenida isOpen={showModal} onConfirm={handleConfirmModal}/>
+                  <ModalRechazo isOpen={showModalr} onConfirm={handleConfirmModalR}/>
                 </div>
               </form>
               <div className="forgot-pass text-center mt-2">
