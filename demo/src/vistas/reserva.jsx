@@ -47,9 +47,21 @@ function Reserva(){
                   </div>
                 </div>
               </div>
-            : <div className="container">
-                <Error404 />
-              </div>
+            : roll === 'ADMINISTRADOR'
+              ? <div className="container">
+                  <div className="row m-2">
+                    <div className="col-xl-1 col-sm-2"></div>
+                    <div className="col-xl-4 col-sm-8">
+                      <Calendario onDateChange={handleDateChange} />
+                    </div>
+                    <div className="col-xl-6 col-sm-12">
+                      <Reservation fechaSeleccionada={fechaSeleccionada} />
+                    </div>
+                  </div>
+                </div>
+              :<div className="container">
+                  <Error404 />
+                </div>
         }        
       </main>
       <footer className="mt-5">

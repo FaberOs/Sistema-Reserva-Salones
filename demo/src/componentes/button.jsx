@@ -4,6 +4,7 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import '../hojas-de-estilo/buttonStyle.css'
 import { useNavigate } from 'react-router-dom';
 
+import ModalBienvenida from './modalBienvenida.jsx';
 import ConfirmModal from './confirm-modal.jsx';
 import ClienteReserva from '../services/ClienteReservas';
 
@@ -32,6 +33,30 @@ export function BotonEliminar({ onClick }) {
   );
 }
 
+export function BotonInicioSesionAceptar(){
+  const [showModal, setShowModal] = useState(false);
+  const buttonStyle = {
+    backgroundColor: "#0D4185",
+    border: `2px solid #0D4185`,
+    color: '#fff',
+  };
+  const handleAcceptClick = () => {
+    setShowModal(true);
+  };
+  const handleConfirm = (e) => {
+    setShowModal(false);
+  };
+
+  return(
+    <div>
+      <button className="btn" style={buttonStyle} onClick={handleAcceptClick}>
+        Aceptar
+      </button>
+      <ModalBienvenida isOpen={showModal} onConfirm={handleConfirm} />
+    </div>
+  );
+}
+
 export function BotonAceptar({selectedOptions, selectedDate, sSalon, nProfesor,cI, pP, nE, m}) {
   const [showModal, setShowModal] = useState(false);
   const navigate = useNavigate();
@@ -49,7 +74,7 @@ export function BotonAceptar({selectedOptions, selectedDate, sSalon, nProfesor,c
   const handleAcceptClick = () => {
     setShowModal(true);
   };
-
+  /*
   console.log("Fecha Seleccionada:", selectedDate);
   //console.log("Opciones Seleccionadas:", opcionesSeleccionadasString);
   console.log("ID del Salón:", parseInt(sSalon));
@@ -57,7 +82,7 @@ export function BotonAceptar({selectedOptions, selectedDate, sSalon, nProfesor,c
   console.log("Correo Institucional:", cI);
   console.log("Número de Estudiantes:", parseInt(nE));
   console.log("Programa Posgrado:", pP);
-  console.log("Mensaje:", m);
+  console.log("Mensaje:", m);*/
 
   const handleConfirm = (e) => {
     // Realiza la acción de confirmación aqui.3
