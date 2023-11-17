@@ -4,7 +4,8 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import '../hojas-de-estilo/buttonStyle.css'
 import { useNavigate } from 'react-router-dom';
 
-import ModalBienvenida from './modalBienvenida.jsx';
+import ModalRechazoSave from './modalRechazoSave.jsx';
+import ModalSave from './modalSave.jsx';
 import ConfirmModal from './confirm-modal.jsx';
 import ClienteReserva from '../services/ClienteReservas';
 
@@ -33,32 +34,10 @@ export function BotonEliminar({ onClick }) {
   );
 }
 
-export function BotonInicioSesionAceptar(){
-  const [showModal, setShowModal] = useState(false);
-  const buttonStyle = {
-    backgroundColor: "#0D4185",
-    border: `2px solid #0D4185`,
-    color: '#fff',
-  };
-  const handleAcceptClick = () => {
-    setShowModal(true);
-  };
-  const handleConfirm = (e) => {
-    setShowModal(false);
-  };
-
-  return(
-    <div>
-      <button className="btn" style={buttonStyle} onClick={handleAcceptClick}>
-        Aceptar
-      </button>
-      <ModalBienvenida isOpen={showModal} onConfirm={handleConfirm} />
-    </div>
-  );
-}
-
 export function BotonAceptar({selectedOptions, selectedDate, sSalon, nProfesor,cI, pP, nE, m}) {
   const [showModal, setShowModal] = useState(false);
+  const [showModalS, setShowModalS] = useState(false);
+  const [showModalR, setShowModalR] = useState(false);
   const navigate = useNavigate();
 
   //const opcionesSeleccionadasString = selectedOptions.join(', ');
@@ -73,6 +52,15 @@ export function BotonAceptar({selectedOptions, selectedDate, sSalon, nProfesor,c
 
   const handleAcceptClick = () => {
     setShowModal(true);
+  };
+
+  const handleConfirmS = () => {
+    setShowModalS(false);
+    navigate('/home');
+  };
+
+  const handleConfirmR = () => {
+    setShowModalR(false);
   };
   /*
   console.log("Fecha Seleccionada:", selectedDate);
@@ -101,11 +89,12 @@ export function BotonAceptar({selectedOptions, selectedDate, sSalon, nProfesor,c
       "numeroEstudiantes": nE,
       "estadoReserva": "PENDIENTE"
     }).then(response => {
-      alert("Guardado con éxito");
-      navigate('/home');
+      //alert("Guardado con éxito");
+      setShowModalS(true);        
     }).catch(error => {
-      alert("Fallo al guardar la reserva, revise los datos");
-      console.log(error);
+      //alert("Fallo al guardar la reserva, revise los datos");
+      setShowModalR(true);  
+      console.log(error);       
     }); 
   };
 
@@ -119,6 +108,8 @@ export function BotonAceptar({selectedOptions, selectedDate, sSalon, nProfesor,c
         Aceptar
       </button>
       <ConfirmModal isOpen={showModal} onConfirm={handleConfirm} onCancel={handleCancel} />
+      <ModalSave isOpen={showModalS} onConfirm={handleConfirmS}/>
+      <ModalRechazoSave isOpen={showModalR} onConfirm={handleConfirmR}/>
     </div>
   );
 }
