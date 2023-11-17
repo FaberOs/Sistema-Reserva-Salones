@@ -48,11 +48,11 @@ const Sidebar = () => {
         </div>
         <div className="option" onMouseEnter={expandSidebar} onMouseLeave={contractSidebar}>
           <img src={ArchiveIcon} alt="Guardados" />
-          {expanded && <span>Guardados</span>}
+          {expanded && <span>Aprobados</span>}
         </div>
         <div className="option" onMouseEnter={expandSidebar} onMouseLeave={contractSidebar}>
           <img src={CursorIcon} alt="Peticiones" />
-          {expanded && <span>Peticiones</span>}
+          {expanded && <span>Rechazados</span>}
         </div>
         <div className="option" onMouseEnter={expandSidebar} onMouseLeave={contractSidebar}>
           <img src={LockIcon} alt="Inhabilitar" />

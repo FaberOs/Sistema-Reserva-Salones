@@ -34,7 +34,7 @@ function Auditorio(){
       </header>
       <main>
         {
-          roll === 'COORDINADOR'
+          roll === 'COORDINADOR' || roll === 'ADMINISTRADOR'
             ?<div className="container">
                 <div className="row m-2">
                   <div className="col-xl-1 col-sm-2">

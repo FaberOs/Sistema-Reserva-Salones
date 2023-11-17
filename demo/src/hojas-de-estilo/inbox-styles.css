@@ -8,11 +8,13 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   padding: 0;
   height: 490px;
+  overflow-y: auto;
 }
 
 /* Estilos para las filas */
 /* Estilos para filas */
 .inbox-row {
+  cursor: pointer;
   display: flex;
   align-items: center;
   border: 1px solid var(--gray);
@@ -26,6 +28,35 @@
   padding: 10px;
   height: 70px;
   border-radius: 0 0 10px 10px; /* Borde inferior redondeado */
+}
+
+.inbox-row p {
+  margin: 0;
+  font-size: 16px; /* Tamaño de fuente ajustado */
+}
+
+/* Estilos para las columnas */
+.inbox-row .col-1 {
+  flex: 0 0 5%; /* Ancho fijo del 5% */
+}
+
+.inbox-row .col-3 {
+  flex: 0 0 20%; /* Ancho fijo del 20% */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.inbox-row .col-2 {
+  flex: 0 0 15%; /* Ancho fijo del 15% */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  text-align: right;
+}
+
+.inbox-row .col-2.text-center {
+  text-align: center; /* Alinea el texto al centro para col-2 con la clase text-center */
 }
 
 .first-inbox-row {

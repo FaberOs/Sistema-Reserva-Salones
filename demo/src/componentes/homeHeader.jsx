@@ -18,9 +18,9 @@ function principalHeader(props) {
       <div className="container">
         <div className="row align-items-center">
           <div className="col-md-2 col-6 text-center">
-            <a className="navbar-brand" href="/home">
+            <Link to="/home">
               <img className="logoU img-fluid" src={require("../imagenes/logoUnicauca.png")} alt="logoUnicauca" />
-            </a>
+            </Link>           
           </div>
           <div className="col-md-10 col-6 text-end">
             {

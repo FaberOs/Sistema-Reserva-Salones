@@ -18,9 +18,9 @@ function Login(){
       <header>
         <SimpleHeader />
       </header>
-      <body>
+      <main>
         <LoginForm />
-      </body>
+      </main>
       <footer>
         <LoginFooter />
       </footer>
