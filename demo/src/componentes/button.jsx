@@ -28,6 +28,12 @@ export function BotonCrearPrograma({ onClick }) {
   );
 }
 
+export function BotonCrearSalon({ onClick }) {
+  return (
+    <button className='btn custom-boton btn-sm' onClick={onClick}>Crear Salon</button>
+  );
+}
+
 export function BotonIniciarSesionLogin({ onClick }) {
   return (
     <button className='btn custom-boton' onClick={onClick}>Iniciar Sesión</button>

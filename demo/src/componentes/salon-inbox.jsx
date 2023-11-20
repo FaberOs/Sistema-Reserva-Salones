@@ -8,18 +8,31 @@ import PaginationLeftIcon from '../iconos/pagination-left-icon.svg';
 import PaginationRightIcon from '../iconos/pagination-right-icon.svg';
 import EllipsisIcon from '../iconos/ellipsis-icon.svg';
 import RecycleIcon from '../iconos/recycle-bin-icon.svg';
+import PenIcon from '../iconos/pen-icon.svg'
 
 import ClienteFacultades from '../services/ClienteFacultades';
-import { BotonCrearFacultad } from './button';
-import CreateFacultadModal from './crear-facultad-modal.jsx';
+import { BotonCrearSalon } from './button';
+import CreateSalonModal from './crear-salon-modal';
 
-const FacultadInbox = () => {
+const SalonInbox = () => {
   const [selectedFacultad, setSelectedFacultad] = useState(null);
-  const [showCreateFacultadModal, setShowCreateFacultadModal] = useState(false);
+  const [showCreateSalonModal, setShowCreateSalonModal] = useState(false);
   const [facultades, setFacultades] = useState([]);
 
-  const handleCreateFacultadClick = () => {
-    setShowCreateFacultadModal(true);
+  useEffect(() => {
+    // Obtener todas las facultades al cargar el componente
+    ClienteFacultades.ObtenerTodasLasFacultades()
+      .then(response => {
+        console.log('Facultades obtenidas:', response.data);
+        setFacultades(response.data);
+      })
+      .catch(error => {
+        console.error('Error al obtener facultades:', error);
+      });
+  }, []);
+
+  const handleCreateSalonClick = () => {
+    setShowCreateSalonModal(true);
   };
 
   const handleRowClick = (facultad) => {
@@ -38,10 +51,6 @@ const FacultadInbox = () => {
       });
   };
 
-  useEffect(() => {
-    handleReloadClick();
-  }, []);
-
   return (
     <div className="container m-4 inbox-container">
       <div className="row align-items-center first-inbox-row">
@@ -55,8 +64,8 @@ const FacultadInbox = () => {
           <img src={EllipsisIcon} alt="Elipsis" className="inbox-container-icon" />
         </div>
         <div className='col-2'>
-          <BotonCrearFacultad onClick={handleCreateFacultadClick} />
-          <CreateFacultadModal show={showCreateFacultadModal} onHide={() => setShowCreateFacultadModal(false)} />
+          <BotonCrearSalon onClick={handleCreateSalonClick} />
+          <CreateSalonModal show={showCreateSalonModal} onHide={() => setShowCreateSalonModal(false)} />
         </div>
         <div className="col-1 ml-auto text-right"></div>
         <div className="col-2 text-right">
@@ -87,6 +96,12 @@ const FacultadInbox = () => {
               className="inbox-option-icon"
             // onClick={}
             />
+            <img
+              src={PenIcon}
+              alt="Editar"
+              className="inbox-option-icon"
+            // onClick={}
+            />
           </div>
         </div>
       ))}
@@ -94,4 +109,4 @@ const FacultadInbox = () => {
   );
 };
 
-export default FacultadInbox;
+export default SalonInbox;

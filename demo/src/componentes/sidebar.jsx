@@ -7,7 +7,7 @@ import ArchiveIcon from '../iconos/archive-icon.svg';
 import RecycleIcon from '../iconos/recycle-bin-icon.svg';
 import GraphIcon from '../iconos/graph-icon.svg';
 import InboxIcon from '../iconos/inbox-icon.svg';
-import LockIcon from '../iconos/lock-icon.svg';
+import Tutor2Icon from '../iconos/tutor2-icon.svg';
 import SubjectIcon from '../iconos/subject-icon.svg';
 import CollegeIcon from '../iconos/college-icon.svg';
 
@@ -39,40 +39,40 @@ const Sidebar = () => {
         />
       </div>
       <div className="options">
-        <Link to="" className="link">
+        <Link to="/admin" className="link">
           <div className="option" onMouseEnter={expandSidebar} onMouseLeave={contractSidebar}>
             <img src={InboxIcon} alt="Solicitudes" />
             {expanded && <span>Solicitudes</span>}
           </div>
         </Link>
-        <Link to="" className="link">
+        <Link to="/admin/aprobados" className="link">
           <div className="option" onMouseEnter={expandSidebar} onMouseLeave={contractSidebar}>
             <img src={ArchiveIcon} alt="Aprobados" />
             {expanded && <span>Aprobados</span>}
           </div>
         </Link>
-        <Link to="" className="link">
+        <Link to="/admin/rechazados" className="link">
           <div className="option" onMouseEnter={expandSidebar} onMouseLeave={contractSidebar}>
             <img src={RecycleIcon} alt="Rechazados" />
             {expanded && <span>Rechazados</span>}
           </div>
         </Link>
-        <Link to="" className="link">
+        <Link to="/admin/salon" className="link">
           <div className="option" onMouseEnter={expandSidebar} onMouseLeave={contractSidebar}>
-            <img src={LockIcon} alt="Inhabilitar" />
-            {expanded && <span>Inhabilitar</span>}
+            <img src={Tutor2Icon} alt="Salon" />
+            {expanded && <span>Salon</span>}
           </div>
         </Link>
         <Link to="/admin/facultad" className="link">
           <div className="option" onMouseEnter={expandSidebar} onMouseLeave={contractSidebar}>
-            <img src={CollegeIcon} alt="CrearFacultad" />
-            {expanded && <span>Crear Facultad</span>}
+            <img src={CollegeIcon} alt="Facultad" />
+            {expanded && <span>Facultad</span>}
           </div>
         </Link>
         <Link to="/admin/programa" className="link">
           <div className="option" onMouseEnter={expandSidebar} onMouseLeave={contractSidebar}>
-            <img src={SubjectIcon} alt="CrearPrograma" />
-            {expanded && <span>Crear Programa</span>}
+            <img src={SubjectIcon} alt="Programa" />
+            {expanded && <span>Programa</span>}
           </div>
         </Link>
         <Link to="" className="link">

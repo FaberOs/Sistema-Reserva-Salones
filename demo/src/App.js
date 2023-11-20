@@ -14,6 +14,9 @@ import Admin from './vistas/admin';
 import Consulta from './vistas/consulta';
 import Facultad from './vistas/facultad';
 import Programa from './vistas/programa';
+import Salon from './vistas/salon';
+import Aprobados from './vistas/aprobados';
+import Rechazados from './vistas/rechazados';
 
 function App() {
   return (
@@ -58,6 +61,21 @@ function App() {
         <Route path="/admin/programa" element={
           <div>
             <Programa />
+          </div>
+        }/>
+        <Route path="/admin/salon" element={
+          <div>
+            <Salon />
+          </div>
+        }/>
+        <Route path="/admin/aprobados" element={
+          <div>
+            <Aprobados />
+          </div>
+        }/>
+        <Route path="/admin/rechazados" element={
+          <div>
+            <Rechazados />
           </div>
         }/>
       </Routes>

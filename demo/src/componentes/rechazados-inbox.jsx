@@ -11,7 +11,7 @@ import EllipsisIcon from '../iconos/ellipsis-icon.svg';
 
 import ClienteReserva from '../services/ClienteReservas';
 
-const Inbox = () => {
+const RechazadosInbox = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedReserva, setSelectedReserva] = useState(null);
   const [reservas, setReservas] = useState([]);
@@ -25,34 +25,6 @@ const Inbox = () => {
       .catch((error) => {
         console.error('Error al obtener la reserva por ID:', error);
       });
-  };
-
-  const handleAprobar = () => {
-    if (selectedReserva) {
-      ClienteReserva.CambiarEstadoReserva(selectedReserva.idReserva, 'APROBADA')
-        .then(response => {
-          console.log('Reserva aprobada:', response.data);
-          // Puedes realizar acciones adicionales si es necesario
-          handleCloseModal();
-        })
-        .catch(error => {
-          console.error('Error al aprobar la reserva:', error);
-        });
-    }
-  };
-
-  const handleRechazar = () => {
-    if (selectedReserva) {
-      ClienteReserva.CambiarEstadoReserva(selectedReserva.idReserva, 'RECHAZADA')
-        .then(response => {
-          console.log('Reserva rechazada:', response.data);
-          // Puedes realizar acciones adicionales si es necesario
-          handleCloseModal();
-        })
-        .catch(error => {
-          console.error('Error al rechazar la reserva:', error);
-        });
-    }
   };
 
   const handleCloseModal = () => {
@@ -137,12 +109,6 @@ const Inbox = () => {
           )}
         </Modal.Body>
         <Modal.Footer>
-        <Button variant="secondary" onClick={handleRechazar}>
-          Rechazar
-        </Button>
-        <Button variant="primary" onClick={handleAprobar}>
-          Aprobar
-        </Button>
         <Button variant="secondary" onClick={handleCloseModal}>
           Cerrar
         </Button>
@@ -152,4 +118,4 @@ const Inbox = () => {
   );
 };
 
-export default Inbox;
+export default RechazadosInbox;
