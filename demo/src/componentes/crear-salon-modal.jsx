@@ -1,17 +1,14 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
-
-import '../hojas-de-estilo/crear-facultad-modal-styles.css'
 import TextInput from './textInput.jsx';
+import ClienteSalon from '../services/ClienteSalon';
+import ClienteAuditorio from '../services/ClienteAuditorio';
 
 const CreateSalonModal = ({ show, onHide }) => {
-  const [idSalon, setIdSalon] = useState('');
   const [capacidad, setCapacidad] = useState('');
   const [numeracion, setNumeracion] = useState('');
-
-  const handleIdChange = (e) => {
-    setIdSalon(e.target.value);
-  };
+  const [tipo, setTipo] = useState(''); // Nuevo estado para el tipo de salón
+  const [nombreAuditorio, setNombreAuditorio] = useState(''); // Nuevo estado para el nombre del auditorio
 
   const handleCapacidadChange = (e) => {
     setCapacidad(e.target.value);
@@ -21,28 +18,59 @@ const CreateSalonModal = ({ show, onHide }) => {
     setNumeracion(e.target.value);
   };
 
+  const handleTipoChange = (e) => {
+    setTipo(e.target.value);
+  };
+
+  const handleNombreAuditorioChange = (e) => {
+    setNombreAuditorio(e.target.value);
+  };
+
   const handleSave = () => {
-    // Puedes realizar alguna acción con los datos del formulario aquí
-    // Por ejemplo, puedes enviarlos a tu servidor
-    // También puedes cerrar el modal llamando a onHide
+    // Verificar el tipo seleccionado
+    if (tipo === 'Auditorio') {
+      // Crear un auditorio
+      const auditorioData = {
+        capacidad: capacidad,
+        numeracionSalon: numeracion,
+        nombre: nombreAuditorio,
+      };
+
+      ClienteAuditorio.crearAuditorio(auditorioData)
+        .then(response => {
+          console.log('Auditorio creado:', response.data);
+        })
+        .catch(error => {
+          console.error('Error al crear auditorio:', error);
+        });
+    } else {
+      // Crear un salón
+      const salonData = {
+        capacidad: capacidad,
+        numeracionSalon: numeracion,
+        tipo: tipo,
+      };
+
+      ClienteSalon.crearSalon(salonData)
+        .then(response => {
+          console.log('Salón creado:', response.data);
+        })
+        .catch(error => {
+          console.error('Error al crear salón:', error);
+        });
+    }
+
+    // Cerrar el modal
     onHide();
   };
 
   return (
     <Modal show={show} onHide={onHide}>
       <Modal.Header closeButton>
-        <Modal.Title>Crear Salon</Modal.Title>
+        <Modal.Title>Crear Salón</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <Form>
-          <TextInput
-            id="idSalon"
-            type="text"
-            placeholder="ID del Salon"
-            value={idSalon}
-            onChange={handleIdChange}
-            required
-          />
           <TextInput
             id="capacidad"
             type="text"
@@ -59,6 +87,24 @@ const CreateSalonModal = ({ show, onHide }) => {
             onChange={handleNumeracionChange}
             required
           />
+          <Form.Group controlId="tipoSalon">
+            <Form.Label>Tipo de Salón</Form.Label>
+            <Form.Control as="select" value={tipo} onChange={handleTipoChange}>
+              <option value="Salon de Clase">Salon de Clase</option>
+              <option value="Conferencia">Conferencia</option>
+              <option value="Auditorio">Auditorio</option>
+            </Form.Control>
+          </Form.Group>
+          {tipo === 'Auditorio' && (
+            <TextInput
+              id="nombreAuditorio"
+              type="text"
+              placeholder="Nombre del Auditorio"
+              value={nombreAuditorio}
+              onChange={handleNombreAuditorioChange}
+              required
+            />
+          )}
         </Form>
       </Modal.Body>
       <Modal.Footer>

@@ -67,6 +67,17 @@ class ReservasApiClient {
     const url = `${ReservasApiUrl}/cambiarEstado?idReserva=${idReserva}&nuevoEstado=${nuevoEstado}`;
     return axios.put(url);
   }
+
+  /**
+   * Obtiene todas las reservas con un estado específico.
+   *
+   * @param {string} estado - Estado de las reservas que se desea obtener.
+   * @returns {Promise} Promesa que se resuelve con la respuesta de la solicitud.
+   */
+  ObtenerReservasPorEstado(estado) {
+    const url = `${ReservasApiUrl}/estado/${estado}`;
+    return axios.get(url);
+  }
 }
 
 export default new ReservasApiClient();

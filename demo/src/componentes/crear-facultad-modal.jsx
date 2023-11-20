@@ -1,30 +1,47 @@
 import React, { useState } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
-
-import '../hojas-de-estilo/crear-facultad-modal-styles.css'
+import '../hojas-de-estilo/crear-facultad-modal-styles.css';
 import TextInput from './textInput.jsx';
+import ClienteFacultades from '../services/ClienteFacultades';
+
 
 const CreateFacultadModal = ({ show, onHide }) => {
-  const [idFacultad, setIdFacultad] = useState('');
   const [nombreFacultad, setNombreFacultad] = useState('');
-  const [facultadActiva, setFacultadActiva] = useState('');
-
-  const handleIdChange = (e) => {
-    setIdFacultad(e.target.value);
-  };
+  const [facultadActiva, setFacultadActiva] = useState(true);
 
   const handleNombreChange = (e) => {
     setNombreFacultad(e.target.value);
   };
 
   const handleFacultadActivaChange = (e) => {
-    setFacultadActiva(e.target.value);
+    setFacultadActiva(e.target.value === 'true'); // Convierte a booleano
   };
 
   const handleSave = () => {
-    // Puedes realizar alguna acción con los datos del formulario aquí
-    // Por ejemplo, puedes enviarlos a tu servidor
-    // También puedes cerrar el modal llamando a onHide
+    // Validar que los campos estén llenos
+    if (!nombreFacultad) {
+      console.error('El nombre de la facultad es obligatorio');
+      return;
+    }
+
+    // Crear objeto con los datos de la facultad
+    const nuevaFacultad = {
+      nombreFacultad: nombreFacultad,
+      facultadActivo: facultadActiva
+    };
+
+    // Enviar los datos al servidor a través del cliente
+    ClienteFacultades.CrearFacultad(nuevaFacultad)
+      .then(response => {
+        console.log('Facultad creada:', response.data);
+        // Realizar otras acciones si es necesario
+      })
+      .catch(error => {
+        console.error('Error al crear facultad:', error);
+        // Manejar el error según sea necesario
+      });
+
+    // Cerrar el modal
     onHide();
   };
 
@@ -35,14 +52,6 @@ const CreateFacultadModal = ({ show, onHide }) => {
       </Modal.Header>
       <Modal.Body>
         <Form>
-          <TextInput
-            id="idFacultad"
-            type="text"
-            placeholder="ID de Facultad"
-            value={idFacultad}
-            onChange={handleIdChange}
-            required
-          />
           <TextInput
             id="nombreFacultad"
             type="text"
@@ -63,6 +72,7 @@ const CreateFacultadModal = ({ show, onHide }) => {
               name="facultadActiva"
               value="true"
               onChange={handleFacultadActivaChange}
+              checked={facultadActiva}
             />
           </Form.Group>
 
@@ -73,6 +83,7 @@ const CreateFacultadModal = ({ show, onHide }) => {
               name="facultadActiva"
               value="false"
               onChange={handleFacultadActivaChange}
+              checked={!facultadActiva}
             />
           </Form.Group>
         </Form>

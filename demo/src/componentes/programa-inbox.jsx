@@ -13,7 +13,7 @@ import ClienteProgramaAcademico from '../services/ClienteProgramaAcademico'; // 
 import { BotonCrearPrograma } from './button';
 import CreateProgramaModal from './crear-programa-modal.jsx';
 
-const FacultadInbox = () => {
+const ProgramaInbox = () => {
   const [selectedPrograma, setSelectedPrograma] = useState(null); // Cambio de "reserva" a "programa"
   const [showCreateProgramaModal, setShowCreateProgramaModal] = useState(false);
 
@@ -97,4 +97,4 @@ const FacultadInbox = () => {
   );
 };
 
-export default FacultadInbox;
+export default ProgramaInbox;
