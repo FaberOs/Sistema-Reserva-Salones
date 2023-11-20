@@ -5,9 +5,7 @@ import '../hojas-de-estilo/form2-styles.css';
 
 import ReservationOption from '../componentes/reservation-option.jsx';
 import TextInput from '../componentes/textInput.jsx';
-import { BotonCancelar, BotonRegresar } from './button';
-
-import { BotonAceptar } from './button';
+import { BotonCancelar, BotonRegresar, BotonAceptar } from './button';
 
 function Form2({ selectedOptions, fechaSeleccionada, onPrevStep }) {
   const [nombreProfesor, setNombreProfesor] = useState('');
@@ -103,27 +101,27 @@ function Form2({ selectedOptions, fechaSeleccionada, onPrevStep }) {
         </div>        
       </div>   
       <div className="buttons d-flex justify-content-between">
-      <div>
-        <BotonRegresar color="#0D4185" onClick={onPrevStep} />
-      </div>
-      <div className="d-flex">
-        <div className="mr-2">
-          <Link to="/home">
-            <BotonCancelar color="#999999" />
-          </Link>
+        <div>
+          <BotonRegresar color="#0D4185" onClick={onPrevStep} />
         </div>
-        <BotonAceptar
-          selectedOptions={selectedOptions}
-          selectedDate={fechaSeleccionada}
-          sSalon={selectedSalon}
-          cI={correoInstitucional}
-          nProfesor={nombreProfesor}
-          pP={programaPregrado}
-          nE={numEstudiantes}
-          m={mensaje}
-        />
+        <div className="d-flex">
+          <div className="mr-2">
+            <Link to="/home">
+              <BotonCancelar color="#999999" />
+            </Link>
+          </div>
+          <BotonAceptar
+            selectedOptions={selectedOptions}
+            selectedDate={fechaSeleccionada}
+            sSalon={selectedSalon}
+            cI={correoInstitucional}
+            nProfesor={nombreProfesor}
+            pP={programaPregrado}
+            nE={numEstudiantes}
+            m={mensaje}
+          />
+        </div>
       </div>
-    </div>
     </div>
   );
 }

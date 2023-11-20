@@ -12,7 +12,8 @@ import Reserva from './vistas/reserva';
 import Auditorio from './vistas/auditorio';
 import Admin from './vistas/admin';
 import Consulta from './vistas/consulta';
-
+import Facultad from './vistas/facultad';
+import Programa from './vistas/programa';
 
 function App() {
   return (
@@ -47,6 +48,16 @@ function App() {
         <Route path="/admin" element={
           <div>
             <Admin />
+          </div>
+        }/>
+        <Route path="/admin/facultad" element={
+          <div>
+            <Facultad />
+          </div>
+        }/>
+        <Route path="/admin/programa" element={
+          <div>
+            <Programa />
           </div>
         }/>
       </Routes>

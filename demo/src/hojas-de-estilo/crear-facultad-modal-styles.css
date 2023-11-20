@@ -1,0 +1,28 @@
+/* Estilo para centrar el contenido del modal */
+
+/* Ajusta el espacio entre los elementos del formulario */
+.modal-body {
+  padding: 20px;
+}
+
+/* Alinea el mensaje y los radio buttons */
+.estado-label {
+  margin-bottom: 10px;
+}
+
+.radio-button label{
+  margin-top: -5px;
+  margin-left: 15px; /* Ajusta el espacio entre el radio button y el label */
+  font-weight: bold; /* Añade negrita al texto del label */
+  color: var(--dark);
+}
+
+/* Alinea los botones en el pie del modal */
+.modal-footer {
+  justify-content: center;
+}
+
+/* Ajusta el espacio entre los botones */
+.modal-footer button {
+  margin-right: 10px;
+}

@@ -16,6 +16,18 @@ export function BotonIniciarSesionHome({ onClick }) {
   );
 }
 
+export function BotonCrearFacultad({ onClick }) {
+  return (
+    <button className='btn custom-boton btn-sm' onClick={onClick}>Crear Facultad</button>
+  );
+}
+
+export function BotonCrearPrograma({ onClick }) {
+  return (
+    <button className='btn custom-boton btn-sm' onClick={onClick}>Crear Programa</button>
+  );
+}
+
 export function BotonIniciarSesionLogin({ onClick }) {
   return (
     <button className='btn custom-boton' onClick={onClick}>Iniciar Sesión</button>

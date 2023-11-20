@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 import '../hojas-de-estilo/confirm-modal-styles.css'
-import acceptIcon from '../iconos/accept-check-good-mark-ok-tick-svgrepo-com.svg';
+import acceptIcon from '../iconos/confirm-icon.svg';
 
 function ModalSave({ isOpen, onConfirm}) {
   const modalStyle = {

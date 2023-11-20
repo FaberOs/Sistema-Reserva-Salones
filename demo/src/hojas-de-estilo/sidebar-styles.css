@@ -79,11 +79,13 @@
   margin-left: 5px; /* Aumenta el espacio a la izquierda del texto al pasar el cursor */
 }
 
+.link {
+  text-decoration: none;
+}
 
-
-
-
-
+.link:hover {
+  text-decoration: none;
+}
 
 
 

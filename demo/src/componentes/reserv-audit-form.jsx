@@ -1,9 +1,6 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-
 import '../hojas-de-estilo/reservation-styles.css';
 
-import { BotonCancelar, BotonRegresar, BotonSiguiente } from './button';
 import Form1 from '../componentes/form1-reservation.jsx';
 import Form2Auditorio from '../componentes/form2-auditorio.jsx';
 
@@ -20,8 +17,12 @@ function ReservAuditorio({ fechaSeleccionada }) {
     }
   };
 
-  const handleNextStep = () => {
-    setStep(step + 1); // Avanzar al siguiente paso del formulario
+  const handleNextStepForm1 = () => {
+    setStep(2);
+  };
+
+  const handlePrevStep = () => {
+    setStep(step - 1);
   };
 
   return (
@@ -32,12 +33,17 @@ function ReservAuditorio({ fechaSeleccionada }) {
             selectedOptions={selectedOptions}
             maxSelections={maxSelections}
             handleOptionClick={handleOptionClick}
+            onNextStep={handleNextStepForm1}
           />
         )}
         {step === 2 && (
-          <Form2Auditorio fechaSeleccionada={fechaSeleccionada} />
+          <Form2Auditorio 
+            selectedOptions={selectedOptions} 
+            fechaSeleccionada={fechaSeleccionada}
+            onPrevStep={handlePrevStep}
+          />
         )}
-
+        {/*
         <div className="d-flex justify-content-between">
           {step > 1 && (
             <div className="buttons">
@@ -61,7 +67,7 @@ function ReservAuditorio({ fechaSeleccionada }) {
               </div>
             </div>
           )}
-        </div>
+          </div> */}
       </div>
     </div>
   );
