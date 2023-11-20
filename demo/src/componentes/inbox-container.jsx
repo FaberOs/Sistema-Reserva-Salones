@@ -14,17 +14,50 @@ import ClienteReserva from '../services/ClienteReservas';
 const Inbox = () => {
   const [showModal, setShowModal] = useState(false);
   const [selectedReserva, setSelectedReserva] = useState(null);
+  const [reservas, setReservas] = useState([]);
 
-  const handleRowClick = (reserva) => {
-    setSelectedReserva(reserva);
-    setShowModal(true);
+  const handleRowClick = (idReserva) => {
+    ClienteReserva.ObtenerReservaPorId(idReserva)
+      .then((response) => {
+        setSelectedReserva(response.data);
+        setShowModal(true);
+      })
+      .catch((error) => {
+        console.error('Error al obtener la reserva por ID:', error);
+      });
+  };
+
+  const handleAprobar = () => {
+    if (selectedReserva) {
+      ClienteReserva.CambiarEstadoReserva(selectedReserva.idReserva, 'APROBADA')
+        .then(response => {
+          console.log('Reserva aprobada:', response.data);
+          // Puedes realizar acciones adicionales si es necesario
+          handleCloseModal();
+        })
+        .catch(error => {
+          console.error('Error al aprobar la reserva:', error);
+        });
+    }
+  };
+
+  const handleRechazar = () => {
+    if (selectedReserva) {
+      ClienteReserva.CambiarEstadoReserva(selectedReserva.idReserva, 'RECHAZADA')
+        .then(response => {
+          console.log('Reserva rechazada:', response.data);
+          // Puedes realizar acciones adicionales si es necesario
+          handleCloseModal();
+        })
+        .catch(error => {
+          console.error('Error al rechazar la reserva:', error);
+        });
+    }
   };
 
   const handleCloseModal = () => {
     setShowModal(false);
   };
-
-  const [reservas, setReservas] = useState([]);
 
   useEffect(() => {
     ClienteReserva.ObtenerTodasLasReservas()
@@ -36,29 +69,6 @@ const Inbox = () => {
         console.error('Error al obtener reservas:', error);
       });
   }, []);
-
-    /*// Usaremos un ejemplo de fila de reserva
-    setReservas([
-      {
-        idReserva: 1,
-        nombreProfesor: 'Faber Antonio Ospina Cortes',
-        programaProfesor: 'Ingenieria Electronica y Telecomunicaciones',
-        horaInicio: '09:00 AM',
-        horaFinal: '11:00 AM',
-        diaInicio: '2023-12-01',
-        estadoReserva: 'Pendiente'
-      },
-      {
-        idReserva: 2,
-        nombreProfesor: 'Faber Antonio Ospina Cortes',
-        programaProfesor: 'Ingenieria Electronica y Telecomunicaciones',
-        horaInicio: '09:00 AM',
-        horaFinal: '11:00 AM',
-        diaInicio: '2023-12-01',
-        estadoReserva: 'Pendiente'
-      }
-    ]);
-  }, []); */
 
   return (
     <div className="container m-4 inbox-container">
@@ -79,7 +89,7 @@ const Inbox = () => {
         </div>
       </div>
       {reservas.map(reserva => (
-        <div key={reserva.idReserva} className="row inbox-row" onClick={() => handleRowClick(reserva)}>
+        <div key={reserva.idReserva} className="row inbox-row" onClick={() => handleRowClick(reserva.idReserva)}>
           <div className="col-1">
             <input type="checkbox" className="inbox-checkbox" />
           </div>
@@ -106,18 +116,32 @@ const Inbox = () => {
       {/* Modal */}
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
-          <Modal.Title>Detalles del mensaje</Modal.Title>
+          <Modal.Title>Detalles de la reserva</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <p>Que acción desea realizar a la solicitud de la reserva {selectedReserva && selectedReserva.idReserva}?</p>
+          {selectedReserva && (
+            <>
+              <p>ID de Reserva: {selectedReserva.idReserva}</p>
+              <p>Nombre del Profesor: {selectedReserva.nombreProfesor}</p>
+              <p>Programa Académico: {selectedReserva.programaProfesor}</p>
+              <p>Hora de Inicio: {selectedReserva.horaInicio}</p>
+              <p>Hora de Fin: {selectedReserva.horaFinal}</p>
+              <p>Día de Inicio: {selectedReserva.diaInicio}</p>
+              <p>Estado de la Reserva: {selectedReserva.estadoReserva}</p>
+              {/* ... (agregar el resto de los campos) ... */}
+            </>
+          )}
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleCloseModal}>
-            Rechazar
-          </Button>
-          <Button variant="primary" onClick={handleCloseModal}>
-            Aprobar
-          </Button>
+        <Button variant="secondary" onClick={handleRechazar}>
+          Rechazar
+        </Button>
+        <Button variant="primary" onClick={handleAprobar}>
+          Aprobar
+        </Button>
+        <Button variant="secondary" onClick={handleCloseModal}>
+          Cerrar
+        </Button>
         </Modal.Footer>
       </Modal>
     </div>
@@ -125,5 +149,3 @@ const Inbox = () => {
 };
 
 export default Inbox;
-
-

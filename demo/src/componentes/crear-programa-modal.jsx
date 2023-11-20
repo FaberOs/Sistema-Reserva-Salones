@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Modal, Button, Form } from 'react-bootstrap';
 
 import '../hojas-de-estilo/crear-facultad-modal-styles.css'
 import TextInput from './textInput.jsx';
+import ClienteFacultades from '../services/ClienteFacultades';
 
 const CreateProgramaModal = ({ show, onHide }) => {
   const [idPrograma, setIdPrograma] = useState('');
@@ -10,6 +11,21 @@ const CreateProgramaModal = ({ show, onHide }) => {
   const [sniesPrograma, setSniesPrograma] = useState('');
   const [programaActivo, setProgramaActivo] = useState('');
   const [facultadPertenece, setFacultadPertenece] = useState('');
+
+  const [facultades, setFacultades] = useState([]);
+
+  // useEffect para cargar las facultades al cargar el componente
+  useEffect(() => {
+    // Llamada al cliente para obtener todas las facultades
+    ClienteFacultades.ObtenerTodasLasFacultades()
+      .then(response => {
+        // Actualizar el estado con las facultades obtenidas
+        setFacultades(response.data);
+      })
+      .catch(error => {
+        console.error('Error al obtener facultades:', error);
+      });
+  }, []);
 
   const handleIdChange = (e) => {
     setIdPrograma(e.target.value);
@@ -75,14 +91,13 @@ const CreateProgramaModal = ({ show, onHide }) => {
             value={facultadPertenece}
             onChange={handleFacultadPerteneceChange}
             className="form-select"
-            >
+          >
             <option value="">Facultad Perteneciente</option>
-            <option value="Ciencias Contables, Económicas y Administrativas.">Ciencias Contables, Económicas y Administrativas.</option>
-            <option value="Ciencias Agrarias">Ciencias Agrarias</option>
-            <option value="Ciencias de la Educación">Ciencias de la Educación</option>
-            <option value="Ciencias de la Salud">Ciencias de la Salud</option>
-            <option value="Derecho, Ciencias Políticas y Sociales">Derecho, Ciencias Políticas y Sociales</option>
-            <option value="Ingeniería Electrónica y Telecomunicaciones">Ingeniería Electrónica y Telecomunicaciones</option>   
+            {facultades.map(facultad => (
+              <option key={facultad.idFacultad} value={facultad.nombreFacultad}>
+                {facultad.nombreFacultad}
+              </option>
+            ))}
           </select>
 
           {/* Agrega un mensaje antes de los radio buttons */}

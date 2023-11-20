@@ -9,58 +9,40 @@ import PaginationRightIcon from '../iconos/pagination-right-icon.svg';
 import EllipsisIcon from '../iconos/ellipsis-icon.svg';
 import RecycleIcon from '../iconos/recycle-bin-icon.svg';
 
-import ClienteReserva from '../services/ClienteReservas';
+import ClienteProgramaAcademico from '../services/ClienteProgramaAcademico'; // Cambio a ClienteProgramaAcademico
 import { BotonCrearPrograma } from './button';
 import CreateProgramaModal from './crear-programa-modal.jsx';
 
 const FacultadInbox = () => {
-  const [selectedReserva, setSelectedReserva] = useState(null);
+  const [selectedPrograma, setSelectedPrograma] = useState(null); // Cambio de "reserva" a "programa"
   const [showCreateProgramaModal, setShowCreateProgramaModal] = useState(false);
 
   const handleCreateProgramaClick = () => {
     setShowCreateProgramaModal(true);
   };
 
-  const handleRowClick = (reserva) => {
-    setSelectedReserva(reserva);
+  const handleRowClick = (programa) => {
+    setSelectedPrograma(programa);
   };
 
-  const [reservas, setReservas] = useState([]);
+  const [programas, setProgramas] = useState([]); // Cambio de "reservas" a "programas"
 
   const handleReloadClick = () => {
-    // Realiza la solicitud para obtener las reservas actualizadas
-    ClienteReserva.ObtenerTodasLasReservas()
+    // Realiza la solicitud para obtener los programas académicos actualizados
+    ClienteProgramaAcademico.obtenerTodasLosProgramasAcademicos()
       .then(response => {
-        console.log('Reservas obtenidas:', response.data);
-        setReservas(response.data);
+        console.log('Programas académicos obtenidos:', response.data);
+        setProgramas(response.data);
       })
       .catch(error => {
-        console.error('Error al obtener reservas:', error);
+        console.error('Error al obtener programas académicos:', error);
       });
   };
 
-    /*// Usaremos un ejemplo de fila de reserva
-    setReservas([
-      {
-        idReserva: 1,
-        nombreProfesor: 'Faber Antonio Ospina Cortes',
-        programaProfesor: 'Ingenieria Electronica y Telecomunicaciones',
-        horaInicio: '09:00 AM',
-        horaFinal: '11:00 AM',
-        diaInicio: '2023-12-01',
-        estadoReserva: 'Pendiente'
-      },
-      {
-        idReserva: 2,
-        nombreProfesor: 'Faber Antonio Ospina Cortes',
-        programaProfesor: 'Ingenieria Electronica y Telecomunicaciones',
-        horaInicio: '09:00 AM',
-        horaFinal: '11:00 AM',
-        diaInicio: '2023-12-01',
-        estadoReserva: 'Pendiente'
-      }
-    ]);
-  }, []); */
+  // Usar useEffect para cargar los programas académicos al montar el componente
+  useEffect(() => {
+    handleReloadClick();
+  }, []);
 
   return (
     <div className="container m-4 inbox-container">
@@ -84,19 +66,20 @@ const FacultadInbox = () => {
           <img src={PaginationRightIcon} alt="Pagination" className="inbox-container-icon pagination-icon" />
         </div>
       </div>
-      {reservas.map(reserva => (
-        <div key={reserva.idReserva} className="row inbox-row" onClick={() => handleRowClick(reserva)}>
+      {programas.map(programa => ( // Cambio de "reservas" a "programas"
+        <div key={programa.idPrograma} className="row inbox-row" onClick={() => handleRowClick(programa)}>
           <div className="col-1">
             <input type="checkbox" className="inbox-checkbox" />
           </div>
           <div className="col-1">
-            {reserva.idReserva}
+            {programa.idPrograma}
           </div>
           <div className="col-4">
-            {reserva.nombreProfesor}
+            {programa.nombrePrograma}
           </div>
           <div className="col-4">
-            {reserva.programaProfesor}
+            {/* Puedes mostrar más detalles del programa académico aquí si es necesario */}
+            {programa.snies}
           </div>
           <div className="col-1">
           </div>

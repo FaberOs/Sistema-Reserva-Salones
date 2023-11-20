@@ -1,35 +1,72 @@
 import axios from "axios";
 
-const Client_Url = "http://localhost:8081/api/reservas";
+const ReservasApiUrl = "http://localhost:8081/api/reservas";
 
-class ClienteReserva {
-    Reservar(data) {
-        return axios.post(Client_Url, data);
-    }
+class ReservasApiClient {
+  /**
+   * Realiza una solicitud para reservar un espacio.
+   *
+   * @param {Object} data - Datos de la reserva.
+   * @returns {Promise} Promesa que se resuelve con la respuesta de la solicitud.
+   */
+  Reservar(data) {
+    return axios.post(ReservasApiUrl, data);
+  }
 
-    ObtenerReservaPorId(id) {
-        const url = `${Client_Url}/${id}`;
-        return axios.get(url);
-    }
+  /**
+   * Obtiene la información de una reserva por su ID.
+   *
+   * @param {number} id - ID de la reserva.
+   * @returns {Promise} Promesa que se resuelve con la respuesta de la solicitud.
+   */
+  ObtenerReservaPorId(id) {
+    const url = `${ReservasApiUrl}/${id}`;
+    return axios.get(url);
+  }
 
-    ObtenerTodasLasReservas() {
-        return axios.get(Client_Url);
-    }
+  /**
+   * Obtiene todas las reservas.
+   *
+   * @returns {Promise} Promesa que se resuelve con la respuesta de la solicitud.
+   */
+  ObtenerTodasLasReservas() {
+    return axios.get(ReservasApiUrl);
+  }
 
-    ActualizarReserva(id, data) {
-        const url = `${Client_Url}/${id}`;
-        return axios.put(url, data);
-    }
+  /**
+   * Actualiza la información de una reserva.
+   *
+   * @param {number} id - ID de la reserva.
+   * @param {Object} data - Nuevos datos de la reserva.
+   * @returns {Promise} Promesa que se resuelve con la respuesta de la solicitud.
+   */
+  ActualizarReserva(id, data) {
+    const url = `${ReservasApiUrl}/${id}`;
+    return axios.put(url, data);
+  }
 
-    EliminarReserva(id) {
-        const url = `${Client_Url}/${id}`;
-        return axios.delete(url);
-    }
+  /**
+   * Elimina una reserva por su ID.
+   *
+   * @param {number} id - ID de la reserva.
+   * @returns {Promise} Promesa que se resuelve con la respuesta de la solicitud.
+   */
+  EliminarReserva(id) {
+    const url = `${ReservasApiUrl}/${id}`;
+    return axios.delete(url);
+  }
 
-    CambiarEstadoReserva(idReserva, nuevoEstado) {
-        const url = `${Client_Url}/cambiarEstado?idReserva=${idReserva}&nuevoEstado=${nuevoEstado}`;
-        return axios.put(url);
-    }
+  /**
+   * Cambia el estado de una reserva.
+   *
+   * @param {number} idReserva - ID de la reserva.
+   * @param {string} nuevoEstado - Nuevo estado de la reserva.
+   * @returns {Promise} Promesa que se resuelve con la respuesta de la solicitud.
+   */
+  CambiarEstadoReserva(idReserva, nuevoEstado) {
+    const url = `${ReservasApiUrl}/cambiarEstado?idReserva=${idReserva}&nuevoEstado=${nuevoEstado}`;
+    return axios.put(url);
+  }
 }
 
-export default new ClienteReserva();
+export default new ReservasApiClient();

@@ -9,58 +9,46 @@ import PaginationRightIcon from '../iconos/pagination-right-icon.svg';
 import EllipsisIcon from '../iconos/ellipsis-icon.svg';
 import RecycleIcon from '../iconos/recycle-bin-icon.svg';
 
-import ClienteReserva from '../services/ClienteReservas';
+import ClienteFacultades from '../services/ClienteFacultades';
 import { BotonCrearFacultad } from './button';
 import CreateFacultadModal from './crear-facultad-modal.jsx';
 
 const FacultadInbox = () => {
-  const [selectedReserva, setSelectedReserva] = useState(null);
+  const [selectedFacultad, setSelectedFacultad] = useState(null);
   const [showCreateFacultadModal, setShowCreateFacultadModal] = useState(false);
+  const [facultades, setFacultades] = useState([]);
+
+  useEffect(() => {
+    // Obtener todas las facultades al cargar el componente
+    ClienteFacultades.ObtenerTodasLasFacultades()
+      .then(response => {
+        console.log('Facultades obtenidas:', response.data);
+        setFacultades(response.data);
+      })
+      .catch(error => {
+        console.error('Error al obtener facultades:', error);
+      });
+  }, []);
 
   const handleCreateFacultadClick = () => {
     setShowCreateFacultadModal(true);
   };
 
-  const handleRowClick = (reserva) => {
-    setSelectedReserva(reserva);
+  const handleRowClick = (facultad) => {
+    setSelectedFacultad(facultad);
   };
-
-  const [reservas, setReservas] = useState([]);
 
   const handleReloadClick = () => {
-    // Realiza la solicitud para obtener las reservas actualizadas
-    ClienteReserva.ObtenerTodasLasReservas()
+    // Actualizar la lista de facultades al hacer clic en recargar
+    ClienteFacultades.ObtenerTodasLasFacultades()
       .then(response => {
-        console.log('Reservas obtenidas:', response.data);
-        setReservas(response.data);
+        console.log('Facultades actualizadas:', response.data);
+        setFacultades(response.data);
       })
       .catch(error => {
-        console.error('Error al obtener reservas:', error);
+        console.error('Error al obtener facultades:', error);
       });
   };
-
-    /*// Usaremos un ejemplo de fila de reserva
-    setReservas([
-      {
-        idReserva: 1,
-        nombreProfesor: 'Faber Antonio Ospina Cortes',
-        programaProfesor: 'Ingenieria Electronica y Telecomunicaciones',
-        horaInicio: '09:00 AM',
-        horaFinal: '11:00 AM',
-        diaInicio: '2023-12-01',
-        estadoReserva: 'Pendiente'
-      },
-      {
-        idReserva: 2,
-        nombreProfesor: 'Faber Antonio Ospina Cortes',
-        programaProfesor: 'Ingenieria Electronica y Telecomunicaciones',
-        horaInicio: '09:00 AM',
-        horaFinal: '11:00 AM',
-        diaInicio: '2023-12-01',
-        estadoReserva: 'Pendiente'
-      }
-    ]);
-  }, []); */
 
   return (
     <div className="container m-4 inbox-container">
@@ -75,7 +63,7 @@ const FacultadInbox = () => {
           <img src={EllipsisIcon} alt="Elipsis" className="inbox-container-icon" />
         </div>
         <div className='col-2'>
-          <BotonCrearFacultad onClick={handleCreateFacultadClick}/>
+          <BotonCrearFacultad onClick={handleCreateFacultadClick} />
           <CreateFacultadModal show={showCreateFacultadModal} onHide={() => setShowCreateFacultadModal(false)} />
         </div>
         <div className="col-1 ml-auto text-right"></div>
@@ -84,19 +72,19 @@ const FacultadInbox = () => {
           <img src={PaginationRightIcon} alt="Pagination" className="inbox-container-icon pagination-icon" />
         </div>
       </div>
-      {reservas.map(reserva => (
-        <div key={reserva.idReserva} className="row inbox-row" onClick={() => handleRowClick(reserva)}>
+      {facultades.map(facultad => (
+        <div key={facultad.idFacultad} className="row inbox-row" onClick={() => handleRowClick(facultad)}>
           <div className="col-1">
             <input type="checkbox" className="inbox-checkbox" />
           </div>
           <div className="col-1">
-            {reserva.idReserva}
+            {facultad.idFacultad}
           </div>
           <div className="col-4">
-            {reserva.nombreProfesor}
+            {facultad.nombreFacultad}
           </div>
           <div className="col-4">
-            {reserva.programaProfesor}
+            {/* Puedes mostrar más detalles de la facultad aquí según tus necesidades */}
           </div>
           <div className="col-1">
           </div>
@@ -105,7 +93,7 @@ const FacultadInbox = () => {
               src={RecycleIcon}
               alt="Eliminar"
               className="inbox-option-icon"
-              //onClick={}
+            // onClick={}
             />
           </div>
         </div>
