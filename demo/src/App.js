@@ -17,6 +17,7 @@ import Programa from './vistas/programa';
 import Salon from './vistas/salon';
 import Aprobados from './vistas/aprobados';
 import Rechazados from './vistas/rechazados';
+import Incidencias from './vistas/incidencias';
 
 function App() {
   return (
@@ -76,6 +77,11 @@ function App() {
         <Route path="/admin/rechazados" element={
           <div>
             <Rechazados />
+          </div>
+        }/>
+        <Route path="/admin/incidencias" element={
+          <div>
+            <Incidencias />
           </div>
         }/>
       </Routes>

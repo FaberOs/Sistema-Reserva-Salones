@@ -10,6 +10,7 @@ import InboxIcon from '../iconos/inbox-icon.svg';
 import Tutor2Icon from '../iconos/tutor2-icon.svg';
 import SubjectIcon from '../iconos/subject-icon.svg';
 import CollegeIcon from '../iconos/college-icon.svg';
+import EmailIcon from '../iconos/email-icon.svg'
 
 const Sidebar = () => {
   const [expanded, setExpanded] = useState(false);
@@ -75,7 +76,13 @@ const Sidebar = () => {
             {expanded && <span>Programa</span>}
           </div>
         </Link>
-        <Link to="" className="link">
+        <Link to="/admin/incidencias" className="link">
+          <div className="option" onMouseEnter={expandSidebar} onMouseLeave={contractSidebar}>
+            <img src={EmailIcon} alt="Incidencias" />
+            {expanded && <span>Incidencias</span>}
+          </div>
+        </Link>
+        <Link to="/admin/estadisticas" className="link">
           <div className="option" onMouseEnter={expandSidebar} onMouseLeave={contractSidebar}>
             <img src={GraphIcon} alt="Estadisticas" />
             {expanded && <span>Estadisticas</span>}
