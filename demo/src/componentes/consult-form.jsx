@@ -87,7 +87,11 @@ const ConsultForm = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-      <ReportModal show={showReportModal} onHide={handleCloseReportModal} />
+      <ReportModal
+        show={showReportModal}
+        onHide={handleCloseReportModal}
+        idReserva={idReserva}
+      />
     </div>
   );
 };

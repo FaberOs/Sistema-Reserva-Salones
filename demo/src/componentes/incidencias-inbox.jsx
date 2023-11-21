@@ -9,21 +9,21 @@ import PaginationLeftIcon from '../iconos/pagination-left-icon.svg';
 import PaginationRightIcon from '../iconos/pagination-right-icon.svg';
 import EllipsisIcon from '../iconos/ellipsis-icon.svg';
 
-import ClienteReserva from '../services/ClienteReservas';
+import ClienteIncidencias from '../services/ClienteIncidencias';
 
 const IncidenciasInbox = () => {
   const [showModal, setShowModal] = useState(false);
-  const [selectedReserva, setSelectedReserva] = useState(null);
-  const [reservas, setReservas] = useState([]);
+  const [selectedIncidencia, setSelectedIncidencia] = useState(null);
+  const [incidencias, setIncidencias] = useState([]);
 
-  const handleRowClick = (idReserva) => {
-    ClienteReserva.ObtenerReservaPorId(idReserva)
+  const handleRowClick = (idIncidencia) => {
+    ClienteIncidencias.getIncidenciaById(idIncidencia)
       .then((response) => {
-        setSelectedReserva(response.data);
+        setSelectedIncidencia(response.data);
         setShowModal(true);
       })
       .catch((error) => {
-        console.error('Error al obtener la reserva por ID:', error);
+        console.error('Error al obtener la incidencia por ID:', error);
       });
   };
 
@@ -32,15 +32,15 @@ const IncidenciasInbox = () => {
   };
 
   const handleReloadClick = () => {
-   // Cambia la llamada para obtener solo las reservas RECHAZADAS
-   ClienteReserva.ObtenerReservasPorEstado('RECHAZADA')
-   .then(response => {
-     console.log('Reservas RECHAZADAS obtenidas:', response.data);
-     setReservas(response.data);
-   })
-   .catch(error => {
-     console.error('Error al obtener reservas RECHAZADAS:', error);
-   });
+    // Cambia la llamada para obtener todas las incidencias
+    ClienteIncidencias.getAllIncidencias()
+      .then(response => {
+        console.log('Incidencias obtenidas:', response.data);
+        setIncidencias(response.data);
+      })
+      .catch(error => {
+        console.error('Error al obtener incidencias:', error);
+      });
   };
 
   useEffect(() => {
@@ -65,27 +65,28 @@ const IncidenciasInbox = () => {
           <img src={PaginationRightIcon} alt="Pagination" className="inbox-container-icon pagination-icon" />
         </div>
       </div>
-      {reservas.map(reserva => (
-        <div key={reserva.idReserva} className="row inbox-row" onClick={() => handleRowClick(reserva.idReserva)}>
+      {incidencias.map(incidencia => (
+        <div key={incidencia.id} className="row inbox-row" onClick={() => handleRowClick(incidencia.id)}>
           <div className="col-1">
             <input type="checkbox" className="inbox-checkbox" />
           </div>
           <div className="col-1">
-            {reserva.idReserva}
+            {incidencia.id}
           </div>
           <div className="col-3">
-            {reserva.nombreProfesor}
+            {incidencia.remitente}
           </div>
           <div className="col-3">
-            {reserva.programaProfesor}
+            {incidencia.asunto}
           </div>
           <div className="col-3">
-            {reserva.horaInicio} - {reserva.horaFinal}
-            <br />
-            {reserva.diaInicio}
+            {incidencia.fechaReporte}
+          </div>
+          <div className="col-3">
+            {incidencia.mensaje}
           </div>
           <div className="col-2 text-center">
-            {reserva.estadoReserva}
+            {/* Puedes mostrar aquí otros detalles de la incidencia */}
           </div>
         </div>
       ))}
@@ -93,26 +94,24 @@ const IncidenciasInbox = () => {
       {/* Modal */}
       <Modal show={showModal} onHide={handleCloseModal}>
         <Modal.Header closeButton>
-          <Modal.Title>Detalles de la reserva</Modal.Title>
+          <Modal.Title>Detalles de la incidencia</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          {selectedReserva && (
+          {selectedIncidencia && (
             <>
-              <p>ID de Reserva: {selectedReserva.idReserva}</p>
-              <p>Nombre del Profesor: {selectedReserva.nombreProfesor}</p>
-              <p>Programa Académico: {selectedReserva.programaProfesor}</p>
-              <p>Hora de Inicio: {selectedReserva.horaInicio}</p>
-              <p>Hora de Fin: {selectedReserva.horaFinal}</p>
-              <p>Día de Inicio: {selectedReserva.diaInicio}</p>
-              <p>Estado de la Reserva: {selectedReserva.estadoReserva}</p>
+              <p>ID de Incidencia: {selectedIncidencia.id}</p>
+              <p>Remitente: {selectedIncidencia.remitente}</p>
+              <p>Asunto: {selectedIncidencia.asunto}</p>
+              <p>Fecha de Reporte: {selectedIncidencia.fechaReporte}</p>
+              <p>Mensaje: {selectedIncidencia.mensaje}</p>
               {/* ... (agregar el resto de los campos) ... */}
             </>
           )}
         </Modal.Body>
         <Modal.Footer>
-        <Button variant="secondary" onClick={handleCloseModal}>
-          Cerrar
-        </Button>
+          <Button variant="secondary" onClick={handleCloseModal}>
+            Cerrar
+          </Button>
         </Modal.Footer>
       </Modal>
     </div>

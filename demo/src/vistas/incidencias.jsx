@@ -7,6 +7,7 @@ import Sidebar from "../componentes/sidebar.jsx";
 import MainFooter from '../componentes/footerMain.jsx';
 import Error404 from "../componentes/error404.jsx";
 import RechazadosInbox from "../componentes/rechazados-inbox.jsx";
+import IncidenciasInbox from "../componentes/incidencias-inbox.jsx";
 
 function Incidencias() {
 
@@ -34,7 +35,7 @@ function Incidencias() {
                   </div>
                 </div>
                 <div className="col-lg-10 col-md-9 col-sm-12">
-                  <RechazadosInbox />
+                  <IncidenciasInbox />
                 </div>
               </div>
             </div>

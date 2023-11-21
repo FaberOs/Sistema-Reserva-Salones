@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Modal, Button } from 'react-bootstrap';
 import TextInput from './textInput.jsx';
+import ClienteIncidencias from '../services/ClienteIncidencias';
 
-const ReportModal = ({ show, onHide }) => {
+const ReportModal = ({ show, onHide, idReserva }) => {
   const [remitente, setRemitente] = useState('');
   const [asunto, setAsunto] = useState('');
   const [mensaje, setMensaje] = useState('');
@@ -13,9 +14,26 @@ const ReportModal = ({ show, onHide }) => {
   const handleMensajeChange = (e) => setMensaje(e.target.value);
 
   const handleReportar = () => {
-    // Lógica para enviar el reporte, puedes implementarla según tus necesidades.
-    console.log('Reporte enviado:', remitente, asunto, mensaje);
-    onHide(); // Cerrar el modal después de enviar el reporte.
+
+    const fechaActual = new Date().toISOString().split('T')[0];
+    // Crea la incidencia con los datos proporcionados y el idReserva
+    const nuevaIncidencia = {
+      idReserva: idReserva,
+      fechaReporte: fechaActual,  // Obtiene la fecha actual en formato MM/DD/YYYY
+      remitente: remitente,
+      asunto: asunto,
+      mensaje: mensaje
+    };
+
+    // Llama al método para crear la incidencia
+    ClienteIncidencias.saveIncidencia(nuevaIncidencia)
+      .then(response => {
+        console.log('Incidencia creada:', response.data);
+        onHide(); // Cerrar el modal después de enviar la incidencia
+      })
+      .catch(error => {
+        console.error('Error al crear la incidencia:', error);
+      });
   };
 
   return (
