@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Modal, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import '../hojas-de-estilo/inbox-facultad-styles.css';
@@ -14,6 +15,7 @@ import { BotonCrearFacultad } from './button';
 import CreateFacultadModal from './crear-facultad-modal.jsx';
 
 const FacultadInbox = () => {
+  const [showModal, setShowModal] = useState(false);
   const [selectedFacultad, setSelectedFacultad] = useState(null);
   const [showCreateFacultadModal, setShowCreateFacultadModal] = useState(false);
   const [facultades, setFacultades] = useState([]);
@@ -24,6 +26,11 @@ const FacultadInbox = () => {
 
   const handleRowClick = (facultad) => {
     setSelectedFacultad(facultad);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
   };
 
   const handleReloadClick = () => {
@@ -90,6 +97,26 @@ const FacultadInbox = () => {
           </div>
         </div>
       ))}
+
+      {/* Modal */}
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Detalles de la Facultad</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {selectedFacultad && (
+            <>
+              <p>ID de Facultad: {selectedFacultad.idFacultad}</p>
+              <p>Nombre de Facultad: {selectedFacultad.nombreFacultad}</p>
+            </>
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+        <Button variant="secondary" onClick={handleCloseModal}>
+          Cerrar
+        </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

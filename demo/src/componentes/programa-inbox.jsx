@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Modal, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import '../hojas-de-estilo/inbox-facultad-styles.css';
@@ -14,6 +15,7 @@ import { BotonCrearPrograma } from './button';
 import CreateProgramaModal from './crear-programa-modal.jsx';
 
 const ProgramaInbox = () => {
+  const [showModal, setShowModal] = useState(false);
   const [selectedPrograma, setSelectedPrograma] = useState(null); // Cambio de "reserva" a "programa"
   const [showCreateProgramaModal, setShowCreateProgramaModal] = useState(false);
 
@@ -23,6 +25,11 @@ const ProgramaInbox = () => {
 
   const handleRowClick = (programa) => {
     setSelectedPrograma(programa);
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
   };
 
   const [programas, setProgramas] = useState([]); // Cambio de "reservas" a "programas"
@@ -93,6 +100,27 @@ const ProgramaInbox = () => {
           </div>
         </div>
       ))}
+
+      {/* Modal */}
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Detalles del Programa</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {selectedPrograma && (
+            <>
+              <p>ID de Programa: {selectedPrograma.idPrograma}</p>
+              <p>SNIES: {selectedPrograma.snies}</p>
+              <p>Nombre de Programa: {selectedPrograma.nombrePrograma}</p>
+            </>
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+        <Button variant="secondary" onClick={handleCloseModal}>
+          Cerrar
+        </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

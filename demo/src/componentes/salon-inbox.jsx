@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Modal, Button } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import '../hojas-de-estilo/inbox-facultad-styles.css';
@@ -8,7 +9,7 @@ import PaginationLeftIcon from '../iconos/pagination-left-icon.svg';
 import PaginationRightIcon from '../iconos/pagination-right-icon.svg';
 import EllipsisIcon from '../iconos/ellipsis-icon.svg';
 import RecycleIcon from '../iconos/recycle-bin-icon.svg';
-import PenIcon from '../iconos/pen-icon.svg';
+import LockIcon from '../iconos/lock-icon.svg';
 
 import ClienteSalon from '../services/ClienteSalon';
 import ClienteAuditorio from '../services/ClienteAuditorio';
@@ -16,6 +17,8 @@ import { BotonCrearSalon } from './button';
 import CreateSalonModal from './crear-salon-modal';
 
 const SalonInbox = () => {
+  const [showModal, setShowModal] = useState(false);
+  const [showAuditorioModal, setShowAuditorioModal] = useState(false);
   const [selectedSalon, setSelectedSalon] = useState(null);
   const [selectedAuditorio, setSelectedAuditorio] = useState(null);
   const [showCreateSalonModal, setShowCreateSalonModal] = useState(false);
@@ -51,9 +54,19 @@ const SalonInbox = () => {
   const handleRowClick = (salon) => {
     setSelectedSalon(salon);
     setSelectedAuditorio(null); // Limpiar la selección del auditorio
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+  const handleCloseAuditorioModal = () => {
+    setShowAuditorioModal(false);
   };
 
   const handleAuditorioRowClick = (auditorio) => {
+    setShowAuditorioModal(true);
     setSelectedAuditorio(auditorio);
     setSelectedSalon(null); // Limpiar la selección del salón
   };
@@ -101,52 +114,104 @@ const SalonInbox = () => {
           <img src={PaginationRightIcon} alt="Pagination" className="inbox-container-icon pagination-icon" />
         </div>
       </div>
-      <h2>Salones:</h2>
       {salones.map(salon => (
         <div key={salon.idSalon} className={`row inbox-row ${selectedSalon === salon ? 'selected-row' : ''}`} onClick={() => handleRowClick(salon)}>
-          <div className="col-1">{salon.idSalon}</div>
+          <div className="col-1">
+            <input type="checkbox" className="inbox-checkbox" />
+          </div>
+          <div className="col-2">{salon.idSalon}</div>
           <div className="col-2">{salon.capacidad}</div>
           <div className="col-2">{salon.numeracionSalon}</div>
-          <div className="col-3">{salon.tipo}</div>
-          <div className="col-2 text-center">
+          <div className="col-4">{salon.tipo}</div>
+          <div className="col-1 text-center">
             <img
               src={RecycleIcon}
               alt="Eliminar"
               className="inbox-option-icon"
             // onClick={}
             />
+          </div>
+          <div className="col-1 text-center">
             <img
-              src={PenIcon}
-              alt="Editar"
+              src={LockIcon}
+              alt="Bloquear"
               className="inbox-option-icon"
             // onClick={}
             />
           </div>
         </div>
       ))}
-      <h2>Auditorios:</h2>
       {auditorios.map(auditorio => (
         <div key={auditorio.idAuditorio} className={`row inbox-row ${selectedAuditorio === auditorio ? 'selected-row' : ''}`} onClick={() => handleAuditorioRowClick(auditorio)}>
-          <div className="col-1">{auditorio.idAuditorio}</div>
+          <div className="col-1">
+            <input type="checkbox" className="inbox-checkbox" />
+          </div>
+          <div className="col-2">{auditorio.idAuditorio}</div>
           <div className="col-2">{auditorio.capacidad}</div>
           <div className="col-2">{auditorio.numeracionSalon}</div>
-          <div className="col-3">{auditorio.nombre}</div>
-          <div className="col-2 text-center">
+          <div className="col-4">{auditorio.nombre}</div>
+          <div className="col-1 text-center">
             <img
               src={RecycleIcon}
               alt="Eliminar"
               className="inbox-option-icon"
             // onClick={}
             />
+          </div>
+          <div className="col-1 text-center">
             <img
-              src={PenIcon}
-              alt="Editar"
+              src={LockIcon}
+              alt="Bloquear"
               className="inbox-option-icon"
             // onClick={}
             />
           </div>
         </div>
       ))}
+
+      {/* Modal */}
+      <Modal show={showModal} onHide={handleCloseModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Detalles del Salon</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {selectedSalon && (
+            <>
+              <p>ID de Salon: {selectedSalon.idSalon}</p>
+              <p>Capacidad: {selectedSalon.capacidad}</p>
+              <p>Numeracion: {selectedSalon.numeracionSalon}</p>
+              <p>Tipo: {selectedSalon.tipo}</p>
+            </>
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+        <Button variant="secondary" onClick={handleCloseModal}>
+          Cerrar
+        </Button>
+        </Modal.Footer>
+      </Modal>
+
+      {/* Modal para detalles del auditorio */}
+      <Modal show={showAuditorioModal} onHide={handleCloseAuditorioModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Detalles del Auditorio</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          {selectedAuditorio && (
+            <>
+              <p>ID de Auditorio: {selectedAuditorio.idAuditorio}</p>
+              <p>Capacidad: {selectedAuditorio.capacidad}</p>
+              <p>Numeracion: {selectedAuditorio.numeracionSalon}</p>
+              <p>Nombre: {selectedAuditorio.nombre}</p>
+            </>
+          )}
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseAuditorioModal}>
+            Cerrar
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

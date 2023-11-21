@@ -107,22 +107,20 @@ const CreateProgramaModal = ({ show, onHide }) => {
             required
           />
 
-          <Form.Group controlId="formFacultadPertenece" className="mb-3">
-            <Form.Label>Seleccionar Facultad:</Form.Label>
-            <Form.Control
-              as="select"
-              value={facultadPertenece}
-              onChange={handleFacultadPerteneceChange}
-              required
-            >
-              <option value="">Facultad Perteneciente</option>
+          <select
+            id="formFacultadPertenece"
+            value={facultadPertenece}
+            onChange={handleFacultadPerteneceChange}
+            className="form-select"
+            required
+          >
+            <option value="">Facultad Perteneciente</option>
               {facultades.map(facultad => (
                 <option key={facultad.idFacultad} value={facultad.nombreFacultad}>
                   {facultad.nombreFacultad}
                 </option>
               ))}
-            </Form.Control>
-          </Form.Group>
+          </select>
 
           {/* Agrega un mensaje antes de los radio buttons */}
           <p className='estado-label mb-2'>Estado del Programa:</p>

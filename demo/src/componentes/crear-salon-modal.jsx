@@ -87,14 +87,18 @@ const CreateSalonModal = ({ show, onHide }) => {
             onChange={handleNumeracionChange}
             required
           />
-          <Form.Group controlId="tipoSalon">
-            <Form.Label>Tipo de Salón</Form.Label>
-            <Form.Control as="select" value={tipo} onChange={handleTipoChange}>
-              <option value="Salon de Clase">Salon de Clase</option>
-              <option value="Conferencia">Conferencia</option>
-              <option value="Auditorio">Auditorio</option>
-            </Form.Control>
-          </Form.Group>
+          <select
+            id="tipoSalon"
+            value={tipo}
+            onChange={handleTipoChange}
+            className='form-select'
+            required
+          >
+            <option value="">Tipo de Salon</option>
+            <option value="Salon de Clase">Salon de Clase</option>
+            <option value="Conferencia">Conferencia</option>
+            <option value="Auditorio">Auditorio</option>
+          </select>
           {tipo === 'Auditorio' && (
             <TextInput
               id="nombreAuditorio"
