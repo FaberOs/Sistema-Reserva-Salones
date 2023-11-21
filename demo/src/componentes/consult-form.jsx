@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Modal, Button } from 'react-bootstrap';
+
+import ReportModal from './report-modal.jsx';
 import TextInput from './textInput.jsx';
 import ClienteReserva from '../services/ClienteReservas';
 import '../hojas-de-estilo/consult-form-styles.css';
@@ -26,7 +28,17 @@ const ConsultForm = () => {
       });
   };
 
-  
+  const [showReportModal, setShowReportModal] = useState(false);
+
+  const handleShowReportModal = () => {
+    setShowModal(false); // Oculta el modal de ConsultForm al abrir el modal de ReportModal
+    setShowReportModal(true);
+  };
+
+  const handleCloseReportModal = () => {
+    setShowReportModal(false);
+    setShowModal(true); // Muestra el modal de ConsultForm al cerrar el modal de ReportModal
+  };
 
   return (
     <div className="container consult-form-container">
@@ -70,8 +82,12 @@ const ConsultForm = () => {
           <Button variant="secondary" onClick={handleCloseModal}>
             Cerrar
           </Button>
+          <Button variant="primary" onClick={handleShowReportModal}>
+            Reportar
+          </Button>
         </Modal.Footer>
       </Modal>
+      <ReportModal show={showReportModal} onHide={handleCloseReportModal} />
     </div>
   );
 };
