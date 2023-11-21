@@ -32,13 +32,13 @@ const AprobadosInbox = () => {
   };
 
   const handleReloadClick = () => {
-    ClienteReserva.ObtenerTodasLasReservas()
+    ClienteReserva.ObtenerReservasPorEstado("APROBADA")
       .then(response => {
-        console.log('Reservas obtenidas:', response.data);
+        console.log('Reservas APROBADAS obtenidas:', response.data);
         setReservas(response.data);
       })
       .catch(error => {
-        console.error('Error al obtener reservas:', error);
+        console.error('Error al obtener reservas APROBADAS:', error);
       });
   };
 

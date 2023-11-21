@@ -32,14 +32,15 @@ const RechazadosInbox = () => {
   };
 
   const handleReloadClick = () => {
-    ClienteReserva.ObtenerTodasLasReservas()
-      .then(response => {
-        console.log('Reservas obtenidas:', response.data);
-        setReservas(response.data);
-      })
-      .catch(error => {
-        console.error('Error al obtener reservas:', error);
-      });
+   // Cambia la llamada para obtener solo las reservas RECHAZADAS
+   ClienteReserva.ObtenerReservasPorEstado('RECHAZADA')
+   .then(response => {
+     console.log('Reservas RECHAZADAS obtenidas:', response.data);
+     setReservas(response.data);
+   })
+   .catch(error => {
+     console.error('Error al obtener reservas RECHAZADAS:', error);
+   });
   };
 
   useEffect(() => {

@@ -60,15 +60,16 @@ const Inbox = () => {
   };
 
   const handleReloadClick = () => {
-    ClienteReserva.ObtenerTodasLasReservas()
+    ClienteReserva.ObtenerReservasPorEstado("PENDIENTE")
       .then(response => {
-        console.log('Reservas obtenidas:', response.data);
+        console.log('Reservas PENDIENTES obtenidas:', response.data);
         setReservas(response.data);
       })
       .catch(error => {
-        console.error('Error al obtener reservas:', error);
+        console.error('Error al obtener reservas PENDIENTES:', error);
       });
   };
+  
 
   useEffect(() => {
     handleReloadClick();
