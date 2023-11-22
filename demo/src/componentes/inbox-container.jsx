@@ -10,6 +10,7 @@ import PaginationRightIcon from '../iconos/pagination-right-icon.svg';
 import EllipsisIcon from '../iconos/ellipsis-icon.svg';
 
 import ClienteReserva from '../services/ClienteReservas';
+import ClienteAuditorio from '../services/ClienteAuditorio';
 
 const Inbox = () => {
   const [showModal, setShowModal] = useState(false);

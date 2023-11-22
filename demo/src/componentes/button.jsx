@@ -8,6 +8,7 @@ import ModalRechazoSave from './modalRechazoSave.jsx';
 import ModalSave from './modalSave.jsx';
 import ConfirmModal from './confirm-modal.jsx';
 import ClienteReserva from '../services/ClienteReservas';
+import ClienteReservaAuditorio from '../services/ClienteReservaAuditorio.js';
 
 
 export function BotonIniciarSesionHome({ onClick }) {
@@ -132,6 +133,86 @@ export function BotonAceptar({selectedOptions, selectedDate, sSalon, nProfesor,c
   );
 }
 
+
+export function BotonAceptarAuditorio({selectedOptions, selectedDate, sSalon, nProfesor,cI, pP, nE, m}) {
+  const [showModal, setShowModal] = useState(false);
+  const [showModalS, setShowModalS] = useState(false);
+  const [showModalR, setShowModalR] = useState(false);
+  const navigate = useNavigate();
+
+  //const opcionesSeleccionadasString = selectedOptions.join(', ');
+  const hora_inicio = selectedOptions[0];
+  const hora_fin = selectedOptions[1];
+
+  const buttonStyle = {
+    backgroundColor: "#0D4185",
+    border: `2px solid #0D4185`,
+    color: '#fff',
+  };
+
+  const handleAcceptClick = () => {
+    setShowModal(true);
+  };
+
+  const handleConfirmS = () => {
+    setShowModalS(false);
+    navigate('/home');
+  };
+
+  const handleConfirmR = () => {
+    setShowModalR(false);
+  };
+  /*
+  console.log("Fecha Seleccionada:", selectedDate);
+  //console.log("Opciones Seleccionadas:", opcionesSeleccionadasString);
+  console.log("ID del Salón:", parseInt(sSalon));
+  console.log("Cédula Ciudadanía:", JSON.parse(localStorage.getItem('User')).numeroIdentificacion);
+  console.log("Correo Institucional:", cI);
+  console.log("Número de Estudiantes:", parseInt(nE));
+  console.log("Programa Posgrado:", pP);
+  console.log("Mensaje:", m);*/
+
+  const handleConfirm = (e) => {
+    // Realiza la acción de confirmación aqui.3
+    setShowModal(false);    
+    ClienteReservaAuditorio.crearReservaAuditorio({
+      "idAuditorio": parseInt(sSalon),
+      "nombreProfesor": nProfesor,
+      "correoInstitucional": cI,
+      "programaProfesor": pP,
+      "horaInicio": hora_inicio,
+      "horaFinal": hora_fin,
+      "evento": m,
+      "cantidadDias": 1,
+      "diaInicio": selectedDate, // Se debe acomodar para que sea generico
+      "diaFin": selectedDate,
+      "numeroEstudiantes": nE,
+      "estadoReserva": "PENDIENTE"
+    }).then(response => {
+      //alert("Guardado con éxito");
+      setShowModalS(true);        
+    }).catch(error => {
+      //alert("Fallo al guardar la reserva, revise los datos");
+      setShowModalR(true);  
+      console.log(error);       
+    }); 
+  };
+
+  const handleCancel = () => {
+    setShowModal(false);
+  };
+
+  return (
+    <div>
+      <button className="btn" style={buttonStyle} onClick={handleAcceptClick}>
+        Aceptar
+      </button>
+      <ConfirmModal isOpen={showModal} onConfirm={handleConfirm} onCancel={handleCancel} />
+      <ModalSave isOpen={showModalS} onConfirm={handleConfirmS}/>
+      <ModalRechazoSave isOpen={showModalR} onConfirm={handleConfirmR}/>
+    </div>
+  );
+}
 export function BotonSiguiente({ onClick, color }) {
   const buttonStyle = {
     backgroundColor: color, 

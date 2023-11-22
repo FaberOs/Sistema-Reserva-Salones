@@ -1,22 +1,48 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import '../hojas-de-estilo/form2-styles.css';
 import ReservationOption from '../componentes/reservation-option.jsx';
 import TextInput from '../componentes/textInput.jsx';
-import '../hojas-de-estilo/form2-styles.css';
-
-import { BotonCancelar, BotonRegresar, BotonAceptar } from './button';
+import { BotonCancelar, BotonRegresar, BotonAceptarAuditorio } from './button';
+import ClienteProgramaAcademico from '../services/ClienteProgramaAcademico';
+import ClienteSalon from '../services/ClienteSalon'; // Agrega el cliente Salon
+import ClienteAuditorio from '../services/ClienteAuditorio.js';
 
 function Form2({ selectedOptions, fechaSeleccionada, onPrevStep }) {
   const [nombreProfesor, setNombreProfesor] = useState('');
   const [correoInstitucional, setCorreoInstitucional] = useState('');
   const [numEstudiantes, setNumEstudiantes] = useState('');
+  const [programasAcademicos, setProgramasAcademicos] = useState([]);
   const [programaPregrado, setProgramaPregrado] = useState('');
   const [mensaje, setMensaje] = useState('');
+  const [salones, setSalones] = useState([]); // Estado para almacenar los salones
   const [selectedSalon, setSelectedSalon] = useState(null);
 
   const handleSalonClick = (salon) => {
     setSelectedSalon(salon);
   };
+
+  useEffect(() => {
+    // Cargar programas académicos al montar el componente
+    ClienteProgramaAcademico.obtenerTodasLosProgramasAcademicos()
+      .then(response => {
+        console.log('Programas académicos obtenidos:', response.data);
+        setProgramasAcademicos(response.data);
+      })
+      .catch(error => {
+        console.error('Error al obtener programas académicos:', error);
+      });
+
+    // Cargar salones al montar el componente
+    ClienteAuditorio.obtenerTodosLosAuditorios()
+      .then(response => {
+        console.log('Salones obtenidos:', response.data);
+        setSalones(response.data);
+      })
+      .catch(error => {
+        console.error('Error al obtener salones:', error);
+      });
+  }, []);
 
   return (
     <div className="form2-container">
@@ -54,14 +80,17 @@ function Form2({ selectedOptions, fechaSeleccionada, onPrevStep }) {
             onChange={(e) => setProgramaPregrado(e.target.value)}
             className="form-select"
           >
-            <option value="">Programa de Posgrado</option>
-            <option value="Programa 1">Programa 1</option>
-            <option value="Programa 2">Programa 2</option>
-            <option value="Programa 3">Programa 3</option>
+            <option value="">Programas</option>
+            {programasAcademicos.map(programa => (
+              <option key={programa.id} value={programa.nombre}>
+                {programa.nombrePrograma}
+              </option>
+            ))}
           </select>
+
           <textarea
-            id="mensaje"
-            placeholder="Mensaje (Opcional)"
+            id="Evento"
+            placeholder="Mensaje (Especifique el evento)"
             value={mensaje}
             onChange={(e) => setMensaje(e.target.value)}
             className="form-control"
@@ -70,14 +99,14 @@ function Form2({ selectedOptions, fechaSeleccionada, onPrevStep }) {
       </div>
       <div className="form2-separator"></div>
       <div className="form2-section">
-        <h3>Seleccione el Auditorio:</h3>
+        <h3>Seleccione el salón:</h3>
         <div className="salon-grid">
-          {[1].map((salon) => (
+          {salones.map(salon => (
             <ReservationOption
-              key={salon}
-              time={`Auditorio ${salon}`}
-              selected={selectedSalon === salon}
-              onClick={() => handleSalonClick(salon)}
+              key={salon.idSalon}
+              time={`${salon.nombre}`}
+              selected={selectedSalon === salon.idSalon}
+              onClick={() => handleSalonClick(salon.idSalon)}
             />
           ))}
         </div>
@@ -92,7 +121,7 @@ function Form2({ selectedOptions, fechaSeleccionada, onPrevStep }) {
               <BotonCancelar color="#999999" />
             </Link>
           </div>
-          <BotonAceptar
+          <BotonAceptarAuditorio
             selectedOptions={selectedOptions}
             selectedDate={fechaSeleccionada}
             sSalon={selectedSalon}

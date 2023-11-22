@@ -37,8 +37,8 @@ function ReservAuditorio({ fechaSeleccionada }) {
           />
         )}
         {step === 2 && (
-          <Form2Auditorio 
-            selectedOptions={selectedOptions} 
+          <Form2Auditorio
+            selectedOptions={selectedOptions}
             fechaSeleccionada={fechaSeleccionada}
             onPrevStep={handlePrevStep}
           />
