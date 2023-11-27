@@ -72,6 +72,7 @@
   border-radius: 5px;
   cursor: pointer;
   background-color: var(--white);
+  overflow: hidden; /* Agregado para asegurar que el contenido oculto no se muestre */
 }
 
 .reservation-option.selected {
@@ -82,15 +83,24 @@
 .circle {
   width: 20px;
   height: 20px;
+  min-width: 20px; /* Ancho mínimo para evitar que se haga angosto */
   border-radius: 50%;
   background-color: var(--white);
   border: 2px solid var(--light-gray);
   margin-right: 10px;
+  flex-shrink: 0; /* Evitar que se contraiga */
 }
 
 .circle.selected {
   background-color: var(--blue-s);
   border: 2px solid var(--light-gray);
+}
+
+/* Aplicar puntos suspensivos solo al span dentro de .reservation-option */
+.reservation-option span {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 
 button {

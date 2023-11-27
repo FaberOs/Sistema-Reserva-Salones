@@ -6,7 +6,7 @@ import Form2Auditorio from '../componentes/form2-auditorio.jsx';
 
 function ReservAuditorio({ fechaSeleccionada }) {
   const [selectedOptions, setSelectedOptions] = useState([]);
-  const maxSelections = 1; // Número máximo de selecciones
+  const maxSelections = 2; // Número máximo de selecciones
   const [step, setStep] = useState(1); // Controlamos el paso del formulario
 
   const handleOptionClick = (time) => {
@@ -43,31 +43,6 @@ function ReservAuditorio({ fechaSeleccionada }) {
             onPrevStep={handlePrevStep}
           />
         )}
-        {/*
-        <div className="d-flex justify-content-between">
-          {step > 1 && (
-            <div className="buttons">
-              <BotonRegresar color="#0D4185" onClick={() => setStep(step - 1)} />
-            </div>
-          )}
-          {step === 1 && (
-            <div className="buttons">
-              <Link to="/home">
-                <BotonCancelar color="#999999" />
-              </Link>
-              <BotonSiguiente color="#0D4185" onClick={handleNextStep} />
-            </div>
-          )}
-          {step === 2 && (
-            <div className="buttons">
-              <div className="d-flex mr-2">
-                <Link to="/home">
-                  <BotonCancelar color="#999999" />
-                </Link>
-              </div>
-            </div>
-          )}
-          </div> */}
       </div>
     </div>
   );

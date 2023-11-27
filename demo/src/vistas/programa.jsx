@@ -45,9 +45,6 @@ function Facultad() {
         }
         
       </main>
-      <footer className="mt-4">
-        <MainFooter />
-      </footer>
     </div>
   );
 }

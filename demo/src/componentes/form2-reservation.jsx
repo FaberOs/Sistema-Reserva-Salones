@@ -18,7 +18,7 @@ function Form2({ selectedOptions, fechaSeleccionada, onPrevStep }) {
   const [selectedSalon, setSelectedSalon] = useState(null);
 
   const handleSalonClick = (salon) => {
-    setSelectedSalon(salon);
+    setSelectedSalon(salon.idSalon);
   };
 
   useEffect(() => {
@@ -65,7 +65,7 @@ function Form2({ selectedOptions, fechaSeleccionada, onPrevStep }) {
           />
           <TextInput
             id="numEstudiantes"
-            type="text"
+            type="number"
             placeholder="Número de estudiantes"
             value={numEstudiantes}
             onChange={(e) => setNumEstudiantes(e.target.value)}
@@ -99,13 +99,13 @@ function Form2({ selectedOptions, fechaSeleccionada, onPrevStep }) {
       <div className="form2-separator"></div>
       <div className="form2-section">
         <h3>Seleccione el salón:</h3>
-        <div className="salon-grid">
-          {salones.map(salon => (
+        <div className="auditorio-grid">
+          {salones.map((salon) => (
             <ReservationOption
               key={salon.idSalon}
-              time={`${salon.numeracionSalon}`}
+              time={`${salon.nombre}`}
               selected={selectedSalon === salon.idSalon}
-              onClick={() => handleSalonClick(salon.idSalon)}
+              onClick={() => handleSalonClick(salon)}
             />
           ))}
         </div>

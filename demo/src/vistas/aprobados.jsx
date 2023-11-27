@@ -45,9 +45,6 @@ function Aprobados() {
         }
         
       </main>
-      <footer className="mt-4">
-        <MainFooter />
-      </footer>
     </div>
   );
 }

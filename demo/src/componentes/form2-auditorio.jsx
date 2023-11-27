@@ -5,7 +5,7 @@ import ReservationOption from '../componentes/reservation-option.jsx';
 import TextInput from '../componentes/textInput.jsx';
 import { BotonCancelar, BotonRegresar, BotonAceptarAuditorio } from './button';
 import ClienteProgramaAcademico from '../services/ClienteProgramaAcademico';
-import ClienteSalon from '../services/ClienteSalon'; // Agrega el cliente Salon
+
 import ClienteAuditorio from '../services/ClienteAuditorio.js';
 
 function Form2({ selectedOptions, fechaSeleccionada, onPrevStep }) {
@@ -15,11 +15,11 @@ function Form2({ selectedOptions, fechaSeleccionada, onPrevStep }) {
   const [programasAcademicos, setProgramasAcademicos] = useState([]);
   const [programaPregrado, setProgramaPregrado] = useState('');
   const [mensaje, setMensaje] = useState('');
-  const [salones, setSalones] = useState([]); // Estado para almacenar los salones
-  const [selectedSalon, setSelectedSalon] = useState(null);
+  const [auditorios, setAuditorios] = useState([]); // Estado para almacenar los auditorios
+  const [selectedAuditorio, setSelectedAuditorio] = useState(null);
 
-  const handleSalonClick = (salon) => {
-    setSelectedSalon(salon);
+  const handleAuditorioClick = (auditorio) => {
+    setSelectedAuditorio(auditorio);
   };
 
   useEffect(() => {
@@ -33,14 +33,14 @@ function Form2({ selectedOptions, fechaSeleccionada, onPrevStep }) {
         console.error('Error al obtener programas académicos:', error);
       });
 
-    // Cargar salones al montar el componente
+    // Cargar auditorios al montar el componente
     ClienteAuditorio.obtenerTodosLosAuditorios()
       .then(response => {
-        console.log('Salones obtenidos:', response.data);
-        setSalones(response.data);
+        console.log('auditorios obtenidos:', response.data);
+        setAuditorios(response.data);
       })
       .catch(error => {
-        console.error('Error al obtener salones:', error);
+        console.error('Error al obtener auditorios:', error);
       });
   }, []);
 
@@ -66,7 +66,7 @@ function Form2({ selectedOptions, fechaSeleccionada, onPrevStep }) {
           />
           <TextInput
             id="numEstudiantes"
-            type="text"
+            type="number"
             placeholder="Número de estudiantes"
             value={numEstudiantes}
             onChange={(e) => setNumEstudiantes(e.target.value)}
@@ -99,14 +99,14 @@ function Form2({ selectedOptions, fechaSeleccionada, onPrevStep }) {
       </div>
       <div className="form2-separator"></div>
       <div className="form2-section">
-        <h3>Seleccione el salón:</h3>
-        <div className="salon-grid">
-          {salones.map(salon => (
+        <h3>Seleccione el Auditorio:</h3>
+        <div className="auditorio-grid">
+          {auditorios.map(auditorio => (
             <ReservationOption
-              key={salon.idSalon}
-              time={`${salon.nombre}`}
-              selected={selectedSalon === salon.idSalon}
-              onClick={() => handleSalonClick(salon.idSalon)}
+              key={auditorio.idAuditorio}
+              time={`${auditorio.nombre}`}
+              selected={selectedAuditorio === auditorio.idAuditorio}
+              onClick={() => handleAuditorioClick(auditorio.idAuditorio)}
             />
           ))}
         </div>
@@ -124,7 +124,7 @@ function Form2({ selectedOptions, fechaSeleccionada, onPrevStep }) {
           <BotonAceptarAuditorio
             selectedOptions={selectedOptions}
             selectedDate={fechaSeleccionada}
-            sSalon={selectedSalon}
+            sauditorio={selectedAuditorio}
             cI={correoInstitucional}
             nProfesor={nombreProfesor}
             pP={programaPregrado}

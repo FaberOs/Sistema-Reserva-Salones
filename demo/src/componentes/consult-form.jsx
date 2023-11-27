@@ -41,7 +41,7 @@ const ConsultForm = () => {
   };
 
   return (
-    <div className="container consult-form-container">
+    <div className="container consult-form-container col-10">
       <h2 className="mb-3">Consultar Reserva</h2>
       <div className="mb-3">
         <p>Digite el ID de la reserva:</p>
