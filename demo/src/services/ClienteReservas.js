@@ -78,6 +78,37 @@ class ReservasApiClient {
     const url = `${ReservasApiUrl}/estado/${estado}`;
     return axios.get(url);
   }
+
+  
+  /**
+   * Obtiene la cantidad de reservas por programa.
+   *
+   * @returns {Promise} Promesa que se resuelve con la respuesta de la solicitud.
+   */
+  ObtenerCantidadReservasPorPrograma() {
+    const url = `${ReservasApiUrl}/stats/cantidadReservasPorPrograma`;
+    return axios.get(url);
+  }
+
+  /**
+   * Obtiene el número de solicitudes por salón.
+   *
+   * @returns {Promise} Promesa que se resuelve con la respuesta de la solicitud.
+   */
+  ObtenerNumeroSolicitudesPorSalon() {
+    const url = `${ReservasApiUrl}/stats/numeroSolicitudesPorSalon`;
+    return axios.get(url);
+  }
+
+  /**
+   * Obtiene el número de solicitudes por estado.
+   *
+   * @returns {Promise} Promesa que se resuelve con la respuesta de la solicitud.
+   */
+  ObtenerCantidadReservasPorEstado() {
+    const url = `${ReservasApiUrl}/stats/cantidadReservasPorEstado`;
+    return axios.get(url);
+  }
 }
 
 export default new ReservasApiClient();
