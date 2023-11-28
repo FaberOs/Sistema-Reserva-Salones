@@ -85,8 +85,6 @@ const FacultadInbox = () => {
           <div className="col-4">
             {/* Puedes mostrar más detalles de la facultad aquí según tus necesidades */}
           </div>
-          <div className="col-1">
-          </div>
           <div className="col-2 text-center">
             <img
               src={RecycleIcon}

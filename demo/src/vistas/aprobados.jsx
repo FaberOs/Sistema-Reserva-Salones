@@ -4,7 +4,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import HomeHeader from '../componentes/homeHeader.jsx'
 import GlobalStyles from '../componentes/GlobalStyles';
 import Sidebar from "../componentes/sidebar.jsx";
-import MainFooter from '../componentes/footerMain.jsx';
 import Error404 from "../componentes/error404.jsx";
 import AprobadosInbox from "../componentes/aprobados-inbox.jsx";
 

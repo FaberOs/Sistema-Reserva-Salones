@@ -88,7 +88,11 @@
   width: 20px; /* Tamaño deseado para los iconos */
   height: 20px; /* Tamaño deseado para los iconos */
   margin-right: 5px; /* Espaciado entre los iconos de paginación */
+  transition: background-color 0.3s; /* Agregado para la transición del color de fondo */
 }
 
-
-
+.inbox-container-icon:hover {
+  width: 22px;
+  height: 22px;
+  transition: 0.3s;
+}

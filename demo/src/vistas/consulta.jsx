@@ -2,7 +2,6 @@ import React from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import HomeHeader from '../componentes/homeHeader.jsx'
-import MainFooter from "../componentes/footerMain.jsx";
 import ConsultForm from '../componentes/consult-form.jsx';
 
 import GlobalStyles from '../componentes/GlobalStyles';

@@ -63,7 +63,7 @@ const ProgramaInbox = () => {
         <div className="col-1">
           <img src={EllipsisIcon} alt="Elipsis" className="inbox-container-icon" />
         </div>
-        <div className='col-2'>
+        <div className='col-3'>
           <BotonCrearPrograma onClick={handleCreateProgramaClick} />
           <CreateProgramaModal show={showCreateProgramaModal} onHide={() => setShowCreateProgramaModal(false)} />
         </div>
@@ -87,8 +87,6 @@ const ProgramaInbox = () => {
           <div className="col-4">
             {/* Puedes mostrar más detalles del programa académico aquí si es necesario */}
             {programa.snies}
-          </div>
-          <div className="col-1">
           </div>
           <div className="col-2 text-center">
             <img

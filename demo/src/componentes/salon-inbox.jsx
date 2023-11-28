@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button, Overlay, Popover } from 'react-bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import '../hojas-de-estilo/inbox-facultad-styles.css';
@@ -25,27 +25,79 @@ const SalonInbox = () => {
   const [salones, setSalones] = useState([]);
   const [auditorios, setAuditorios] = useState([]);
 
-  useEffect(() => {
-    // Obtener todos los salones al cargar el componente
-    ClienteSalon.obtenerTodosLosSalones()
-      .then(response => {
-        console.log('Salones obtenidos:', response.data);
-        setSalones(response.data);
-      })
-      .catch(error => {
-        console.error('Error al obtener salones:', error);
-      });
+  const [filtro, setFiltro] = useState("todos");
+  const [showFiltroPopover, setShowFiltroPopover] = useState(false);
+  const [target, setTarget] = useState(null);
 
-    // Obtener todos los auditorios al cargar el componente
-    ClienteAuditorio.obtenerTodosLosAuditorios()
-      .then(response => {
-        console.log('Auditorios obtenidos:', response.data);
-        setAuditorios(response.data);
-      })
-      .catch(error => {
-        console.error('Error al obtener auditorios:', error);
-      });
-  }, []);
+  const handleFiltroClick = (selectedFiltro) => {
+    setFiltro(selectedFiltro);
+    setShowFiltroPopover(false);
+  };
+
+  const handleEllipsisClick = (event) => {
+    setShowFiltroPopover(!showFiltroPopover);
+    setTarget(event.target);
+  };
+
+  const filtroPopover = (
+    <Popover id="filtro-popover" style={{ backgroundColor: '#CCCCCC', border: 'none' }}>
+      <Popover.Body style={{ display: 'flex', flexDirection: 'column' }}>
+        <Button variant="light" onClick={() => handleFiltroClick('todos')} style={{ textDecoration: 'none', color: 'black' }}>
+          Todos
+        </Button>
+        <Button variant="light" onClick={() => handleFiltroClick('salones')} style={{ textDecoration: 'none', color: 'black' }}>
+          Salones
+        </Button>
+        <Button variant="light" onClick={() => handleFiltroClick('auditorios')} style={{ textDecoration: 'none', color: 'black' }}>
+          Auditorios
+        </Button>
+      </Popover.Body>
+    </Popover>
+  );
+
+  useEffect(() => {
+    // Actualiza la lista de salones y auditorios según el filtro seleccionado
+    if (filtro === "salones") {
+      ClienteSalon.obtenerTodosLosSalones()
+        .then((response) => {
+          console.log('Salones obtenidos:', response.data);
+          setSalones(response.data);
+          setAuditorios([]); // Limpiar la lista de auditorios
+        })
+        .catch((error) => {
+          console.error('Error al obtener salones:', error);
+        });
+    } else if (filtro === "auditorios") {
+      ClienteAuditorio.obtenerTodosLosAuditorios()
+        .then((response) => {
+          console.log('Auditorios obtenidos:', response.data);
+          setAuditorios(response.data);
+          setSalones([]); // Limpiar la lista de salones
+        })
+        .catch((error) => {
+          console.error('Error al obtener auditorios:', error);
+        });
+    } else {
+      // Mostrar todos
+      ClienteSalon.obtenerTodosLosSalones()
+        .then((salonesResponse) => {
+          console.log('Salones obtenidos:', salonesResponse.data);
+          setSalones(salonesResponse.data);
+        })
+        .catch((error) => {
+          console.error('Error al obtener salones:', error);
+        });
+
+      ClienteAuditorio.obtenerTodosLosAuditorios()
+        .then((auditoriosResponse) => {
+          console.log('Auditorios obtenidos:', auditoriosResponse.data);
+          setAuditorios(auditoriosResponse.data);
+        })
+        .catch((error) => {
+          console.error('Error al obtener auditorios:', error);
+        });
+    }
+  }, [filtro]);
 
   const handleCreateSalonClick = () => {
     setShowCreateSalonModal(true);
@@ -102,10 +154,23 @@ const SalonInbox = () => {
           <img src={ReloadIcon} alt="Refrescar" className="inbox-container-icon" onClick={handleReloadClick} />
         </div>
         <div className="col-1">
-          <img src={EllipsisIcon} alt="Elipsis" className="inbox-container-icon" />
+          <img
+            src={EllipsisIcon}
+            alt="Elipsis"
+            className="inbox-container-icon"
+            onClick={handleEllipsisClick}
+          />
+          <Overlay
+            show={showFiltroPopover}
+            target={target}
+            placement="bottom"
+            containerPadding={20}
+          >
+            {filtroPopover}
+          </Overlay>
         </div>
-        <div className='col-2'>
-          <BotonCrearSalon onClick={handleCreateSalonClick} />
+        <div className='col-md-3 col-sm-1'>
+          <BotonCrearSalon onClick={handleCreateSalonClick} className="btn btn-sm ms-2" />
           <CreateSalonModal show={showCreateSalonModal} onHide={() => setShowCreateSalonModal(false)} />
         </div>
         <div className="col-1 ml-auto text-right"></div>
@@ -116,14 +181,14 @@ const SalonInbox = () => {
       </div>
       {salones.map(salon => (
         <div key={salon.idSalon} className={`row inbox-row ${selectedSalon === salon ? 'selected-row' : ''}`} onClick={() => handleRowClick(salon)}>
-          <div className="col-1">
+          <div className="col-md-1">
             <input type="checkbox" className="inbox-checkbox" />
           </div>
-          <div className="col-2">{salon.idSalon}</div>
-          <div className="col-2">{salon.capacidad}</div>
-          <div className="col-2">{salon.numeracionSalon}</div>
-          <div className="col-4">{salon.tipo}</div>
-          <div className="col-1 text-center">
+          <div className="col-md-2 col-sm-1">{salon.idSalon}</div>
+          <div className="col-md-1 col-sm-1">{salon.capacidad}</div>
+          <div className="col-md-2 col-sm-1">{salon.numeracionSalon}</div>
+          <div className="col-md-3 col-sm-2">{salon.tipo}</div>
+          <div className="col-md-1 col-sm-1 text-center">
             <img
               src={RecycleIcon}
               alt="Eliminar"
@@ -131,7 +196,7 @@ const SalonInbox = () => {
             // onClick={}
             />
           </div>
-          <div className="col-1 text-center">
+          <div className="col-md-1 col-sm-1 text-center">
             <img
               src={LockIcon}
               alt="Bloquear"
@@ -143,14 +208,14 @@ const SalonInbox = () => {
       ))}
       {auditorios.map(auditorio => (
         <div key={auditorio.idAuditorio} className={`row inbox-row ${selectedAuditorio === auditorio ? 'selected-row' : ''}`} onClick={() => handleAuditorioRowClick(auditorio)}>
-          <div className="col-1">
+          <div className="col-md-1">
             <input type="checkbox" className="inbox-checkbox" />
           </div>
-          <div className="col-2">{auditorio.idAuditorio}</div>
-          <div className="col-2">{auditorio.capacidad}</div>
-          <div className="col-2">{auditorio.numeracionSalon}</div>
-          <div className="col-4">{auditorio.nombre}</div>
-          <div className="col-1 text-center">
+          <div className="col-md-2 col-sm-1">{auditorio.idAuditorio}</div>
+          <div className="col-md-1 col-sm-1">{auditorio.capacidad}</div>
+          <div className="col-md-2 col-sm-1">{auditorio.numeracionSalon}</div>
+          <div className="col-md-3 col-sm-1">{auditorio.nombre}</div>
+          <div className="col-md-1 col-sm-1 text-center">
             <img
               src={RecycleIcon}
               alt="Eliminar"
@@ -158,7 +223,7 @@ const SalonInbox = () => {
             // onClick={}
             />
           </div>
-          <div className="col-1 text-center">
+          <div className="col-md-1 col-sm-1 text-center">
             <img
               src={LockIcon}
               alt="Bloquear"

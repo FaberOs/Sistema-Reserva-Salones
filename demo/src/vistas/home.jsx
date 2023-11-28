@@ -41,7 +41,7 @@ function Home (){
             <InfoBox
               icon={resultIcon}
               color="white"
-              text="Estructuramos y apoyamos iniciativas de alta calidad en posgrados para un impacto sostenible."
+              text="Estructuramos, comunicamos y apoyamos iniciativas de alta calidad en posgrados para un impacto sostenible."
               boxColor="#0D4185"
             />
             <InfoBox
@@ -53,7 +53,7 @@ function Home (){
             <InfoBox
               icon={tutorIcon}
               color="white"
-              text="Cultivamos equidad, transparencia y excelencia en posgrados para un desarrollo armónico e inclusivo."
+              text="Cultivamos equidad, respeto, transparencia y excelencia en posgrados para un desarrollo armónico e inclusivo."
               boxColor="#0D4185"
             />
           </div>

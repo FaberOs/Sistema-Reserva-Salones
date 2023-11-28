@@ -14,7 +14,6 @@ const StatisticsContainer = () => {
   const [reservasPorEstado, setReservasPorEstado] = useState([]);
 
 
-
   useEffect(() => {
     // Obtener la cantidad de reservas por programa académico
     ClienteReservas.ObtenerCantidadReservasPorPrograma()
@@ -37,7 +36,11 @@ const StatisticsContainer = () => {
           },
           options: {
             scales: {
-              x: { type: 'category', labels: data.map(item => item.Programa) },
+              x: {
+                type: 'category',
+                labels: data.map(item => item.Programa),
+                display: false, // Oculta las etiquetas en el eje X
+              },
               y: { beginAtZero: true },
             },
           },
@@ -47,41 +50,41 @@ const StatisticsContainer = () => {
         const chart1 = new Chart(chart1Ref.current, config1);
 
         // Obtener el número de solicitudes por salón
-    ClienteReservas.ObtenerNumeroSolicitudesPorSalon()
-    .then(response => {
-      const data = response.data;
-      setSolicitudesPorSalon(data);
+        ClienteReservas.ObtenerNumeroSolicitudesPorSalon()
+        .then(response => {
+          const data = response.data;
+          setSolicitudesPorSalon(data);
 
-      console.log("Datos por saloens", data);
+          console.log("Datos por saloens", data);
 
-      // Configuración de la segunda gráfica
-      const config2 = {
-        type: 'bar',
-        data: {
-          labels: data.map(item => item.Salon),
-          
-          datasets: [
-            {
-              label: 'Número de Solicitudes',
-              data: data.map(item => item.NumeroSolicitudes),
-              backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+          // Configuración de la segunda gráfica
+          const config2 = {
+            type: 'bar',
+            data: {
+              labels: data.map(item => item.Salon),
+              
+              datasets: [
+                {
+                  label: 'Número de Solicitudes',
+                  data: data.map(item => item.NumeroSolicitudes),
+                  backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+                },
+              ],
             },
-          ],
-        },
-        options: {
-          scales: {
-            x: { type: 'category', labels: data.map(item => item.Salon) },
-            y: { beginAtZero: true },
-          },
-        },
-      };
+            options: {
+              scales: {
+                x: { type: 'category', labels: data.map(item => item.Salon) },
+                y: { beginAtZero: true },
+              },
+            },
+          };
 
-      // Crear la segunda gráfica
-      const chart2 = new Chart(chart2Ref.current, config2);
-    })
-    .catch(error => {
-      console.error('Error al obtener el número de solicitudes por salón:', error);
-    });
+          // Crear la segunda gráfica
+          const chart2 = new Chart(chart2Ref.current, config2);
+        })
+        .catch(error => {
+          console.error('Error al obtener el número de solicitudes por salón:', error);
+        });
 
         // Datos de ejemplo para la tercera gráfica (número de solicitudes por facultad)
         const data3 = {
@@ -111,10 +114,10 @@ const StatisticsContainer = () => {
         const chart3 = new Chart(chart3Ref.current, config3);
 
         // Obtener la cantidad de reservas por estado
-    ClienteReservas.ObtenerCantidadReservasPorEstado()
-    .then(response => {
-      const data = response.data;
-      setReservasPorEstado(data);
+      ClienteReservas.ObtenerCantidadReservasPorEstado()
+      .then(response => {
+        const data = response.data;
+        setReservasPorEstado(data);
 
       // Configuración de la cuarta gráfica
       const config4 = {
@@ -123,11 +126,18 @@ const StatisticsContainer = () => {
           labels: data.map(item => item.Estado),
           datasets: [
             {
-              label: 'Cantidad de Solicitudes',
               data: data.map(item => item.CantidadReservas),
-              backgroundColor: ['#36A2EB', '#FF6384'],
+              backgroundColor: ['#36A2EB', '#FF6384', '#FFCE56'],
             },
           ],
+        },
+        options: {
+          plugins: {
+            legend: {
+              display: true,
+              position: 'bottom',
+            },
+          },
         },
       };
 
@@ -155,24 +165,22 @@ const StatisticsContainer = () => {
   };
 
   return (
-    <div className="container mt-5">
+    <div className="container mt-4">
       <div className="row">
-        <div className="col-md-4 chart-container" style={containerStyle}>
+        <div className="col-md-6 chart-container" style={containerStyle}>
           <h5>Reservas por Programa Académico</h5>
           <canvas ref={chart1Ref} style={{ width: '100%', height: 'auto' }}></canvas>
         </div>
-        <div className="col-md-4 chart-container" style={containerStyle}>
+        <div className="col-md-5 chart-container" style={containerStyle}>
           <h5>Solicitudes por Salón</h5>
           <canvas ref={chart2Ref} style={{ width: '100%', height: 'auto' }}></canvas>
         </div>
-        <div className="col-md-4 chart-container" style={containerStyle}>
+        <div className="col-md-5 chart-container" style={containerStyle}>
           <h5>Solicitudes por Facultad</h5>
           <canvas ref={chart3Ref} style={{ width: '100%', height: 'auto' }}></canvas>
         </div>
-      </div>
-      <div className="row">
         <div className="col-md-3 chart-container" style={containerStyle}>
-          <h5>Solicitudes Aprobadas/Rechazadas</h5>
+          <h6>Solicitudes Aprobadas/Rechazadas</h6>
           <canvas ref={chart4Ref} style={{ width: '100%', height: 'auto' }}></canvas>
         </div>
       </div>

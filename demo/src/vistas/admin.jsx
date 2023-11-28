@@ -5,7 +5,6 @@ import HomeHeader from '../componentes/homeHeader.jsx'
 import GlobalStyles from '../componentes/GlobalStyles';
 import Sidebar from "../componentes/sidebar.jsx";
 import Inbox from "../componentes/inbox-container.jsx";
-import MainFooter from '../componentes/footerMain.jsx';
 import Error404 from "../componentes/error404.jsx";
 
 function Admin() {
@@ -28,12 +27,12 @@ function Admin() {
           roll === 'ADMINISTRADOR'
             ?<div className="container">
               <div className="row">
-                <div className="col-lg-2 col-md-3 col-sm-12">
+                <div className="col-lg-2 col-md-3 d-none d-sm-block d-md-block d-lg-block">
                   <div className="sidebar">
                     <Sidebar />
                   </div>
                 </div>
-                <div className="col-lg-10 col-md-9 col-sm-12">
+                <div className="col-lg-10 col-md-8 col-sm-10">
                   <Inbox />
                 </div>
               </div>
