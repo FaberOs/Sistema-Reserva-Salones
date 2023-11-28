@@ -18,6 +18,7 @@ import Salon from './vistas/salon';
 import Aprobados from './vistas/aprobados';
 import Rechazados from './vistas/rechazados';
 import Incidencias from './vistas/incidencias';
+import Estadisticas from './vistas/estadisticas';
 
 function App() {
   return (
@@ -82,6 +83,11 @@ function App() {
         <Route path="/admin/incidencias" element={
           <div>
             <Incidencias />
+          </div>
+        }/>
+        <Route path="/admin/estadisticas" element={
+          <div>
+            <Estadisticas />
           </div>
         }/>
       </Routes>

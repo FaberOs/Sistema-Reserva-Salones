@@ -103,7 +103,7 @@ function Form2({ selectedOptions, fechaSeleccionada, onPrevStep }) {
           {salones.map((salon) => (
             <ReservationOption
               key={salon.idSalon}
-              time={`${salon.nombre}`}
+              time={`${salon.numeracionSalon}`}
               selected={selectedSalon === salon.idSalon}
               onClick={() => handleSalonClick(salon)}
             />
