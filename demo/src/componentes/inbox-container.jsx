@@ -9,6 +9,7 @@ import ReloadIcon from '../iconos/reload-icon.svg';
 //import PaginationRightIcon from '../iconos/pagination-right-icon.svg';
 import EllipsisIcon from '../iconos/ellipsis-icon.svg';
 import RecycleIcon from '../iconos/recycle-bin-icon.svg';
+import InfoIcon from '../iconos/info-icon.svg'
 
 import ClienteReserva from '../services/ClienteReservas';
 import ClienteAuditorio from '../services/ClienteAuditorio';
@@ -31,6 +32,11 @@ const Inbox = () => {
       });
   };
 
+  const handleDetallesClick = (reserva) => {
+    setSelectedReserva(reserva);
+    setShowModal(true);
+  };
+
   const handleShowConfirmationModal = (idReserva) => {
     setReservaToModify(idReserva);
     setShowConfirmationModal(true);
@@ -41,6 +47,7 @@ const Inbox = () => {
     setShowConfirmationModal(false);
   };
 
+  
   const handleEliminarReservaClick = (id) => {
     // Cierra el modal principal
     setShowModal(false);
@@ -118,14 +125,14 @@ const Inbox = () => {
       </div>*/}
       </div>
       {reservas.map(reserva => (
-        <div key={reserva.idReserva} className="row inbox-row" onClick={() => handleRowClick(reserva.idReserva)}>
+        <div key={reserva.idReserva} className="row inbox-row">
           <div className="col-md-1 col-1">
             <input type="checkbox" className="inbox-checkbox" />
           </div>
           <div className="col-md-1 col-1">
             {reserva.idReserva}
           </div>
-          <div className="col-md-3 col-3">
+          <div className="col-md-3 col-2">
             {reserva.nombreProfesor}
           </div>
           <div className="col-md-3 col-3">
@@ -145,6 +152,14 @@ const Inbox = () => {
               alt="Eliminar"
               className="inbox-option-icon"
               onClick={() => handleShowConfirmationModal(reserva.idReserva)}
+            />
+          </div>
+          <div className="col-md-1 col-1 text-left">
+            <img
+              src={InfoIcon}  // Reemplaza "DetallesIcon" con la ruta de tu icono de detalles
+              alt="Detalles"
+              className="inbox-option-icon"
+              onClick={() => handleDetallesClick(reserva)}
             />
           </div>
         </div>
