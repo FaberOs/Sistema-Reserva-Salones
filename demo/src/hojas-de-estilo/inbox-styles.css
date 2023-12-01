@@ -21,6 +21,7 @@
   padding: 10px;
   margin: 0;
   height: 70px;
+  font-size: 14px;
 }
 
 .inbox-row:last-child {
@@ -32,7 +33,7 @@
 
 .inbox-row p {
   margin: 0;
-  font-size: 16px; /* Tamaño de fuente ajustado */
+  font-size: 14px; /* Tamaño de fuente ajustado */
 }
 
 /* Estilos para las columnas */
@@ -47,12 +48,44 @@
   white-space: nowrap;
 }
 
+.inbox-row .col-4 {
+  flex: 0 0 20%; /* Ancho fijo del 20% */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .inbox-row .col-2 {
   flex: 0 0 15%; /* Ancho fijo del 15% */
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
   text-align: right;
+}
+
+.inbox-row .col-md-3 {
+  flex: 0 0 15%; /* Ancho fijo del 15% */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.inbox-row .col-md-4 {
+  flex: 0 0 15%; /* Ancho fijo del 15% */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.inbox-row .col-md-2 {
+  flex: 0 0 15%; /* Ancho fijo del 15% */
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.inbox-row .col-md-1 {
+  flex: 0 0 15%; /* Ancho fijo del 15% */
 }
 
 .inbox-row .col-2.text-center {
@@ -95,4 +128,23 @@
   width: 22px;
   height: 22px;
   transition: 0.3s;
+}
+
+@media (max-width: 991px) {
+  .inbox-container .inbox-container-icon {
+    width: 18px; /* Ancho ajustado para pantallas medianas */
+    height: 18px; /* Altura ajustada para pantallas medianas */
+  }
+}
+
+@media (max-width: 767px) {
+  .inbox-container .inbox-container-icon {
+    width: 16px; /* Ancho ajustado para pantallas pequeñas */
+    height: 16px; /* Altura ajustada para pantallas pequeñas */
+  }
+
+  .inbox-row p {
+    margin: 0;
+    font-size: 10px; /* Tamaño de fuente ajustado */
+  }
 }

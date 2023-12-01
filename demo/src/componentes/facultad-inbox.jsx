@@ -5,8 +5,8 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../hojas-de-estilo/inbox-facultad-styles.css';
 
 import ReloadIcon from '../iconos/reload-icon.svg';
-import PaginationLeftIcon from '../iconos/pagination-left-icon.svg';
-import PaginationRightIcon from '../iconos/pagination-right-icon.svg';
+//import PaginationLeftIcon from '../iconos/pagination-left-icon.svg';
+//import PaginationRightIcon from '../iconos/pagination-right-icon.svg';
 import EllipsisIcon from '../iconos/ellipsis-icon.svg';
 import RecycleIcon from '../iconos/recycle-bin-icon.svg';
 
@@ -61,31 +61,32 @@ const FacultadInbox = () => {
         <div className="col-1">
           <img src={EllipsisIcon} alt="Elipsis" className="inbox-container-icon" />
         </div>
-        <div className='col-2'>
+        <div className='col-7'>
           <BotonCrearFacultad onClick={handleCreateFacultadClick} />
           <CreateFacultadModal show={showCreateFacultadModal} onHide={() => setShowCreateFacultadModal(false)} />
         </div>
         <div className="col-1 ml-auto text-right"></div>
-        <div className="col-2 text-right">
+        {/*<div className="col-2 text-right">
           <img src={PaginationLeftIcon} alt="Pagination" className="inbox-container-icon pagination-icon" />
           <img src={PaginationRightIcon} alt="Pagination" className="inbox-container-icon pagination-icon" />
-        </div>
+        </div>*/}
       </div>
       {facultades.map(facultad => (
         <div key={facultad.idFacultad} className="row inbox-row" onClick={() => handleRowClick(facultad)}>
-          <div className="col-1">
+          <div className="col-md-1 col-1">
             <input type="checkbox" className="inbox-checkbox" />
           </div>
-          <div className="col-1">
+          <div className="col-md-1 col-1">
             {facultad.idFacultad}
           </div>
-          <div className="col-4">
+          <div className="col-md-6 col-4">
             {facultad.nombreFacultad}
           </div>
-          <div className="col-4">
-            {/* Puedes mostrar más detalles de la facultad aquí según tus necesidades */}
+          <div className="col-md-4 col-4">
           </div>
-          <div className="col-2 text-center">
+          <div className="col-md-4 col-4">
+          </div>
+          <div className="col-md-2 col-3 text-center">
             <img
               src={RecycleIcon}
               alt="Eliminar"

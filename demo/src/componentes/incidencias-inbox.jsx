@@ -5,8 +5,8 @@ import { Modal, Button } from 'react-bootstrap';
 import '../hojas-de-estilo/inbox-styles.css';
 
 import ReloadIcon from '../iconos/reload-icon.svg';
-import PaginationLeftIcon from '../iconos/pagination-left-icon.svg';
-import PaginationRightIcon from '../iconos/pagination-right-icon.svg';
+//import PaginationLeftIcon from '../iconos/pagination-left-icon.svg';
+//import PaginationRightIcon from '../iconos/pagination-right-icon.svg';
 import EllipsisIcon from '../iconos/ellipsis-icon.svg';
 
 import ClienteIncidencias from '../services/ClienteIncidencias';
@@ -60,10 +60,10 @@ const IncidenciasInbox = () => {
           <img src={EllipsisIcon} alt="Elipsis" className="inbox-container-icon" />
         </div>
         <div className="col-1 ml-auto text-right"></div>
-        <div className="col-2 text-right">
+        {/*<div className="col-2 text-right">
           <img src={PaginationLeftIcon} alt="Pagination" className="inbox-container-icon pagination-icon" />
           <img src={PaginationRightIcon} alt="Pagination" className="inbox-container-icon pagination-icon" />
-        </div>
+        </div>*/}
       </div>
       {incidencias.map(incidencia => (
         <div key={incidencia.id} className="row inbox-row" onClick={() => handleRowClick(incidencia.id)}>

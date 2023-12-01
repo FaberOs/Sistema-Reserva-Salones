@@ -30,10 +30,10 @@ const SidebarTop = () => {
       </Button>
 
       <Offcanvas show={showOffcanvas} onHide={handleOffcanvasClose} placement="top">
-        <Offcanvas.Header closeButton>
+        <Offcanvas.Header closeButton className="offcanvas-header-custom">
           <Offcanvas.Title>Menú</Offcanvas.Title>
         </Offcanvas.Header>
-        <Offcanvas.Body>
+        <Offcanvas.Body className="offcanvas-body-custom">
             <div className="options">
             <Link to="/admin" className="link">
             <div className="option">

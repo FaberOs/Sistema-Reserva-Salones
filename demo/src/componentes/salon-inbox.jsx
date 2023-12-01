@@ -5,11 +5,12 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import '../hojas-de-estilo/inbox-facultad-styles.css';
 
 import ReloadIcon from '../iconos/reload-icon.svg';
-import PaginationLeftIcon from '../iconos/pagination-left-icon.svg';
-import PaginationRightIcon from '../iconos/pagination-right-icon.svg';
+//import PaginationLeftIcon from '../iconos/pagination-left-icon.svg';
+//import PaginationRightIcon from '../iconos/pagination-right-icon.svg';
 import EllipsisIcon from '../iconos/ellipsis-icon.svg';
 import RecycleIcon from '../iconos/recycle-bin-icon.svg';
 import LockIcon from '../iconos/lock-icon.svg';
+import InfoIcon from '../iconos/info-icon.svg'
 
 import ClienteSalon from '../services/ClienteSalon';
 import ClienteAuditorio from '../services/ClienteAuditorio';
@@ -38,6 +39,11 @@ const SalonInbox = () => {
     setShowConfirmationModal(true);
   };
 
+  const handleDetallesClick = (salon) => {
+    setSelectedSalon(salon);
+    setShowModal(true);
+  };
+
   const handleCloseConfirmationModal = () => {
     setSalonToModify(null);
     setShowConfirmationModal(false);
@@ -53,25 +59,76 @@ const SalonInbox = () => {
     setTarget(event.target);
   };
 
-  const handleEliminarSalonClick = () => {
-    // Realiza la lógica para eliminar el salón con el ID almacenado en salonToModify
-    console.log(`Eliminar salón con ID: ${salonToModify}`);
-    // Cierra el modal de confirmación
-    handleCloseConfirmationModal();
+  const handleEliminarSalonClick = (id) => {
+    // Cierra el modal principal
+    setShowModal(false);
+    // Actualiza el ID del salón a eliminar
+    setSalonToModify(id);
+    // Muestra el modal de confirmación
+    setShowConfirmationModal(true);
   };
 
-  const handleEliminarAuditorioClick = () => {
-    // Realiza la lógica para eliminar el salón con el ID almacenado en salonToModify
-    console.log(`Eliminar auditorio con ID: ${auditorioToModify}`);
-    // Cierra el modal de confirmación
-    handleCloseConfirmationModal();
+  const handleEliminarAuditorioClick = (id) => {
+    // Cierra el modal principal
+    setShowModal(false);
+    // Actualiza el ID del salón a eliminar
+    setSalonToModify(id);
+    // Muestra el modal de confirmación
+    setShowConfirmationModal(true);
   };
   
-  const handleBloquearClick = () => {
-    // Realiza la lógica para bloquear el salón con el ID almacenado en salonToModify
-    console.log(`Bloquear salón con ID: ${salonToModify}`);
-    // Cierra el modal de confirmación
-    handleCloseConfirmationModal();
+  const handleBloquearClick = (id) => {
+    // Cierra el modal principal
+    setShowModal(false);
+    // Actualiza el ID del salón a bloquear
+    setSalonToModify(id);
+    // Muestra el modal de confirmación
+    setShowConfirmationModal(true);
+  };
+
+  const handleCreateSalonClick = () => {
+    setShowCreateSalonModal(true);
+  };
+
+  const handleRowClick = (salon) => {
+    setSelectedSalon(salon);
+    setSelectedAuditorio(null); // Limpiar la selección del auditorio
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+  const handleCloseAuditorioModal = () => {
+    setShowAuditorioModal(false);
+  };
+
+  const handleAuditorioRowClick = (auditorio) => {
+    setShowAuditorioModal(true);
+    setSelectedAuditorio(auditorio);
+    setSelectedSalon(null); // Limpiar la selección del salón
+  };
+
+  const handleReloadClick = () => {
+    // Actualizar la lista de salones y auditorios al hacer clic en recargar
+    ClienteSalon.obtenerTodosLosSalones()
+      .then(response => {
+        console.log('Salones actualizados:', response.data);
+        setSalones(response.data);
+      })
+      .catch(error => {
+        console.error('Error al obtener salones:', error);
+      });
+
+    ClienteAuditorio.obtenerTodosLosAuditorios()
+      .then(response => {
+        console.log('Auditorios actualizados:', response.data);
+        setAuditorios(response.data);
+      })
+      .catch(error => {
+        console.error('Error al obtener auditorios:', error);
+      });
   };
 
   const filtroPopover = (
@@ -134,50 +191,7 @@ const SalonInbox = () => {
     }
   }, [filtro]);
 
-  const handleCreateSalonClick = () => {
-    setShowCreateSalonModal(true);
-  };
-
-  const handleRowClick = (salon) => {
-    setSelectedSalon(salon);
-    setSelectedAuditorio(null); // Limpiar la selección del auditorio
-    setShowModal(true);
-  };
-
-  const handleCloseModal = () => {
-    setShowModal(false);
-  };
-
-  const handleCloseAuditorioModal = () => {
-    setShowAuditorioModal(false);
-  };
-
-  const handleAuditorioRowClick = (auditorio) => {
-    setShowAuditorioModal(true);
-    setSelectedAuditorio(auditorio);
-    setSelectedSalon(null); // Limpiar la selección del salón
-  };
-
-  const handleReloadClick = () => {
-    // Actualizar la lista de salones y auditorios al hacer clic en recargar
-    ClienteSalon.obtenerTodosLosSalones()
-      .then(response => {
-        console.log('Salones actualizados:', response.data);
-        setSalones(response.data);
-      })
-      .catch(error => {
-        console.error('Error al obtener salones:', error);
-      });
-
-    ClienteAuditorio.obtenerTodosLosAuditorios()
-      .then(response => {
-        console.log('Auditorios actualizados:', response.data);
-        setAuditorios(response.data);
-      })
-      .catch(error => {
-        console.error('Error al obtener auditorios:', error);
-      });
-  };
+  
 
   return (
     <div className="container m-4 inbox-container">
@@ -204,26 +218,28 @@ const SalonInbox = () => {
             {filtroPopover}
           </Overlay>
         </div>
-        <div className='col-md-3 col-sm-1'>
+        <div className='col-md-4 col-6'>
           <BotonCrearSalon onClick={handleCreateSalonClick} className="btn btn-sm ms-2" />
           <CreateSalonModal show={showCreateSalonModal} onHide={() => setShowCreateSalonModal(false)} />
         </div>
         <div className="col-1 ml-auto text-right"></div>
-        <div className="col-2 text-right">
+        {/*<div className="col-2 text-right">
           <img src={PaginationLeftIcon} alt="Pagination" className="inbox-container-icon pagination-icon" />
           <img src={PaginationRightIcon} alt="Pagination" className="inbox-container-icon pagination-icon" />
-        </div>
+        </div>*/}
       </div>
       {salones.map(salon => (
-        <div key={salon.idSalon} className={`row inbox-row ${selectedSalon === salon ? 'selected-row' : ''}`} onClick={() => handleRowClick(salon)}>
+        <div key={salon.idSalon} className={`row inbox-row ${selectedSalon === salon ? 'selected-row' : ''}`}>
           <div className="col-md-1">
             <input type="checkbox" className="inbox-checkbox" />
           </div>
-          <div className="col-md-2 col-sm-1">{salon.idSalon}</div>
-          <div className="col-md-1 col-sm-1">{salon.capacidad}</div>
-          <div className="col-md-2 col-sm-1">{salon.numeracionSalon}</div>
-          <div className="col-md-3 col-sm-2">{salon.tipo}</div>
-          <div className="col-md-1 col-sm-1 text-center">
+          <div className="col-md-2 col-1">{salon.idSalon}</div>
+          <div className="col-md-1 col-1">{salon.capacidad}</div>
+          <div className="col-md-2 col-2">{salon.numeracionSalon}</div>
+          <div className="col-md-3 col-3">{salon.tipo}</div>
+          <div className="col-md-2 col-1 text-right">
+          </div>
+          <div className="col-md-1 col-1 text-right">
             <img
               src={RecycleIcon}
               alt="Eliminar"
@@ -231,26 +247,36 @@ const SalonInbox = () => {
               onClick={() => handleShowConfirmationModal(salon.idSalon)}
             />
           </div>
-          <div className="col-md-1 col-sm-1 text-center">
+          <div className="col-md-1 col-1 text-right">
             <img
               src={LockIcon}
               alt="Bloquear"
               className="inbox-option-icon"
               onClick={() => handleShowConfirmationModal(salon.idSalon)}
+            />
+          </div>
+          <div className="col-md-1 col-1 text-left">
+            <img
+              src={InfoIcon}  // Reemplaza "DetallesIcon" con la ruta de tu icono de detalles
+              alt="Detalles"
+              className="inbox-option-icon"
+              onClick={() => handleDetallesClick(salon)}
             />
           </div>
         </div>
       ))}
       {auditorios.map(auditorio => (
-        <div key={auditorio.idAuditorio} className={`row inbox-row ${selectedAuditorio === auditorio ? 'selected-row' : ''}`} onClick={() => handleAuditorioRowClick(auditorio)}>
+        <div key={auditorio.idAuditorio} className={`row inbox-row ${selectedAuditorio === auditorio ? 'selected-row' : ''}`}>
           <div className="col-md-1">
             <input type="checkbox" className="inbox-checkbox" />
           </div>
-          <div className="col-md-2 col-sm-1">{auditorio.idAuditorio}</div>
-          <div className="col-md-1 col-sm-1">{auditorio.capacidad}</div>
-          <div className="col-md-2 col-sm-1">{auditorio.numeracionSalon}</div>
-          <div className="col-md-3 col-sm-1">{auditorio.nombre}</div>
-          <div className="col-md-1 col-sm-1 text-center">
+          <div className="col-md-2 col-1">{auditorio.idAuditorio}</div>
+          <div className="col-md-1 col-1">{auditorio.capacidad}</div>
+          <div className="col-md-2 col-2">{auditorio.numeracionSalon}</div>
+          <div className="col-md-3 col-3">{auditorio.nombre}</div>
+          <div className="col-md-2 col-1 text-right">
+          </div>
+          <div className="col-md-1 col-1 text-right">
             <img
               src={RecycleIcon}
               alt="Eliminar"
@@ -258,19 +284,27 @@ const SalonInbox = () => {
               onClick={() => handleShowConfirmationModal(auditorio.idAuditorio)}
             />
           </div>
-          <div className="col-md-1 col-sm-1 text-center">
+          <div className="col-md-1 col-1 text-right">
             <img
               src={LockIcon}
               alt="Bloquear"
               className="inbox-option-icon"
               onClick={() => handleShowConfirmationModal(auditorio.idAuditorio)}
+            />
+          </div>
+          <div className="col-md-1 col-1 text-left">
+            <img
+              src={InfoIcon}  // Reemplaza "DetallesIcon" con la ruta de tu icono de detalles
+              alt="Detalles"
+              className="inbox-option-icon"
+              onClick={() => handleDetallesClick(auditorio)}
             />
           </div>
         </div>
       ))}
 
       {/* Modal */}
-      <Modal show={showModal} onHide={handleCloseModal}>
+      <Modal show={showModal} onHide={handleCloseModal} backdrop="static">
         <Modal.Header closeButton>
           <Modal.Title>Detalles del Salon</Modal.Title>
         </Modal.Header>
@@ -292,7 +326,7 @@ const SalonInbox = () => {
       </Modal>
 
       {/* Modal para detalles del auditorio */}
-      <Modal show={showAuditorioModal} onHide={handleCloseAuditorioModal}>
+      <Modal show={showAuditorioModal} onHide={handleCloseAuditorioModal} backdrop="static">
         <Modal.Header closeButton>
           <Modal.Title>Detalles del Auditorio</Modal.Title>
         </Modal.Header>
@@ -315,7 +349,7 @@ const SalonInbox = () => {
 
 
       {/* Modal de confirmacion */}
-      <Modal show={showConfirmationModal} onHide={handleCloseConfirmationModal}>
+      <Modal show={showConfirmationModal} onHide={handleCloseConfirmationModal} backdrop="static" style={{ heigh: '300px' }}>
         <Modal.Header closeButton>
           <Modal.Title>Confirmar Acción</Modal.Title>
         </Modal.Header>

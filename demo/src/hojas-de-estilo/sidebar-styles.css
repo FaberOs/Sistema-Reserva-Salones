@@ -105,3 +105,12 @@
   width: 100%; /* Para ocupar todo el ancho del botón */
   height: auto; /* Para mantener la proporción del icono */
 }
+
+.offcanvas-body-custom {
+  background-color: var(--light-gray);
+}
+
+.offcanvas-header-custom {
+  background-color: var(--gray);
+  color: var(--white);
+}

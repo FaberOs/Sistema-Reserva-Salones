@@ -32,7 +32,7 @@ function Salon() {
                     <Sidebar />
                   </div>
                 </div>
-                <div className="col-lg-10 col-md-8 col-10">
+                <div className="col-lg-10 col-md-8 col-11">
                   <SalonInbox />
                 </div>
               </div>
