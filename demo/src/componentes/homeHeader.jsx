@@ -20,7 +20,7 @@ function principalHeader(props) {
           <div className="col-md-2 col-6 text-center">
             <Link to="/home">
               <img className="logoU img-fluid" src={require("../imagenes/logoUnicauca.png")} alt="logoUnicauca" />
-            </Link>           
+            </Link>     
           </div>
           <div className="col-md-10 col-6 text-end">
             {

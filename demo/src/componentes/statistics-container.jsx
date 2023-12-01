@@ -55,7 +55,7 @@ const StatisticsContainer = () => {
           const data = response.data;
           setSolicitudesPorSalon(data);
 
-          console.log("Datos por saloens", data);
+          console.log("Datos por salones", data);
 
           // Configuración de la segunda gráfica
           const config2 = {

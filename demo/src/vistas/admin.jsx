@@ -1,11 +1,11 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import HomeHeader from '../componentes/homeHeader.jsx'
 import GlobalStyles from '../componentes/GlobalStyles';
 import Sidebar from "../componentes/sidebar.jsx";
 import Inbox from "../componentes/inbox-container.jsx";
 import Error404 from "../componentes/error404.jsx";
+import AdminHeader from "../componentes/adminHeader.jsx";
 
 function Admin() {
 
@@ -20,7 +20,7 @@ function Admin() {
     <div>
       <GlobalStyles backgroundColor="#CCCCCC" />
       <header>
-        <HomeHeader />
+        <AdminHeader />
       </header>
       <main>
         {
@@ -32,7 +32,7 @@ function Admin() {
                     <Sidebar />
                   </div>
                 </div>
-                <div className="col-lg-10 col-md-8 col-sm-10">
+                <div className="col-lg-10 col-md-8 col-10">
                   <Inbox />
                 </div>
               </div>

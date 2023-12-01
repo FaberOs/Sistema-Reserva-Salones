@@ -233,6 +233,12 @@
 
 /* Estilos para dispositivos pequeños, como smartphones */
 @media (max-width: 414px) {
+
+  .logoU {
+    width: 100px;
+    height: auto; 
+  }
+
   .carousel-item {
     height: 200px; /* Ajusta la altura para smartphones */
   }

@@ -88,3 +88,20 @@
 }
 
 
+
+
+.burger-icon-button-offcanvas {
+  border: none;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+}
+
+.burger-icon-button-offcanvas:hover {
+  background-color: transparent;
+}
+
+.burger-icon-offcanvas {
+  width: 100%; /* Para ocupar todo el ancho del botón */
+  height: auto; /* Para mantener la proporción del icono */
+}

@@ -29,6 +29,20 @@ const SalonInbox = () => {
   const [showFiltroPopover, setShowFiltroPopover] = useState(false);
   const [target, setTarget] = useState(null);
 
+  const [showConfirmationModal, setShowConfirmationModal] = useState(false);
+  const [salonToModify, setSalonToModify] = useState(null);
+  const [auditorioToModify, setAuditorioToModify] = useState(null);
+
+  const handleShowConfirmationModal = (id) => {
+    setSalonToModify(id);
+    setShowConfirmationModal(true);
+  };
+
+  const handleCloseConfirmationModal = () => {
+    setSalonToModify(null);
+    setShowConfirmationModal(false);
+  };
+
   const handleFiltroClick = (selectedFiltro) => {
     setFiltro(selectedFiltro);
     setShowFiltroPopover(false);
@@ -37,6 +51,27 @@ const SalonInbox = () => {
   const handleEllipsisClick = (event) => {
     setShowFiltroPopover(!showFiltroPopover);
     setTarget(event.target);
+  };
+
+  const handleEliminarSalonClick = () => {
+    // Realiza la lógica para eliminar el salón con el ID almacenado en salonToModify
+    console.log(`Eliminar salón con ID: ${salonToModify}`);
+    // Cierra el modal de confirmación
+    handleCloseConfirmationModal();
+  };
+
+  const handleEliminarAuditorioClick = () => {
+    // Realiza la lógica para eliminar el salón con el ID almacenado en salonToModify
+    console.log(`Eliminar auditorio con ID: ${auditorioToModify}`);
+    // Cierra el modal de confirmación
+    handleCloseConfirmationModal();
+  };
+  
+  const handleBloquearClick = () => {
+    // Realiza la lógica para bloquear el salón con el ID almacenado en salonToModify
+    console.log(`Bloquear salón con ID: ${salonToModify}`);
+    // Cierra el modal de confirmación
+    handleCloseConfirmationModal();
   };
 
   const filtroPopover = (
@@ -193,7 +228,7 @@ const SalonInbox = () => {
               src={RecycleIcon}
               alt="Eliminar"
               className="inbox-option-icon"
-            // onClick={}
+              onClick={() => handleShowConfirmationModal(salon.idSalon)}
             />
           </div>
           <div className="col-md-1 col-sm-1 text-center">
@@ -201,7 +236,7 @@ const SalonInbox = () => {
               src={LockIcon}
               alt="Bloquear"
               className="inbox-option-icon"
-            // onClick={}
+              onClick={() => handleShowConfirmationModal(salon.idSalon)}
             />
           </div>
         </div>
@@ -220,7 +255,7 @@ const SalonInbox = () => {
               src={RecycleIcon}
               alt="Eliminar"
               className="inbox-option-icon"
-            // onClick={}
+              onClick={() => handleShowConfirmationModal(auditorio.idAuditorio)}
             />
           </div>
           <div className="col-md-1 col-sm-1 text-center">
@@ -228,7 +263,7 @@ const SalonInbox = () => {
               src={LockIcon}
               alt="Bloquear"
               className="inbox-option-icon"
-            // onClick={}
+              onClick={() => handleShowConfirmationModal(auditorio.idAuditorio)}
             />
           </div>
         </div>
@@ -277,6 +312,29 @@ const SalonInbox = () => {
           </Button>
         </Modal.Footer>
       </Modal>
+
+
+      {/* Modal de confirmacion */}
+      <Modal show={showConfirmationModal} onHide={handleCloseConfirmationModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirmar Acción</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          ¿Estás seguro de que deseas realizar esta acción?
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseConfirmationModal}>
+            Cancelar
+          </Button>
+          <Button variant="danger" onClick={handleEliminarSalonClick}>
+            Eliminar
+          </Button>
+          <Button variant="primary" onClick={handleBloquearClick}>
+            Bloquear
+          </Button>
+        </Modal.Footer>
+      </Modal>
+      
     </div>
   );
 };

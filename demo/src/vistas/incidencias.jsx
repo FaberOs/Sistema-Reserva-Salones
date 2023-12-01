@@ -1,12 +1,10 @@
 import React from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import HomeHeader from '../componentes/homeHeader.jsx'
+import AdminHeader from "../componentes/adminHeader.jsx";
 import GlobalStyles from '../componentes/GlobalStyles';
 import Sidebar from "../componentes/sidebar.jsx";
-import MainFooter from '../componentes/footerMain.jsx';
 import Error404 from "../componentes/error404.jsx";
-import RechazadosInbox from "../componentes/rechazados-inbox.jsx";
 import IncidenciasInbox from "../componentes/incidencias-inbox.jsx";
 
 function Incidencias() {
@@ -22,19 +20,19 @@ function Incidencias() {
     <div>
       <GlobalStyles backgroundColor="#CCCCCC" />
       <header>
-        <HomeHeader />
+        <AdminHeader />
       </header>
       <main>
         {
           roll === 'ADMINISTRADOR'
             ?<div className="container">
               <div className="row">
-                <div className="col-lg-2 col-md-3 col-sm-12">
+                <div className="col-lg-2 col-md-3 d-none d-sm-block d-md-block d-lg-block">
                   <div className="sidebar">
                     <Sidebar />
                   </div>
                 </div>
-                <div className="col-lg-10 col-md-9 col-sm-12">
+                <div className="col-lg-10 col-md-8 col-10">
                   <IncidenciasInbox />
                 </div>
               </div>
