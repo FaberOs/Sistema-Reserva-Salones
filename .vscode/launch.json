@@ -1,0 +1,77 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "ApiServiceSalonesApplication",
+            "request": "launch",
+            "mainClass": "com.unicauca.servicesalones.ApiServiceSalonesApplication",
+            "projectName": "api-service-salones"
+        },
+        {
+            "type": "java",
+            "name": "ApiServiceReservaApplication",
+            "request": "launch",
+            "mainClass": "com.unicauca.posgrados.apiservicereserva.ApiServiceReservaApplication",
+            "projectName": "api-service-reserva"
+        },
+        {
+            "type": "java",
+            "name": "ApiServiceProgramasAcademicosApplication",
+            "request": "launch",
+            "mainClass": "com.unicauca.programasacademicos.ApiServiceProgramasAcademicosApplication",
+            "projectName": "api-service-programas-academicos"
+        },
+        {
+            "type": "java",
+            "name": "ApiServiceIncidenciasApplication",
+            "request": "launch",
+            "mainClass": "com.unicauca.serviceincidencias.ApiServiceIncidenciasApplication",
+            "projectName": "api-service-incidencias"
+        },
+        {
+            "type": "java",
+            "name": "ApiServiceAuthApplication",
+            "request": "launch",
+            "mainClass": "com.unicauca.posgrados.apiserviceauth.ApiServiceAuthApplication",
+            "projectName": "api-service-auth"
+        },
+        {
+            "type": "java",
+            "name": "ApiGestionReservaSalonesApplication",
+            "request": "launch",
+            "mainClass": "com.unicauca.posgrados.apigestionreservasalones.ApiGestionReservaSalonesApplication",
+            "projectName": "api-service-reservas (2)"
+        },
+        {
+            "type": "java",
+            "name": "ApiServiceAuthApplication",
+            "request": "launch",
+            "mainClass": "com.unicauca.posgrados.apiServiceAuth.ApiServiceAuthApplication",
+            "projectName": "api-service-reservas"
+        },
+        {
+            "type": "java",
+            "name": "ApiServiceAuth",
+            "request": "launch",
+            "mainClass": "com.unicauca.posgrados.apiServiceAuth.ApiServiceAuth",
+            "projectName": "api-service-reservas"
+        },
+        {
+            "type": "java",
+            "name": "ApiGestionReservaSalonesApplication",
+            "request": "launch",
+            "mainClass": "com.unicauca.posgrados.apigestionreservasalones.ApiGestionReservaSalonesApplication",
+            "projectName": "api-service-reservas"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-DemoApplication<demo>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.unicauca.sistemaReservas.demo.DemoApplication",
+            "projectName": "demo",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        }
+    ]
+}

@@ -1,0 +1,4 @@
+npm install all --s 
+npm install --s
+npm install axios --s
+npm install chart.js
